@@ -1,0 +1,38 @@
+{
+    "name": "zerveinc/omnipay-vantiv",
+    "type": "library",
+    "description": "Vantiv express gateway for the Omnipay payment processing library",
+    "keywords": [
+        "vantiv",
+        "vantiv express",
+        "gateway",
+        "merchant",
+        "omnipay",
+        "pay",
+        "payment"
+    ],
+    "homepage": "https://bitbucket.org/zerveinc/omnipay-vantiv",
+    "license": "Proprietary",
+    "authors": [
+        {
+            "name": "Zerve, Inc.",
+            "email": "devops@zerve.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "Omnipay\\Vantiv\\" : "src/" }
+    },
+    "require": {
+        "php": ">=5.4",
+        "omnipay/common": "~2.0",
+        "eloquent/enumeration": "~5.1"
+    },
+    "require-dev": {
+        "omnipay/tests": "~2.0"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
