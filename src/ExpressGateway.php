@@ -62,4 +62,9 @@ class ExpressGateway extends AbstractGateway
     {
         return $this->createRequest('\Omnipay\Vantiv\Message\ExpressCreditCardSaleRequest', $parameters);
     }
+
+    public function refund(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\Vantiv\Message\ExpressCreditCardReturnRequest', $parameters);
+    }
 }

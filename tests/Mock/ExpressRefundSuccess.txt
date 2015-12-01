@@ -1,0 +1,11 @@
+HTTP/1.1 200 200 OK
+Cache-Control: private
+Transfer-Encoding: chunked
+Content-Type: text/xml; charset=utf-8
+Server: Microsoft-IIS/7.5
+X-AspNet-Version: 4.0.30319
+X-Powered-By: ASP.NET
+Date: Tue, 01 Dec 2015 17:43:05 GMT
+
+<?xml version="1.0"?>
+<CreditCardReturnResponse xmlns="https://transaction.elementexpress.com"><Response><ExpressResponseCode>0</ExpressResponseCode><ExpressResponseMessage>Approved</ExpressResponseMessage><HostResponseCode>000</HostResponseCode><HostResponseMessage>AP</HostResponseMessage><ExpressTransactionDate>20151201</ExpressTransactionDate><ExpressTransactionTime>114306</ExpressTransactionTime><ExpressTransactionTimezone>UTC-06:00:00</ExpressTransactionTimezone><Batch><HostBatchID>1</HostBatchID><HostItemID>17</HostItemID><HostBatchAmount>320.78</HostBatchAmount></Batch><Card><CardLogo>Visa</CardLogo><CardNumberMasked>xxxx-xxxx-xxxx-1111</CardNumberMasked></Card><Transaction><TransactionID>2005832398</TransactionID><ApprovalNumber>000043</ApprovalNumber><ProcessorName>NULL_PROCESSOR_TEST</ProcessorName><TransactionStatus>Approved</TransactionStatus><TransactionStatusCode>1</TransactionStatusCode></Transaction></Response></CreditCardReturnResponse>
