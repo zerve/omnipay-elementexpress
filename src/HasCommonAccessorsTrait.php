@@ -1,15 +1,15 @@
 <?php
 
-namespace Omnipay\Vantiv;
+namespace Omnipay\ElementExpress;
 
-use Omnipay\Vantiv\Enumeration\CardholderPresentCode;
-use Omnipay\Vantiv\Enumeration\CardInputCode;
-use Omnipay\Vantiv\Enumeration\CardPresentCode;
-use Omnipay\Vantiv\Enumeration\CVVPresenceCode;
-use Omnipay\Vantiv\Enumeration\MarketCode;
-use Omnipay\Vantiv\Enumeration\MotoECICode;
-use Omnipay\Vantiv\Enumeration\TerminalCapabilityCode;
-use Omnipay\Vantiv\Enumeration\TerminalEnvironmentCode;
+use Omnipay\ElementExpress\Enumeration\CardholderPresentCode;
+use Omnipay\ElementExpress\Enumeration\CardInputCode;
+use Omnipay\ElementExpress\Enumeration\CardPresentCode;
+use Omnipay\ElementExpress\Enumeration\CVVPresenceCode;
+use Omnipay\ElementExpress\Enumeration\MarketCode;
+use Omnipay\ElementExpress\Enumeration\MotoECICode;
+use Omnipay\ElementExpress\Enumeration\TerminalCapabilityCode;
+use Omnipay\ElementExpress\Enumeration\TerminalEnvironmentCode;
 
 // TODO: some of these are request-specific, and should not be shared with
 //       gateway.

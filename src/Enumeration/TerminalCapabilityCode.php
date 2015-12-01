@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\Vantiv\Enumeration;
+namespace Omnipay\ElementExpress\Enumeration;
 
 use Eloquent\Enumeration\AbstractEnumeration;
 

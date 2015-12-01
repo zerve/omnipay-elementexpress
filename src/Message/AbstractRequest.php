@@ -1,17 +1,17 @@
 <?php
 
-namespace Omnipay\Vantiv\Message;
+namespace Omnipay\ElementExpress\Message;
 
 use Omnipay\Common\Helper;
-use Omnipay\Common\Message\AbstractRequest;
+use Omnipay\Common\Message\AbstractRequest as CommonAbstractRequest;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
-use Omnipay\Vantiv\HasCommonAccessorsTrait;
+use Omnipay\ElementExpress\HasCommonAccessorsTrait;
 
 /**
- * Vantiv Express Abstract Request
+ * ElementExpress Abstract Request
  */
-abstract class ExpressAbstractRequest extends AbstractRequest
+abstract class AbstractRequest extends CommonAbstractRequest
 {
     use HasCommonAccessorsTrait;
 

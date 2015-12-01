@@ -1,21 +1,21 @@
 <?php
 
-namespace Omnipay\Vantiv\Message;
+namespace Omnipay\ElementExpress\Message;
 
-use Omnipay\Vantiv\Enumeration\CardholderPresentCode;
-use Omnipay\Vantiv\Enumeration\CardInputCode;
-use Omnipay\Vantiv\Enumeration\CardPresentCode;
-use Omnipay\Vantiv\Enumeration\CVVPresenceCode;
-use Omnipay\Vantiv\Enumeration\MarketCode;
-use Omnipay\Vantiv\Enumeration\MotoECICode;
-use Omnipay\Vantiv\Enumeration\TerminalCapabilityCode;
-use Omnipay\Vantiv\Enumeration\TerminalEnvironmentCode;
-use Omnipay\Vantiv\Message\ExpressAbstractRequest;
+use Omnipay\ElementExpress\Enumeration\CardholderPresentCode;
+use Omnipay\ElementExpress\Enumeration\CardInputCode;
+use Omnipay\ElementExpress\Enumeration\CardPresentCode;
+use Omnipay\ElementExpress\Enumeration\CVVPresenceCode;
+use Omnipay\ElementExpress\Enumeration\MarketCode;
+use Omnipay\ElementExpress\Enumeration\MotoECICode;
+use Omnipay\ElementExpress\Enumeration\TerminalCapabilityCode;
+use Omnipay\ElementExpress\Enumeration\TerminalEnvironmentCode;
+use Omnipay\ElementExpress\Message\ExpressAbstractRequest;
 
 /**
- * Omnipay Vantiv Express CreditCardSale Request
+ * ElementExpress CreditCardRefund Request
  */
-class ExpressCreditCardSaleRequest extends ExpressAbstractRequest
+class CreditCardReturnRequest extends AbstractRequest
 {
 
     /**
@@ -28,6 +28,7 @@ class ExpressCreditCardSaleRequest extends ExpressAbstractRequest
         return [
 
             // Transaction
+            'transactionID'           => '',
             'marketCode'              => MarketCode::__DEFAULT(),
 
             // Terminal
@@ -35,7 +36,6 @@ class ExpressCreditCardSaleRequest extends ExpressAbstractRequest
             'cardPresentCode'         => CardPresentCode::__DEFAULT(),
             'cardholderPresentCode'   => CardholderPresentCode::__DEFAULT(),
             'cardInputCode'           => CardInputCode::__DEFAULT(),
-            'cvvPresenceCode'         => CVVPresenceCode::__DEFAULT(),
             'terminalCapabilityCode'  => TerminalCapabilityCode::__DEFAULT(),
             'terminalEnvironmentCode' => TerminalEnvironmentCode::__DEFAULT(),
             'motoECICode'             => MotoECICode::__DEFAULT(),
@@ -50,17 +50,15 @@ class ExpressCreditCardSaleRequest extends ExpressAbstractRequest
      */
     public function getData()
     {
-        $this->validate('amount', 'card');
-        $this->getCard()->validate();
+        $this->validate('amount');
 
-        $data = new \SimpleXMLElement('<CreditCardSale />');
+        $data = new \SimpleXMLElement('<CreditCardReturn />');
         $data->addAttribute('xmlns', 'https://transaction.elementexpress.com');
 
         $this->attachApplication($data);
         $this->attachCredentials($data);
         $this->attachTransaction($data);
         $this->attachTerminal($data);
-        $this->attachCard($data);
 
         return $data;
     }
@@ -69,6 +67,7 @@ class ExpressCreditCardSaleRequest extends ExpressAbstractRequest
     {
         $node = $parent->addChild('Transaction');
         $node->addChild('TransactionAmount', $this->getAmount());
+        $node->addChild('TransactionID', $this->getTransactionID());
         $node->addChild('MarketCode', $this->getMarketCode()->value());
     }
 
@@ -79,81 +78,9 @@ class ExpressCreditCardSaleRequest extends ExpressAbstractRequest
         $node->addChild('CardPresentCode', $this->getCardPresentCode()->value());
         $node->addChild('CardholderPresentCode', $this->getCardholderPresentCode()->value());
         $node->addChild('CardInputCode', $this->getCardInputCode()->value());
-        $node->addChild('CVVPresenceCode', $this->getRealCVVPresenceCode()->value());
         $node->addChild('TerminalCapabilityCode', $this->getTerminalCapabilityCode()->value());
         $node->addChild('TerminalEnvironmentCode', $this->getTerminalEnvironmentcode()->value());
         $node->addChild('MotoECICode', $this->getMotoECICode()->value());
-    }
-
-    /**
-     * Only one of the following field groups needs to be included:
-     *
-     *  - CardNumber / ExpirationMonth / ExpirationYear
-     *  - Track1Data
-     *  - Track2Data
-     *  - MagneprintData
-     *  - PaymentAccountID
-     *  - EncryptedTrack1Data
-     *  - EncryptedTrack2Data
-     *  - EncryptedCardData.
-     *
-     * If more than one field is populated they will be given the following
-     * order of precedence:
-     *
-     *  - MagneprintData
-     *  - EncryptedTrack2Data
-     *  - EncryptedTrack1Data
-     *  - EncryptedCardData
-     *  - Track2Data
-     *  - Track1Data
-     *  - PaymentAccountID
-     *  - CardNumber
-     *
-     * To avoid unintended results only populate one field per transaction.
-     */
-    protected function attachCard(\SimpleXMLElement $parent)
-    {
-        $node = $parent->addChild('Card');
-        $card = $this->getCard();
-
-        switch (true) {
-
-            default:
-
-                if (!empty($card->getNumber())) {
-                    $node->addChild('CardNumber', $card->getNumber());
-                }
-
-                if (!empty($card->getExpiryMonth()) && !empty($card->getExpiryYear())) {
-                    $node->addChild('ExpirationMonth', $card->getExpiryDate('m'));
-                    $node->addChild('ExpirationYear', $card->getExpiryDate('y'));
-                }
-
-        }
-
-        // $node->addChild('CVV', $card->getCvv());
-
-    }
-
-    /**
-     * If the CVVPresenceCode is set to __DEFAULT, update it to either PROVIDED
-     * or NOT_PROVIDED depending on whether or not the CVV value is present in
-     * the card data. If the value of CVVPresenceCode is something other than
-     * __DEFAULT, leave it alone.
-     *
-     * @return CardPresentCode
-     */
-    protected function getRealCVVPresenceCode()
-    {
-        $code = $this->getCVVPresenceCode();
-        if ($code === CVVPresenceCode::__DEFAULT()) {
-            if (!empty($this->getCard()->getCvv())) {
-                $code = CVVPresenceCode::PROVIDED();
-            } else {
-                $code = CVVPresenceCode::NOT_PROVIDED();
-            }
-        }
-        return $code;
     }
 
     /**
@@ -182,7 +109,7 @@ class ExpressCreditCardSaleRequest extends ExpressAbstractRequest
             ->post($this->getEndpoint(), $headers, $xml)
             ->send();
 
-        return $this->response = new ExpressResponse(
+        return $this->response = new Response(
             $this,
             $httpResponse->getBody()
         );
@@ -254,16 +181,6 @@ class ExpressCreditCardSaleRequest extends ExpressAbstractRequest
     public function setCardInputCode(CardInputCode $value)
     {
         return $this->setParameter('cardInputCode', $value);
-    }
-
-    public function getCVVPresenceCode()
-    {
-        return $this->getParameter('cvvPresenceCode');
-    }
-
-    public function setCVVPresenceCode(CVVPresenceCode $value)
-    {
-        return $this->setParameter('cvvPresenceCode', $value);
     }
 
     public function getTerminalCapabilityCode()

@@ -1,15 +1,15 @@
 <?php
 
-namespace Omnipay\Vantiv\Message;
+namespace Omnipay\ElementExpress\Message;
 
 use Omnipay\Common\Exception\InvalidResponseException;
 use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RequestInterface;
 
 /**
- * Vantiv Express Response
+ * ElementExpress Response
  */
-class ExpressResponse extends AbstractResponse
+class Response extends AbstractResponse
 {
     /**
      * Constructor

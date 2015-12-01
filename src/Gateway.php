@@ -1,34 +1,34 @@
 <?php
 
-namespace Omnipay\Vantiv;
+namespace Omnipay\ElementExpress;
 
 use Omnipay\Common\AbstractGateway;
 
-use Omnipay\Vantiv\Enumeration\CardholderPresentCode;
-use Omnipay\Vantiv\Enumeration\CardInputCode;
-use Omnipay\Vantiv\Enumeration\CardPresentCode;
-use Omnipay\Vantiv\Enumeration\CVVPresenceCode;
-use Omnipay\Vantiv\Enumeration\MarketCode;
-use Omnipay\Vantiv\Enumeration\MotoECICode;
-use Omnipay\Vantiv\Enumeration\TerminalCapabilityCode;
-use Omnipay\Vantiv\Enumeration\TerminalEnvironmentCode;
+use Omnipay\ElementExpress\Enumeration\CardholderPresentCode;
+use Omnipay\ElementExpress\Enumeration\CardInputCode;
+use Omnipay\ElementExpress\Enumeration\CardPresentCode;
+use Omnipay\ElementExpress\Enumeration\CVVPresenceCode;
+use Omnipay\ElementExpress\Enumeration\MarketCode;
+use Omnipay\ElementExpress\Enumeration\MotoECICode;
+use Omnipay\ElementExpress\Enumeration\TerminalCapabilityCode;
+use Omnipay\ElementExpress\Enumeration\TerminalEnvironmentCode;
 
 /**
- * Vantiv Express Class
+ * ElementExpress Gateway
  *
  * @todo docs for http://bit.ly/1IgpTzy are good
  * @todo xml example: http://bit.ly/1lhLIcN
  */
-class ExpressGateway extends AbstractGateway
+class Gateway extends AbstractGateway
 {
     use HasCommonAccessorsTrait;
 
-    const NAME    = 'omnipay/vantiv';
+    const NAME    = 'omnipay/elementexpress';
     const VERSION = '1.0.0';
 
     public function getName()
     {
-        return 'Vantiv Express';
+        return 'ElementExpress';
     }
 
     /**
@@ -60,11 +60,11 @@ class ExpressGateway extends AbstractGateway
 
     public function purchase(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\Vantiv\Message\ExpressCreditCardSaleRequest', $parameters);
+        return $this->createRequest('\Omnipay\ElementExpress\Message\CreditCardSaleRequest', $parameters);
     }
 
     public function refund(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\Vantiv\Message\ExpressCreditCardReturnRequest', $parameters);
+        return $this->createRequest('\Omnipay\ElementExpress\Message\CreditCardReturnRequest', $parameters);
     }
 }

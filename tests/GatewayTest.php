@@ -1,10 +1,10 @@
 <?php
 
-namespace Omnipay\Vantiv;
+namespace Omnipay\ElementExpress;
 
 use Omnipay\Tests\GatewayTestCase;
 
-class ExpressGatewayTest extends GatewayTestCase
+class GatewayTest extends GatewayTestCase
 {
     protected $purchaseOptions = [];
     protected $refundOptions = [];
@@ -13,7 +13,7 @@ class ExpressGatewayTest extends GatewayTestCase
     {
         parent::setUp();
 
-        $this->gateway = new ExpressGateway($this->getHttpClient(), $this->getHttpRequest());
+        $this->gateway = new Gateway($this->getHttpClient(), $this->getHttpRequest());
 
         // Configure enough to pass validation.
         $this->purchaseOptions = array(
@@ -29,28 +29,28 @@ class ExpressGatewayTest extends GatewayTestCase
 
     public function testPurchaseSuccess()
     {
-        $this->setMockHttpResponse('ExpressPurchaseSuccess.txt');
+        $this->setMockHttpResponse('PurchaseSuccess.txt');
         $response = $this->gateway->purchase($this->purchaseOptions)->send();
         $this->assertTrue($response->isSuccessful());
     }
 
     public function testPurchaseFailure()
     {
-        $this->setMockHttpResponse('ExpressPurchaseFailure.txt');
+        $this->setMockHttpResponse('PurchaseFailure.txt');
         $response = $this->gateway->purchase($this->purchaseOptions)->send();
         $this->assertFalse($response->isSuccessful());
     }
 
     public function testRefundSuccess()
     {
-        $this->setMockHttpResponse('ExpressRefundSuccess.txt');
+        $this->setMockHttpResponse('RefundSuccess.txt');
         $response = $this->gateway->refund($this->refundOptions)->send();
         $this->assertTrue($response->isSuccessful());
     }
 
     public function testRefundFailure()
     {
-        $this->setMockHttpResponse('ExpressRefundFailure.txt');
+        $this->setMockHttpResponse('RefundFailure.txt');
         $response = $this->gateway->refund($this->refundOptions)->send();
         $this->assertFalse($response->isSuccessful());
     }

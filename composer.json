@@ -1,7 +1,7 @@
 {
-    "name": "zerveinc/omnipay-vantiv",
+    "name": "zerve/omnipay-elementexpress",
     "type": "library",
-    "description": "Vantiv express gateway for the Omnipay payment processing library",
+    "description": "ElementExpress gateway for the Omnipay payment processing library",
     "keywords": [
         "vantiv",
         "vantiv express",
@@ -20,7 +20,7 @@
         }
     ],
     "autoload": {
-        "psr-4": { "Omnipay\\Vantiv\\" : "src/" }
+        "psr-4": { "Omnipay\\ElementExpress\\" : "src/" }
     },
     "require": {
         "php": ">=5.4",
