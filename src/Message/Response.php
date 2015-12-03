@@ -1,5 +1,4 @@
 <?php
-
 namespace Omnipay\ElementExpress\Message;
 
 use Omnipay\Common\Exception\InvalidResponseException;

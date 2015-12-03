@@ -1,9 +1,8 @@
 <?php
-
 namespace Omnipay\ElementExpress\Message;
 
-use Omnipay\ElementExpress\HasTransactionTrait;
 use Omnipay\ElementExpress\HasTerminalTrait;
+use Omnipay\ElementExpress\HasTransactionTrait;
 
 /**
  * ElementExpress CreditCardReturn Request
@@ -30,30 +29,5 @@ class CreditCardReturnRequest extends AbstractRequest
         $this->getTerminal()->appendToDom($node);
 
         return $doc;
-    }
-
-    /**
-     * Send data
-     *
-     * @param \DOMDocument $data Data
-     */
-    public function sendData($data)
-    {
-        // Prune empty nodes.
-        $xpath = new \DOMXPath($data);
-        foreach ($xpath->query('//*[not(node())]') as $node) {
-            $node->parentNode->removeChild($node);
-        }
-
-        $headers = ['Content-Type' => 'text/xml; charset=utf-8'];
-
-        $httpResponse = $this->httpClient
-            ->post($this->getEndpoint(), $headers, $data->saveXML())
-            ->send();
-
-        return $this->response = new Response(
-            $this,
-            $httpResponse->getBody()
-        );
     }
 }
