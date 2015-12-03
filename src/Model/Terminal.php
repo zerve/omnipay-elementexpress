@@ -22,6 +22,7 @@ class Terminal extends ModelAbstract
             'TerminalCapabilityCode'  => TerminalCapabilityCode::__DEFAULT(),
             'TerminalEnvironmentCode' => TerminalEnvironmentCode::__DEFAULT(),
             'MotoECICode'             => MotoECICode::__DEFAULT(),
+            'TerminalSerialNumber'    => '',
         ];
     }
 
@@ -36,5 +37,6 @@ class Terminal extends ModelAbstract
         $node->appendChild(new \DOMElement('TerminalCapabilityCode', $this['TerminalCapabilityCode']->value()));
         $node->appendChild(new \DOMElement('TerminalEnvironmentCode', $this['TerminalEnvironmentCode']->value()));
         $node->appendChild(new \DOMElement('MotoECICode', $this['MotoECICode']->value()));
+        $node->appendChild(new \DOMElement('TerminalSerialNumber', $this['TerminalSerialNumber']));
     }
 }

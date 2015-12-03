@@ -94,4 +94,14 @@ trait HasTerminalTrait
     {
         return $this->setParameter('MotoECICode', $value);
     }
+
+    public function getTerminalSerialNumber()
+    {
+        return $this->getParameter('TerminalSerialNumber');
+    }
+
+    public function setTerminalSerialNumber($value)
+    {
+        return $this->setParameter('TerminalSerialNumber', $value);
+    }
 }
