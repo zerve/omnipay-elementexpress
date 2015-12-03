@@ -1,0 +1,33 @@
+HTTP/1.1 200 200 OK
+Cache-Control: private
+Transfer-Encoding: chunked
+Content-Type: text/xml; charset=utf-8
+Server: Microsoft-IIS/7.5
+X-AspNet-Version: 4.0.30319
+X-Powered-By: ASP.NET
+Date: Thu, 03 Dec 2015 22:15:45 GMT
+
+<?xml version="1.0"?>
+<CreditCardVoidResponse xmlns="https://transaction.elementexpress.com">
+  <Response>
+    <ExpressResponseCode>103</ExpressResponseCode>
+    <ExpressResponseMessage>Invalid Transaction Status</ExpressResponseMessage>
+    <ExpressTransactionDate>20151203</ExpressTransactionDate>
+    <ExpressTransactionTime>161546</ExpressTransactionTime>
+    <ExpressTransactionTimezone>UTC-06:00:00</ExpressTransactionTimezone>
+    <Batch>
+      <HostBatchID>1</HostBatchID>
+      <HostItemID>45</HostItemID>
+    </Batch>
+    <Card>
+      <CardLogo>Visa</CardLogo>
+      <CardNumberMasked>xxxx-xxxx-xxxx-1111</CardNumberMasked>
+    </Card>
+    <Transaction>
+      <TransactionID>2005849834</TransactionID>
+      <ApprovalNumber>000014</ApprovalNumber>
+      <ReferenceNumber>5660bee6cb946</ReferenceNumber>
+      <ProcessorName>NULL_PROCESSOR_TEST</ProcessorName>
+    </Transaction>
+  </Response>
+</CreditCardVoidResponse>

@@ -1,5 +1,4 @@
 <?php
-
 namespace Omnipay\ElementExpress;
 
 use Omnipay\Tests\GatewayTestCase;
@@ -7,7 +6,8 @@ use Omnipay\Tests\GatewayTestCase;
 class GatewayTest extends GatewayTestCase
 {
     protected $purchaseOptions = [];
-    protected $refundOptions = [];
+    protected $refundOptions   = [];
+    protected $voidOptions     = [];
 
     public function setUp()
     {
@@ -16,17 +16,23 @@ class GatewayTest extends GatewayTestCase
         $this->gateway = new Gateway($this->getHttpClient(), $this->getHttpRequest());
 
         // Configure enough to pass validation.
-        $this->purchaseOptions = array(
+        $this->purchaseOptions = [
             'amount'        => '10.00',
             'card'          => $this->getValidCard(),
-            'transactionId' => '5660701c2cc39'
-        );
+            'transactionId' => '5660701c2cc39',
+        ];
 
         // Configure enough to pass validation.
-        $this->refundOptions = array(
+        $this->refundOptions = [
             'amount'        => '10.00',
-            'transactionId' => '566073022feca'
-        );
+            'transactionId' => '566073022feca',
+        ];
+
+        // Configure enough to pass validation.
+        $this->voidOptions = [
+            'transactionId' => '5660bee6cb946'
+        ];
+
     }
 
     public function testPurchaseSuccess()
@@ -71,5 +77,27 @@ class GatewayTest extends GatewayTestCase
         $this->assertSame($this->refundOptions['transactionId'], $response->getTransactionId());
         $this->assertSame('Declined', $response->getMessage());
         $this->assertSame('20', $response->getCode());
+    }
+
+    public function testVoidSuccess()
+    {
+        $this->setMockHttpResponse('VoidSuccess.txt');
+        $response = $this->gateway->void($this->voidOptions)->send();
+        $this->assertTrue($response->isSuccessful());
+        $this->assertSame('2005849846', $response->getTransactionReference());
+        $this->assertSame($this->voidOptions['transactionId'], $response->getTransactionId());
+        $this->assertSame('Success', $response->getMessage());
+        $this->assertSame('0', $response->getCode());
+    }
+
+    public function testVoidFailure()
+    {
+        $this->setMockHttpResponse('VoidFailure.txt');
+        $response = $this->gateway->void($this->voidOptions)->send();
+        $this->assertFalse($response->isSuccessful());
+        $this->assertSame('2005849834', $response->getTransactionReference());
+        $this->assertSame($this->voidOptions['transactionId'], $response->getTransactionId());
+        $this->assertSame('Invalid Transaction Status', $response->getMessage());
+        $this->assertSame('103', $response->getCode());
     }
 }
