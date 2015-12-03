@@ -1,8 +1,9 @@
 <?php
 namespace Omnipay\ElementExpress\Message;
 
-use Omnipay\ElementExpress\HasTransactionTrait;
+use Omnipay\ElementExpress\HasCardTrait;
 use Omnipay\ElementExpress\HasTerminalTrait;
+use Omnipay\ElementExpress\HasTransactionTrait;
 
 /**
  * ElementExpress CreditCardSale Request
@@ -11,6 +12,7 @@ class CreditCardSaleRequest extends AbstractRequest
 {
     use HasTransactionTrait;
     use HasTerminalTrait;
+    use HasCardTrait;
 
     /**
      * Get data
@@ -28,8 +30,7 @@ class CreditCardSaleRequest extends AbstractRequest
         $this->getCredentials()->appendToDom($node);
         $this->getTransaction()->appendToDom($node);
         $this->getTerminal()->appendToDom($node);
-
-        $this->attachCard($node);
+        $this->getCard()->appendToDom($node);
         return $doc;
     }
 
@@ -56,57 +57,5 @@ class CreditCardSaleRequest extends AbstractRequest
             $this,
             $httpResponse->getBody()
         );
-    }
-
-    /**
-     * Only one of the following field groups needs to be included:
-     *
-     *  - CardNumber / ExpirationMonth / ExpirationYear
-     *  - Track1Data
-     *  - Track2Data
-     *  - MagneprintData
-     *  - PaymentAccountID
-     *  - EncryptedTrack1Data
-     *  - EncryptedTrack2Data
-     *  - EncryptedCardData.
-     *
-     * If more than one field is populated they will be given the following
-     * order of precedence:
-     *
-     *  - MagneprintData
-     *  - EncryptedTrack2Data
-     *  - EncryptedTrack1Data
-     *  - EncryptedCardData
-     *  - Track2Data
-     *  - Track1Data
-     *  - PaymentAccountID
-     *  - CardNumber
-     *
-     * To avoid unintended results only populate one field per transaction.
-     */
-    protected function attachCard(\DOMNode $parent)
-    {
-        $node = $parent->appendChild(new \DOMElement('Card'));
-        $card = $this->getCard();
-
-        switch (true) {
-
-            default:
-
-                if (!empty($card->getNumber())) {
-                    $node->appendChild(new \DOMElement('CardNumber', $card->getNumber()));
-                }
-
-                if (!empty($card->getExpiryMonth()) && !empty($card->getExpiryYear())) {
-                    $node->appendChild(new \DOMElement('ExpirationMonth', $card->getExpiryDate('m')));
-                    $node->appendChild(new \DOMElement('ExpirationYear', $card->getExpiryDate('y')));
-                }
-
-        }
-
-        $parent->appendChild($node);
-
-        // $node->addChild('CVV', $card->getCvv());
-
     }
 }
