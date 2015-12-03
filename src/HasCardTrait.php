@@ -17,10 +17,11 @@ trait HasCardTrait
     public function getCard()
     {
         $model = new Card();
+        $parameters = $this->getParameters();
         if ($card = $this->getParameter('card')) {
-            $model->initialize($card->getParameters());
+            $parameters = array_merge($parameters, $card->getParameters());
         }
-        return $model;
+        return $model->initialize($parameters);
     }
 
     // The following mutators/accessors correspond to parameters that have
@@ -72,41 +73,41 @@ trait HasCardTrait
 
     public function getEncryptedTrack1Data()
     {
-        return $this->getParameter('encryptedTrack1Data');
+        return $this->getParameter('EncryptedTrack1Data');
     }
 
     public function setEncryptedTrack1Data($value)
     {
-        return $this->setParameter('encryptedTrack1Data', $value);
+        return $this->setParameter('EncryptedTrack1Data', $value);
     }
 
     public function getEncryptedTrack2Data()
     {
-        return $this->getParameter('encryptedTrack2Data');
+        return $this->getParameter('EncryptedTrack2Data');
     }
 
     public function setEncryptedTrack2Data($value)
     {
-        return $this->setParameter('encryptedTrack2Data', $value);
+        return $this->setParameter('EncryptedTrack2Data', $value);
     }
 
     public function getCardDataKeySerialNumber()
     {
-        return $this->getParameter('cardDataKeySerialNumber');
+        return $this->getParameter('CardDataKeySerialNumber');
     }
 
     public function setCardDataKeySerialNumber($value)
     {
-        return $this->setParameter('cardDataKeySerialNumber', $value);
+        return $this->setParameter('CardDataKeySerialNumber', $value);
     }
 
     public function getEncryptedFormat()
     {
-        return $this->getParameter('encryptedFormat');
+        return $this->getParameter('EncryptedFormat');
     }
 
     public function setEncryptedFormat($value)
     {
-        return $this->setParameter('encryptedFormat', $value);
+        return $this->setParameter('EncryptedFormat', $value);
     }
 }
