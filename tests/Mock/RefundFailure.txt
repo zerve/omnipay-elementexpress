@@ -5,7 +5,7 @@ Content-Type: text/xml; charset=utf-8
 Server: Microsoft-IIS/7.5
 X-AspNet-Version: 4.0.30319
 X-Powered-By: ASP.NET
-Date: Thu, 03 Dec 2015 16:11:54 GMT
+Date: Thu, 03 Dec 2015 16:51:18 GMT
 
 <?xml version="1.0"?>
 <CreditCardReturnResponse xmlns="https://transaction.elementexpress.com">
@@ -15,14 +15,15 @@ Date: Thu, 03 Dec 2015 16:11:54 GMT
     <HostResponseCode>007</HostResponseCode>
     <HostResponseMessage>DECLINED</HostResponseMessage>
     <ExpressTransactionDate>20151203</ExpressTransactionDate>
-    <ExpressTransactionTime>101154</ExpressTransactionTime>
+    <ExpressTransactionTime>105117</ExpressTransactionTime>
     <ExpressTransactionTimezone>UTC-06:00:00</ExpressTransactionTimezone>
     <Card>
       <CardLogo>Visa</CardLogo>
       <CardNumberMasked>xxxx-xxxx-xxxx-1111</CardNumberMasked>
     </Card>
     <Transaction>
-      <TransactionID>2005846197</TransactionID>
+      <TransactionID>2005846625</TransactionID>
+      <ReferenceNumber>566073022feca</ReferenceNumber>
       <ProcessorName>NULL_PROCESSOR_TEST</ProcessorName>
       <TransactionStatus>Declined</TransactionStatus>
       <TransactionStatusCode>2</TransactionStatusCode>

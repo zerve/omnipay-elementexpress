@@ -5,7 +5,7 @@ Content-Type: text/xml; charset=utf-8
 Server: Microsoft-IIS/7.5
 X-AspNet-Version: 4.0.30319
 X-Powered-By: ASP.NET
-Date: Thu, 03 Dec 2015 16:12:24 GMT
+Date: Thu, 03 Dec 2015 16:52:31 GMT
 
 <?xml version="1.0"?>
 <CreditCardReturnResponse xmlns="https://transaction.elementexpress.com">
@@ -15,20 +15,21 @@ Date: Thu, 03 Dec 2015 16:12:24 GMT
     <HostResponseCode>000</HostResponseCode>
     <HostResponseMessage>AP</HostResponseMessage>
     <ExpressTransactionDate>20151203</ExpressTransactionDate>
-    <ExpressTransactionTime>101224</ExpressTransactionTime>
+    <ExpressTransactionTime>105229</ExpressTransactionTime>
     <ExpressTransactionTimezone>UTC-06:00:00</ExpressTransactionTimezone>
     <Batch>
       <HostBatchID>1</HostBatchID>
-      <HostItemID>22</HostItemID>
-      <HostBatchAmount>323.78</HostBatchAmount>
+      <HostItemID>28</HostItemID>
+      <HostBatchAmount>327.78</HostBatchAmount>
     </Batch>
     <Card>
       <CardLogo>Visa</CardLogo>
       <CardNumberMasked>xxxx-xxxx-xxxx-1111</CardNumberMasked>
     </Card>
     <Transaction>
-      <TransactionID>2005846200</TransactionID>
-      <ApprovalNumber>000012</ApprovalNumber>
+      <TransactionID>2005846634</TransactionID>
+      <ApprovalNumber>000052</ApprovalNumber>
+      <ReferenceNumber>566073022feca</ReferenceNumber>
       <ProcessorName>NULL_PROCESSOR_TEST</ProcessorName>
       <TransactionStatus>Approved</TransactionStatus>
       <TransactionStatusCode>1</TransactionStatusCode>
