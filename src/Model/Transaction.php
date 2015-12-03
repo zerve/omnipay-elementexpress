@@ -3,7 +3,7 @@ namespace Omnipay\ElementExpress\Model;
 
 use Omnipay\ElementExpress\Enumeration\MarketCode;
 
-class Transaction extends ModelAbstract implements \ArrayAccess
+class Transaction extends ModelAbstract
 {
     public function getDefaultParameters()
     {

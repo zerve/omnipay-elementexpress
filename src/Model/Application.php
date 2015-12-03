@@ -1,7 +1,7 @@
 <?php
 namespace Omnipay\ElementExpress\Model;
 
-class Application extends ModelAbstract implements \ArrayAccess
+class Application extends ModelAbstract
 {
     public function getDefaultParameters()
     {
