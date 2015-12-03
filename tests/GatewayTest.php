@@ -17,8 +17,9 @@ class GatewayTest extends GatewayTestCase
 
         // Configure enough to pass validation.
         $this->purchaseOptions = array(
-            'amount' => '10.00',
-            'card' => $this->getValidCard(),
+            'amount'        => '10.00',
+            'card'          => $this->getValidCard(),
+            'transactionId' => '5660701c2cc39'
         );
 
         // Configure enough to pass validation.
@@ -32,6 +33,10 @@ class GatewayTest extends GatewayTestCase
         $this->setMockHttpResponse('PurchaseSuccess.txt');
         $response = $this->gateway->purchase($this->purchaseOptions)->send();
         $this->assertTrue($response->isSuccessful());
+        $this->assertSame('2005846437', $response->getTransactionReference());
+        $this->assertSame($this->purchaseOptions['transactionId'], $response->getTransactionId());
+        $this->assertSame('Approved', $response->getMessage());
+        $this->assertSame('0', $response->getCode());
     }
 
     public function testPurchaseFailure()
@@ -39,6 +44,10 @@ class GatewayTest extends GatewayTestCase
         $this->setMockHttpResponse('PurchaseFailure.txt');
         $response = $this->gateway->purchase($this->purchaseOptions)->send();
         $this->assertFalse($response->isSuccessful());
+        $this->assertSame('2005846500', $response->getTransactionReference());
+        $this->assertSame($this->purchaseOptions['transactionId'], $response->getTransactionId());
+        $this->assertSame('Declined', $response->getMessage());
+        $this->assertSame('20', $response->getCode());
     }
 
     public function testRefundSuccess()

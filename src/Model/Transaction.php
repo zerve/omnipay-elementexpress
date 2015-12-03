@@ -10,6 +10,7 @@ class Transaction extends ModelAbstract implements \ArrayAccess
         return [
             'TransactionAmount' => '',
             'TransactionID'     => '',
+            'ReferenceNumber'   => '',
             'MarketCode'        => MarketCode::__DEFAULT()
         ];
     }
@@ -19,6 +20,7 @@ class Transaction extends ModelAbstract implements \ArrayAccess
         $node = $parent->appendChild(new \DOMElement('Transaction'));
         $node->appendChild(new \DOMElement('TransactionAmount', $this['TransactionAmount']));
         $node->appendChild(new \DOMElement('TransactionID', $this['TransactionID']));
+        $node->appendChild(new \DOMElement('ReferenceNumber', $this['ReferenceNumber']));
         $node->appendChild(new \DOMElement('MarketCode', $this['MarketCode']->value()));
     }
 }

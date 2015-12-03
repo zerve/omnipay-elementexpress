@@ -5,7 +5,7 @@ Content-Type: text/xml; charset=utf-8
 Server: Microsoft-IIS/7.5
 X-AspNet-Version: 4.0.30319
 X-Powered-By: ASP.NET
-Date: Thu, 03 Dec 2015 15:35:46 GMT
+Date: Thu, 03 Dec 2015 16:38:54 GMT
 
 <?xml version="1.0"?>
 <CreditCardSaleResponse xmlns="https://transaction.elementexpress.com">
@@ -15,12 +15,12 @@ Date: Thu, 03 Dec 2015 15:35:46 GMT
     <HostResponseCode>000</HostResponseCode>
     <HostResponseMessage>AP</HostResponseMessage>
     <ExpressTransactionDate>20151203</ExpressTransactionDate>
-    <ExpressTransactionTime>093546</ExpressTransactionTime>
+    <ExpressTransactionTime>103853</ExpressTransactionTime>
     <ExpressTransactionTimezone>UTC-06:00:00</ExpressTransactionTimezone>
     <Batch>
       <HostBatchID>1</HostBatchID>
-      <HostItemID>21</HostItemID>
-      <HostBatchAmount>324.78</HostBatchAmount>
+      <HostItemID>26</HostItemID>
+      <HostBatchAmount>327.78</HostBatchAmount>
     </Batch>
     <Card>
       <AVSResponseCode>N</AVSResponseCode>
@@ -28,8 +28,9 @@ Date: Thu, 03 Dec 2015 15:35:46 GMT
       <CardNumberMasked>xxxx-xxxx-xxxx-1111</CardNumberMasked>
     </Card>
     <Transaction>
-      <TransactionID>2005845954</TransactionID>
-      <ApprovalNumber>000035</ApprovalNumber>
+      <TransactionID>2005846437</TransactionID>
+      <ApprovalNumber>000038</ApprovalNumber>
+      <ReferenceNumber>5660701c2cc39</ReferenceNumber>
       <AcquirerData>aVb001234567810425c0425d5e00</AcquirerData>
       <ProcessorName>NULL_PROCESSOR_TEST</ProcessorName>
       <TransactionStatus>Approved</TransactionStatus>

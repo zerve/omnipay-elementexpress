@@ -35,6 +35,16 @@ trait HasTransactionTrait
         return $this->setParameter('TransactionID', $value);
     }
 
+    public function getReferenceNumber()
+    {
+        return $this->getParameter('ReferenceNumber');
+    }
+
+    public function setReferenceNumber($value)
+    {
+        return $this->setParameter('ReferenceNumber', $value);
+    }
+
     public function getMarketCode()
     {
         return $this->getParameter('MarketCode');
