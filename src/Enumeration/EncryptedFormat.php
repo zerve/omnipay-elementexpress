@@ -13,8 +13,8 @@ use Eloquent\Enumeration\AbstractEnumeration;
 final class EncryptedFormat extends AbstractEnumeration
 {
     const __DEFAULT = 0;
-    const FORMAT_1  = 1;
-    const FORMAT_2  = 2;
-    const FORMAT_3  = 3;
-    const FORMAT_4  = 4;
+    const FORMAT_1  = 1; // Magtek
+    const FORMAT_2  = 2; // Ingenico DPP
+    const FORMAT_3  = 3; // Ingenico On-Guard
+    const FORMAT_4  = 4; // ID Tech
 }
