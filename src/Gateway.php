@@ -4,15 +4,6 @@ namespace Omnipay\ElementExpress;
 
 use Omnipay\Common\AbstractGateway;
 
-use Omnipay\ElementExpress\Enumeration\CardholderPresentCode;
-use Omnipay\ElementExpress\Enumeration\CardInputCode;
-use Omnipay\ElementExpress\Enumeration\CardPresentCode;
-use Omnipay\ElementExpress\Enumeration\CVVPresenceCode;
-use Omnipay\ElementExpress\Enumeration\MarketCode;
-use Omnipay\ElementExpress\Enumeration\MotoECICode;
-use Omnipay\ElementExpress\Enumeration\TerminalCapabilityCode;
-use Omnipay\ElementExpress\Enumeration\TerminalEnvironmentCode;
-
 /**
  * ElementExpress Gateway
  *
@@ -23,6 +14,9 @@ class Gateway extends AbstractGateway
 {
     use HasCommonAccessorsTrait;
 
+    use HasApplicationTrait;
+    use HasCredentialsTrait;
+
     const NAME    = 'omnipay/elementexpress';
     const VERSION = '1.0.0';
 
@@ -32,7 +26,11 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * Get default parameters
+     * Get default parameters. All parameters common to the Gateway and requests
+     * are listed here, even those which don't actually have any defaults. This
+     * helps document required parameters, but also helps unit tests ensure that
+     * the necessary accessors are present to pass parameters from Gateway to
+     * request.
      *
      * @return array
      */
@@ -40,17 +38,17 @@ class Gateway extends AbstractGateway
     {
         return [
 
-            // Account
+            // Credentials Model
             'accountID'               => '',
             'accountToken'            => '',
             'acceptorID'              => '',
 
-            // Credentials
+            // Application Model
             'applicationID'           => '',
             'applicationName'         => self::NAME,
             'applicationVersion'      => self::VERSION,
 
-            // Misc
+            // Omnipay Internal
             'testMode'                => false,
             'developmentEndpoint'     => 'https://certtransaction.elementexpress.com/',
             'productionEndpoint'      => ''

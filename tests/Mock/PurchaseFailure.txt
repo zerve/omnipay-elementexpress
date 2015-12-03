@@ -5,7 +5,32 @@ Content-Type: text/xml; charset=utf-8
 Server: Microsoft-IIS/7.5
 X-AspNet-Version: 4.0.30319
 X-Powered-By: ASP.NET
-Date: Wed, 25 Nov 2015 20:55:58 GMT
+Date: Thu, 03 Dec 2015 16:03:08 GMT
 
 <?xml version="1.0"?>
-<CreditCardSaleResponse xmlns="https://transaction.elementexpress.com"><Response><ExpressResponseCode>20</ExpressResponseCode><ExpressResponseMessage>Declined</ExpressResponseMessage><HostResponseCode>007</HostResponseCode><HostResponseMessage>DECLINED</HostResponseMessage><ExpressTransactionDate>20151125</ExpressTransactionDate><ExpressTransactionTime>145556</ExpressTransactionTime><ExpressTransactionTimezone>UTC-06:00:00</ExpressTransactionTimezone><Batch><HostBatchID>1</HostBatchID></Batch><Card><AVSResponseCode>N</AVSResponseCode><CardLogo>Visa</CardLogo><CardNumberMasked>xxxx-xxxx-xxxx-1111</CardNumberMasked></Card><Transaction><TransactionID>2005818100</TransactionID><AcquirerData>aVb001234567810425c0425d5e00</AcquirerData><ProcessorName>NULL_PROCESSOR_TEST</ProcessorName><TransactionStatus>Declined</TransactionStatus><TransactionStatusCode>2</TransactionStatusCode></Transaction></Response></CreditCardSaleResponse>
+<CreditCardSaleResponse xmlns="https://transaction.elementexpress.com">
+  <Response>
+    <ExpressResponseCode>20</ExpressResponseCode>
+    <ExpressResponseMessage>Declined</ExpressResponseMessage>
+    <HostResponseCode>007</HostResponseCode>
+    <HostResponseMessage>DECLINED</HostResponseMessage>
+    <ExpressTransactionDate>20151203</ExpressTransactionDate>
+    <ExpressTransactionTime>100308</ExpressTransactionTime>
+    <ExpressTransactionTimezone>UTC-06:00:00</ExpressTransactionTimezone>
+    <Batch>
+      <HostBatchID>1</HostBatchID>
+    </Batch>
+    <Card>
+      <AVSResponseCode>N</AVSResponseCode>
+      <CardLogo>Visa</CardLogo>
+      <CardNumberMasked>xxxx-xxxx-xxxx-1111</CardNumberMasked>
+    </Card>
+    <Transaction>
+      <TransactionID>2005846170</TransactionID>
+      <AcquirerData>aVb001234567810425c0425d5e00</AcquirerData>
+      <ProcessorName>NULL_PROCESSOR_TEST</ProcessorName>
+      <TransactionStatus>Declined</TransactionStatus>
+      <TransactionStatusCode>2</TransactionStatusCode>
+    </Transaction>
+  </Response>
+</CreditCardSaleResponse>

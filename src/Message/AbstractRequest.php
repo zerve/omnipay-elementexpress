@@ -6,6 +6,8 @@ use Omnipay\Common\Helper;
 use Omnipay\Common\Message\AbstractRequest as CommonAbstractRequest;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
+use Omnipay\ElementExpress\HasApplicationTrait;
+use Omnipay\ElementExpress\HasCredentialsTrait;
 use Omnipay\ElementExpress\HasCommonAccessorsTrait;
 
 /**
@@ -13,58 +15,21 @@ use Omnipay\ElementExpress\HasCommonAccessorsTrait;
  */
 abstract class AbstractRequest extends CommonAbstractRequest
 {
+    use HasApplicationTrait;
+    use HasCredentialsTrait;
     use HasCommonAccessorsTrait;
 
     /**
-     * Override parent method to incorporate default parameters.
+     * Returns either the development or production API endpoint, depending on
+     * the value of the testMode parameter.
      *
-     * @param array $parameters An associative array of parameters
-     * @return $this
-     * @throws RuntimeException
+     * @return string
      */
-    public function initialize(array $parameters = array())
+    protected function getEndpoint()
     {
-        if (null !== $this->response) {
-            throw new RuntimeException('Request cannot be modified after it has been sent!');
+        if ($this->getTestMode()) {
+            return $this->getDevelopmentEndpoint();
         }
-
-        $this->parameters = new ParameterBag;
-
-        // Set default parameters
-        foreach ($this->getDefaultParameters() as $key => $value) {
-            if (is_array($value)) {
-                $this->parameters->set($key, reset($value));
-            } else {
-                $this->parameters->set($key, $value);
-            }
-        }
-
-        Helper::initialize($this, $parameters);
-
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getDefaultParameters()
-    {
-        return array();
-    }
-
-    protected function attachApplication(\SimpleXMLElement $parent)
-    {
-        $node = $parent->addChild('Application');
-        $node->addChild('ApplicationID', $this->getApplicationID());
-        $node->addChild('ApplicationName', $this->getApplicationName());
-        $node->addChild('ApplicationVersion', $this->getApplicationVersion());
-    }
-
-    protected function attachCredentials(\SimpleXMLElement $parent)
-    {
-        $node = $parent->addChild('Credentials');
-        $node->addChild('AccountID', $this->getAccountID());
-        $node->addChild('AccountToken', $this->getAccountToken());
-        $node->addChild('AcceptorID', $this->getAcceptorID());
+        return $this->getProductionEndpoint();
     }
 }

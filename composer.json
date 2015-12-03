@@ -28,7 +28,8 @@
         "eloquent/enumeration": "~5.1"
     },
     "require-dev": {
-        "omnipay/tests": "~2.0"
+        "omnipay/tests": "~2.0",
+        "mockery/mockery": "~0.9"
     },
     "extra": {
         "branch-alias": {

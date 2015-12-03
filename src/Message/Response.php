@@ -28,8 +28,8 @@ class Response extends AbstractResponse
 
         $implementation = new \DOMImplementation();
         $responseDom = $implementation->createDocument();
+        $responseDom->preserveWhiteSpace = false;
         $responseDom->loadXML($data);
-
         $this->data = simplexml_import_dom(
             $responseDom->documentElement->firstChild
         );

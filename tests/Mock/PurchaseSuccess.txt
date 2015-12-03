@@ -5,7 +5,36 @@ Content-Type: text/xml; charset=utf-8
 Server: Microsoft-IIS/7.5
 X-AspNet-Version: 4.0.30319
 X-Powered-By: ASP.NET
-Date: Wed, 25 Nov 2015 20:51:28 GMT
+Date: Thu, 03 Dec 2015 15:35:46 GMT
 
 <?xml version="1.0"?>
-<CreditCardSaleResponse xmlns="https://transaction.elementexpress.com"><Response><ExpressResponseCode>0</ExpressResponseCode><ExpressResponseMessage>Approved</ExpressResponseMessage><HostResponseCode>000</HostResponseCode><HostResponseMessage>AP</HostResponseMessage><ExpressTransactionDate>20151125</ExpressTransactionDate><ExpressTransactionTime>145127</ExpressTransactionTime><ExpressTransactionTimezone>UTC-06:00:00</ExpressTransactionTimezone><Batch><HostBatchID>1</HostBatchID><HostItemID>2</HostItemID><HostBatchAmount>2.00</HostBatchAmount></Batch><Card><AVSResponseCode>N</AVSResponseCode><CardLogo>Visa</CardLogo><CardNumberMasked>xxxx-xxxx-xxxx-1111</CardNumberMasked></Card><Transaction><TransactionID>2005818075</TransactionID><ApprovalNumber>000051</ApprovalNumber><AcquirerData>aVb001234567810425c0425d5e00</AcquirerData><ProcessorName>NULL_PROCESSOR_TEST</ProcessorName><TransactionStatus>Approved</TransactionStatus><TransactionStatusCode>1</TransactionStatusCode><ApprovedAmount>1.00</ApprovedAmount></Transaction></Response></CreditCardSaleResponse>
+<CreditCardSaleResponse xmlns="https://transaction.elementexpress.com">
+  <Response>
+    <ExpressResponseCode>0</ExpressResponseCode>
+    <ExpressResponseMessage>Approved</ExpressResponseMessage>
+    <HostResponseCode>000</HostResponseCode>
+    <HostResponseMessage>AP</HostResponseMessage>
+    <ExpressTransactionDate>20151203</ExpressTransactionDate>
+    <ExpressTransactionTime>093546</ExpressTransactionTime>
+    <ExpressTransactionTimezone>UTC-06:00:00</ExpressTransactionTimezone>
+    <Batch>
+      <HostBatchID>1</HostBatchID>
+      <HostItemID>21</HostItemID>
+      <HostBatchAmount>324.78</HostBatchAmount>
+    </Batch>
+    <Card>
+      <AVSResponseCode>N</AVSResponseCode>
+      <CardLogo>Visa</CardLogo>
+      <CardNumberMasked>xxxx-xxxx-xxxx-1111</CardNumberMasked>
+    </Card>
+    <Transaction>
+      <TransactionID>2005845954</TransactionID>
+      <ApprovalNumber>000035</ApprovalNumber>
+      <AcquirerData>aVb001234567810425c0425d5e00</AcquirerData>
+      <ProcessorName>NULL_PROCESSOR_TEST</ProcessorName>
+      <TransactionStatus>Approved</TransactionStatus>
+      <TransactionStatusCode>1</TransactionStatusCode>
+      <ApprovedAmount>1.00</ApprovedAmount>
+    </Transaction>
+  </Response>
+</CreditCardSaleResponse>
