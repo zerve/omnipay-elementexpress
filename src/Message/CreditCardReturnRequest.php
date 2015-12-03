@@ -39,6 +39,12 @@ class CreditCardReturnRequest extends AbstractRequest
      */
     public function sendData($data)
     {
+        // Prune empty nodes.
+        $xpath = new \DOMXPath($data);
+        foreach ($xpath->query('//*[not(node())]') as $node) {
+            $node->parentNode->removeChild($node);
+        }
+
         $headers = ['Content-Type' => 'text/xml; charset=utf-8'];
 
         $httpResponse = $this->httpClient

@@ -19,8 +19,8 @@ class CreditCardSaleRequest extends AbstractRequest
      */
     public function getData()
     {
-        $this->validate('amount', 'card');
-        $this->getCard()->validate();
+        // $this->validate('amount', 'card');
+        // $this->getCard()->validate();
 
         $doc  = new \DOMDocument('1.0');
         $node = $doc->appendChild(new \DOMElement('CreditCardSale', null, 'https://transaction.elementexpress.com'));
@@ -40,6 +40,12 @@ class CreditCardSaleRequest extends AbstractRequest
      */
     public function sendData($data)
     {
+        // Prune empty nodes.
+        $xpath = new \DOMXPath($data);
+        foreach ($xpath->query('//*[not(node())]') as $node) {
+            $node->parentNode->removeChild($node);
+        }
+
         $headers = ['Content-Type' => 'text/xml; charset=utf-8'];
 
         $httpResponse = $this->httpClient
