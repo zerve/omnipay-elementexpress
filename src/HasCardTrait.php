@@ -71,6 +71,36 @@ trait HasCardTrait
     // The following mutators/accessors correspond to parameters that are
     // unique to the ElementExpress domain.
 
+    public function getTrack1Data()
+    {
+        return $this->getParameter('Track1Data');
+    }
+
+    public function setTrack1Data($value)
+    {
+        return $this->setParameter('Track1Data', $value);
+    }
+
+    public function getTrack2Data()
+    {
+        return $this->getParameter('Track2Data');
+    }
+
+    public function setTrack2Data($value)
+    {
+        return $this->setParameter('Track2Data', $value);
+    }
+
+    public function getMagneprintData()
+    {
+        return $this->getParameter('MagneprintData');
+    }
+
+    public function setMagneprintData($value)
+    {
+        return $this->setParameter('MagneprintData', $value);
+    }
+
     public function getEncryptedTrack1Data()
     {
         return $this->getParameter('EncryptedTrack1Data');
@@ -89,6 +119,16 @@ trait HasCardTrait
     public function setEncryptedTrack2Data($value)
     {
         return $this->setParameter('EncryptedTrack2Data', $value);
+    }
+
+    public function getEncryptedCardData()
+    {
+        return $this->getParameter('EncryptedCardData');
+    }
+
+    public function setEncryptedCardData($value)
+    {
+        return $this->setParameter('EncryptedCardData', $value);
     }
 
     public function getCardDataKeySerialNumber()

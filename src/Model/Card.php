@@ -19,8 +19,13 @@ class Card extends ModelAbstract
 
             // Remaining elements correspond to ElementExpress parameters.
 
+            'Track1Data'              => '',
+            'Track2Data'              => '',
+            'MagneprintData'          => '',
             'EncryptedTrack1Data'     => '',
             'EncryptedTrack2Data'     => '',
+            'EncryptedCardData'       => '',
+
             'CardDataKeySerialNumber' => '',
             'EncryptedFormat'         => EncryptedFormat::__DEFAULT
 
@@ -34,8 +39,6 @@ class Card extends ModelAbstract
         // Append parameters.
 
         $node->appendChild(new \DOMElement('CVV', $this['cvv']));
-        $node->appendChild(new \DOMElement('CardDataKeySerialNumber', $this['CardDataKeySerialNumber']));
-        $node->appendChild(new \DOMElement('EncryptedFormat', $this['EncryptedFormat']));
 
         // Only one of the following field groups needs to be included; If more
         // than one is present, they will be given the following order of
@@ -43,16 +46,26 @@ class Card extends ModelAbstract
         // transaction.
 
         $cardData = [
-            'EncryptedTrack2Data',
-            'EncryptedTrack1Data'
+            'MagneprintData'      => false,
+            'EncryptedTrack2Data' => true,
+            'EncryptedTrack1Data' => true,
+            'EncryptedCardData'   => true,
+            'Track2Data'          => false,
+            'Track1Data'          => false,
             // CardNumber, ExpirationMonth, Expiration Year
         ];
 
         do {
 
-            foreach ($cardData as $field) {
-                if (!empty($this->$field)) {
+            foreach ($cardData as $field => $isEncrypted) {
+                if (!empty($this[$field])) {
                     $node->appendChild(new \DOMElement($field, $this[$field]));
+                    if ($isEncrypted) {
+                        $node->appendChild(
+                            new \DOMElement('CardDataKeySerialNumber', $this['CardDataKeySerialNumber'])
+                        );
+                        $node->appendChild(new \DOMElement('EncryptedFormat', $this['EncryptedFormat']));
+                    }
                     break 2;
                 }
             }
