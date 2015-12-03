@@ -5,7 +5,27 @@ Content-Type: text/xml; charset=utf-8
 Server: Microsoft-IIS/7.5
 X-AspNet-Version: 4.0.30319
 X-Powered-By: ASP.NET
-Date: Tue, 01 Dec 2015 17:46:50 GMT
+Date: Thu, 03 Dec 2015 16:11:54 GMT
 
 <?xml version="1.0"?>
-<CreditCardReturnResponse xmlns="https://transaction.elementexpress.com"><Response><ExpressResponseCode>20</ExpressResponseCode><ExpressResponseMessage>Declined</ExpressResponseMessage><HostResponseCode>007</HostResponseCode><HostResponseMessage>DECLINED</HostResponseMessage><ExpressTransactionDate>20151201</ExpressTransactionDate><ExpressTransactionTime>114650</ExpressTransactionTime><ExpressTransactionTimezone>UTC-06:00:00</ExpressTransactionTimezone><Card><CardLogo>Visa</CardLogo><CardNumberMasked>xxxx-xxxx-xxxx-1111</CardNumberMasked></Card><Transaction><TransactionID>2005832449</TransactionID><ProcessorName>NULL_PROCESSOR_TEST</ProcessorName><TransactionStatus>Declined</TransactionStatus><TransactionStatusCode>2</TransactionStatusCode></Transaction></Response></CreditCardReturnResponse>
+<CreditCardReturnResponse xmlns="https://transaction.elementexpress.com">
+  <Response>
+    <ExpressResponseCode>20</ExpressResponseCode>
+    <ExpressResponseMessage>Declined</ExpressResponseMessage>
+    <HostResponseCode>007</HostResponseCode>
+    <HostResponseMessage>DECLINED</HostResponseMessage>
+    <ExpressTransactionDate>20151203</ExpressTransactionDate>
+    <ExpressTransactionTime>101154</ExpressTransactionTime>
+    <ExpressTransactionTimezone>UTC-06:00:00</ExpressTransactionTimezone>
+    <Card>
+      <CardLogo>Visa</CardLogo>
+      <CardNumberMasked>xxxx-xxxx-xxxx-1111</CardNumberMasked>
+    </Card>
+    <Transaction>
+      <TransactionID>2005846197</TransactionID>
+      <ProcessorName>NULL_PROCESSOR_TEST</ProcessorName>
+      <TransactionStatus>Declined</TransactionStatus>
+      <TransactionStatusCode>2</TransactionStatusCode>
+    </Transaction>
+  </Response>
+</CreditCardReturnResponse>
