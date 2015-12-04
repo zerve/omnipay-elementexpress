@@ -1,8 +1,9 @@
 <?php
 namespace Omnipay\ElementExpress\Message;
 
-use Omnipay\Tests\TestCase;
+use Mockery as m;
 use Omnipay\ElementExpress\Gateway;
+use Omnipay\Tests\TestCase;
 
 class ResponseTest extends TestCase
 {
@@ -17,6 +18,15 @@ class ResponseTest extends TestCase
             'transactionId' => '5660bee6cb946'
         ];
 
+    }
+
+    /**
+     * @expectedException Omnipay\Common\Exception\InvalidResponseException
+     */
+    public function testConstructorThrowsInvalidResponseException()
+    {
+        $request = m::mock('Omnipay\Common\Message\RequestInterface');
+        $model   = new Response($request, null);
     }
 
     public function testResponseAccessors()
