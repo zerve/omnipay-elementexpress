@@ -10,9 +10,9 @@ use Omnipay\ElementExpress\HasTransactionTrait;
  */
 class CreditCardSaleRequest extends AbstractRequest
 {
-    use HasTransactionTrait;
-    use HasTerminalTrait;
     use HasCardTrait;
+    use HasTerminalTrait;
+    use HasTransactionTrait;
 
     /**
      * Get data

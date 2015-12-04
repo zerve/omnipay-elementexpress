@@ -9,8 +9,8 @@ use Omnipay\ElementExpress\HasTransactionTrait;
  */
 class CreditCardReturnRequest extends AbstractRequest
 {
-    use HasTransactionTrait;
     use HasTerminalTrait;
+    use HasTransactionTrait;
 
     /**
      * Get data
