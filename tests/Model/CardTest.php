@@ -13,7 +13,7 @@ class CardTest extends PHPUnit_Framework_TestCase
     {
         $data = [
             'EncryptedTrack1Data'     => uniqid(),
-            'EncryptedFormat'         => EncryptedFormat::__DEFAULT,
+            'EncryptedFormat'         => EncryptedFormat::__DEFAULT(),
             'CardDataKeySerialNumber' => uniqid(),
         ];
 
@@ -31,7 +31,7 @@ class CardTest extends PHPUnit_Framework_TestCase
     {
         $data = [
             'number'                  => uniqid(),
-            'EncryptedFormat'         => EncryptedFormat::__DEFAULT,
+            'EncryptedFormat'         => EncryptedFormat::__DEFAULT(),
             'CardDataKeySerialNumber' => uniqid(),
         ];
 

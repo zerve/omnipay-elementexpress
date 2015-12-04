@@ -1,6 +1,7 @@
 <?php
 namespace Omnipay\ElementExpress;
 
+use Omnipay\ElementExpress\Enumeration\MarketCode;
 use Omnipay\ElementExpress\Model\Transaction;
 
 trait HasTransactionTrait

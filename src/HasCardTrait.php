@@ -1,6 +1,7 @@
 <?php
 namespace Omnipay\ElementExpress;
 
+use Omnipay\ElementExpress\Enumeration\EncryptedFormat;
 use Omnipay\ElementExpress\Model\Card;
 
 trait HasCardTrait
@@ -146,7 +147,7 @@ trait HasCardTrait
         return $this->getParameter('EncryptedFormat');
     }
 
-    public function setEncryptedFormat($value)
+    public function setEncryptedFormat(EncryptedFormat $value)
     {
         return $this->setParameter('EncryptedFormat', $value);
     }

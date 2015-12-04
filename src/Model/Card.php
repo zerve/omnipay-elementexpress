@@ -27,7 +27,7 @@ class Card extends ModelAbstract
             'EncryptedCardData'       => '',
 
             'CardDataKeySerialNumber' => '',
-            'EncryptedFormat'         => EncryptedFormat::__DEFAULT
+            'EncryptedFormat'         => EncryptedFormat::__DEFAULT(),
 
         ];
     }
@@ -64,7 +64,7 @@ class Card extends ModelAbstract
                         $node->appendChild(
                             new \DOMElement('CardDataKeySerialNumber', $this['CardDataKeySerialNumber'])
                         );
-                        $node->appendChild(new \DOMElement('EncryptedFormat', $this['EncryptedFormat']));
+                        $node->appendChild(new \DOMElement('EncryptedFormat', $this['EncryptedFormat']->value()));
                     }
                     break 2;
                 }
