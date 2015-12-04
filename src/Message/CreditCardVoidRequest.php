@@ -15,17 +15,15 @@ class CreditCardVoidRequest extends AbstractRequest
     /**
      * Get data
      *
-     * @return \SimpleXMLElement
+     * @return \DOMDocument
      */
     public function getData()
     {
-        $doc  = new \DOMDocument('1.0');
-        $node = $doc->appendChild(new \DOMElement('CreditCardVoid', null, 'https://transaction.elementexpress.com'));
-        $this->getApplication()->appendToDom($node);
-        $this->getCredentials()->appendToDom($node);
-        $this->getTransaction()->appendToDom($node);
-        $this->getTerminal()->appendToDom($node);
-
-        return $doc;
+        return $this->domDocumentFactory('CreditCardVoid', ...[
+            $this->getApplication(),
+            $this->getCredentials(),
+            $this->getTransaction(),
+            $this->getTerminal(),
+        ]);
     }
 }

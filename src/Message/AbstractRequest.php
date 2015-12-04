@@ -6,6 +6,7 @@ use Omnipay\Common\Message\AbstractRequest as CommonAbstractRequest;
 use Omnipay\ElementExpress\HasApplicationTrait;
 use Omnipay\ElementExpress\HasCredentialsTrait;
 use Omnipay\ElementExpress\HasCommonAccessorsTrait;
+use Omnipay\ElementExpress\Model\ModelAbstract;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 /**
@@ -29,6 +30,25 @@ abstract class AbstractRequest extends CommonAbstractRequest
             return $this->getDevelopmentEndpoint();
         }
         return $this->getProductionEndpoint();
+    }
+
+    /**
+     * Create a DOM document using the provide $tagName and correct namespace as
+     * the document element.
+     *
+     * @param string $tagName The name of the tag for the documentElement
+     * @param ModelAbstract $models Variable length list of ModelAbstract instances.
+     * @return \DOMDocument
+     */
+    protected function domDocumentFactory($tagName, ModelAbstract ...$models)
+    {
+        $namespace = 'https://transaction.elementexpress.com';
+        $document  = new \DOMDocument('1.0');
+        $document->appendChild(new \DOMElement($tagName, null, $namespace));
+        foreach ($models as $model) {
+            $model->appendToDom($document->documentElement);
+        }
+        return $document;
     }
 
     /**

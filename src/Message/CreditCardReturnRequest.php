@@ -15,19 +15,16 @@ class CreditCardReturnRequest extends AbstractRequest
     /**
      * Get data
      *
-     * @return \SimpleXMLElement
+     * @return \DOMDocument
      */
     public function getData()
     {
-        $this->validate('amount');
-
-        $doc  = new \DOMDocument('1.0');
-        $node = $doc->appendChild(new \DOMElement('CreditCardReturn', null, 'https://transaction.elementexpress.com'));
-        $this->getApplication()->appendToDom($node);
-        $this->getCredentials()->appendToDom($node);
-        $this->getTransaction()->appendToDom($node);
-        $this->getTerminal()->appendToDom($node);
-
-        return $doc;
+        // $this->validate('amount');
+        return $this->domDocumentFactory('CreditCardReturn', ...[
+            $this->getApplication(),
+            $this->getCredentials(),
+            $this->getTransaction(),
+            $this->getTerminal(),
+        ]);
     }
 }

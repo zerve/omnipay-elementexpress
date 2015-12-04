@@ -23,14 +23,12 @@ class CreditCardSaleRequest extends AbstractRequest
     {
         // $this->validate('amount', 'card');
         // $this->getCard()->validate();
-
-        $doc  = new \DOMDocument('1.0');
-        $node = $doc->appendChild(new \DOMElement('CreditCardSale', null, 'https://transaction.elementexpress.com'));
-        $this->getApplication()->appendToDom($node);
-        $this->getCredentials()->appendToDom($node);
-        $this->getTransaction()->appendToDom($node);
-        $this->getTerminal()->appendToDom($node);
-        $this->getCard()->appendToDom($node);
-        return $doc;
+        return $this->domDocumentFactory('CreditCardSale', ...[
+            $this->getApplication(),
+            $this->getCredentials(),
+            $this->getTransaction(),
+            $this->getTerminal(),
+            $this->getCard(),
+        ]);
     }
 }
