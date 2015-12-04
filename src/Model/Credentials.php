@@ -9,7 +9,7 @@ class Credentials extends ModelAbstract
             'AccountID'       => '',
             'AccountToken'    => '',
             'AcceptorID'      => '',
-            'NewAccountToken' => ''
+            'NewAccountToken' => '',
         ];
     }
 
