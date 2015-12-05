@@ -5,9 +5,9 @@ use Mockery as m;
 use Omnipay\ElementExpress\Model\ModelAbstract;
 use Omnipay\ElementExpress\Model\Card;
 use Omnipay\ElementExpress\Enumeration\EncryptedFormat;
-use PHPUnit_Framework_TestCase;
+use Omnipay\Tests\TestCase;
 
-class CardTest extends PHPUnit_Framework_TestCase
+class CardTest extends TestCase
 {
     public function testConditionalEncryptionParametersPresent()
     {

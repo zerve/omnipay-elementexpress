@@ -3,9 +3,9 @@ namespace Omnipay\ElementExpress\Tests\Model;
 
 use Mockery as m;
 use Omnipay\ElementExpress\Model\ModelAbstract;
-use PHPUnit_Framework_TestCase;
+use Omnipay\Tests\TestCase;
 
-class ModelAbstractTest extends PHPUnit_Framework_TestCase
+class ModelAbstractTest extends TestCase
 {
     public function testConstructorSetsParameters()
     {
