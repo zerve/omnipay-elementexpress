@@ -1,8 +1,9 @@
 <?php
-namespace Omnipay\ElementExpress\Message;
+namespace Omnipay\ElementExpress\Tests\Message;
 
 use Mockery as m;
 use Omnipay\ElementExpress\Gateway;
+use Omnipay\ElementExpress\Message\Response;
 use Omnipay\Tests\TestCase;
 
 class ResponseTest extends TestCase

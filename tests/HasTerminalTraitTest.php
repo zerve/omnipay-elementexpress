@@ -1,7 +1,8 @@
 <?php
-namespace Omnipay\ElementExpress;
+namespace Omnipay\ElementExpressTests;
 
 use Mockery as m;
+use Omnipay\ElementExpress\HasTerminalTrait;
 use Omnipay\ElementExpress\Message\AbstractRequest;
 use Omnipay\Tests\TestCase;
 

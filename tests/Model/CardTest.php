@@ -1,5 +1,5 @@
 <?php
-namespace Omnipay\ElementExpress\Model;
+namespace Omnipay\ElementExpress\Tests\Model;
 
 use Mockery as m;
 use Omnipay\ElementExpress\Model\ModelAbstract;

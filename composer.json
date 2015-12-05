@@ -20,7 +20,10 @@
         }
     ],
     "autoload": {
-        "psr-4": { "Omnipay\\ElementExpress\\" : "src/" }
+        "psr-4": {
+          "Omnipay\\ElementExpress\\" : "src/",
+          "Omnipay\\ElementExpress\\Tests\\" : "tests/"
+        }
     },
     "require": {
         "php": ">=5.4",

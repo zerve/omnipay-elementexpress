@@ -1,7 +1,8 @@
 <?php
-namespace Omnipay\ElementExpress;
+namespace Omnipay\ElementExpress\Tests;
 
 use Mockery as m;
+use Omnipay\ElementExpress\HasCardTrait;
 use Omnipay\ElementExpress\Message\AbstractRequest;
 use Omnipay\Tests\TestCase;
 
