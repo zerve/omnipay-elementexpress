@@ -9,6 +9,8 @@ class MockTransactionTraitImplementation extends AbstractRequest
 {
     use HasTransactionTrait;
     public function getData() {}
+    protected function getEndpoint() {}
+    protected function getXmlNamespace() {}
 }
 
 class HasTransactionTraitTest extends TestCase
@@ -27,7 +29,7 @@ class HasTransactionTraitTest extends TestCase
     public function parameterDataProvider()
     {
         $request  = $this->getMockRequest();
-        $settings = $request->getCredentials()->getDefaultParameters();
+        $settings = $request->getTransaction()->getDefaultParameters();
         foreach ($settings as $key => $default) {
             $setter = 'set' . ucfirst($key);
             $getter = 'get' . ucfirst($key);

@@ -9,6 +9,8 @@ class MockTerminalTraitImplementation extends AbstractRequest
 {
     use HasTerminalTrait;
     public function getData() {}
+    protected function getEndpoint() {}
+    protected function getXmlNamespace() {}
 }
 
 class HasTerminalTraitTest extends TestCase
@@ -27,7 +29,7 @@ class HasTerminalTraitTest extends TestCase
     public function parameterDataProvider()
     {
         $request  = $this->getMockRequest();
-        $settings = $request->getCredentials()->getDefaultParameters();
+        $settings = $request->getTerminal()->getDefaultParameters();
         foreach ($settings as $key => $default) {
             $setter = 'set' . ucfirst($key);
             $getter = 'get' . ucfirst($key);

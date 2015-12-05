@@ -5,7 +5,6 @@ use Omnipay\Common\Helper;
 use Omnipay\Common\Message\AbstractRequest as CommonAbstractRequest;
 use Omnipay\ElementExpress\HasApplicationTrait;
 use Omnipay\ElementExpress\HasCredentialsTrait;
-use Omnipay\ElementExpress\HasCommonAccessorsTrait;
 use Omnipay\ElementExpress\Model\ModelAbstract;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
@@ -16,21 +15,9 @@ abstract class AbstractRequest extends CommonAbstractRequest
 {
     use HasApplicationTrait;
     use HasCredentialsTrait;
-    use HasCommonAccessorsTrait;
 
-    /**
-     * Returns either the development or production API endpoint, depending on
-     * the value of the testMode parameter.
-     *
-     * @return string
-     */
-    protected function getEndpoint()
-    {
-        if ($this->getTestMode()) {
-            return $this->getDevelopmentEndpoint();
-        }
-        return $this->getProductionEndpoint();
-    }
+    abstract protected function getEndpoint();
+    abstract protected function getXmlNamespace();
 
     /**
      * Create a DOM document using the provide $tagName and correct namespace as
@@ -42,7 +29,7 @@ abstract class AbstractRequest extends CommonAbstractRequest
      */
     protected function domDocumentFactory($tagName, ModelAbstract ...$models)
     {
-        $namespace = 'https://transaction.elementexpress.com';
+        $namespace = $this->getXmlNamespace();
         $document  = new \DOMDocument('1.0');
         $document->appendChild(new \DOMElement($tagName, null, $namespace));
         foreach ($models as $model) {

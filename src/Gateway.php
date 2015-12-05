@@ -12,8 +12,6 @@ use Omnipay\Common\AbstractGateway;
  */
 class Gateway extends AbstractGateway
 {
-    use HasCommonAccessorsTrait;
-
     use HasApplicationTrait;
     use HasCredentialsTrait;
 
@@ -50,8 +48,6 @@ class Gateway extends AbstractGateway
 
             // Omnipay Internal
             'testMode'                => false,
-            'developmentEndpoint'     => 'https://certtransaction.elementexpress.com/',
-            'productionEndpoint'      => ''
 
         ];
     }

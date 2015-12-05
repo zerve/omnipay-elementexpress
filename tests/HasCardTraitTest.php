@@ -9,6 +9,8 @@ class MockCardTraitImplementation extends AbstractRequest
 {
     use HasCardTrait;
     public function getData() {}
+    protected function getEndpoint() {}
+    protected function getXmlNamespace() {}
 }
 
 class HasCardTraitTest extends TestCase
@@ -27,7 +29,7 @@ class HasCardTraitTest extends TestCase
     public function parameterDataProvider()
     {
         $request  = $this->getMockRequest();
-        $settings = $request->getCredentials()->getDefaultParameters();
+        $settings = $request->getCard()->getDefaultParameters();
         foreach ($settings as $key => $default) {
             $setter = 'set' . ucfirst($key);
             $getter = 'get' . ucfirst($key);

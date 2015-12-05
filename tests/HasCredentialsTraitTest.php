@@ -9,6 +9,8 @@ class MockCredentialsTraitImplementation extends AbstractRequest
 {
     use HasCredentialsTrait;
     public function getData() {}
+    protected function getEndpoint() {}
+    protected function getXmlNamespace() {}
 }
 
 class HasCredentialsTraitTest extends TestCase

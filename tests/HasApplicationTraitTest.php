@@ -9,6 +9,8 @@ class MockApplicationTraitImplementation extends AbstractRequest
 {
     use HasApplicationTrait;
     public function getData() {}
+    protected function getEndpoint() {}
+    protected function getXmlNamespace() {}
 }
 
 class HasApplicationTraitTest extends TestCase
@@ -27,7 +29,7 @@ class HasApplicationTraitTest extends TestCase
     public function parameterDataProvider()
     {
         $request  = $this->getMockRequest();
-        $settings = $request->getCredentials()->getDefaultParameters();
+        $settings = $request->getApplication()->getDefaultParameters();
         foreach ($settings as $key => $default) {
             $setter = 'set' . ucfirst($key);
             $getter = 'get' . ucfirst($key);

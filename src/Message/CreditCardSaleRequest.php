@@ -8,7 +8,7 @@ use Omnipay\ElementExpress\HasTransactionTrait;
 /**
  * ElementExpress CreditCardSale Request
  */
-class CreditCardSaleRequest extends AbstractRequest
+class CreditCardSaleRequest extends AbstractTransactionRequest
 {
     use HasCardTrait;
     use HasTerminalTrait;
