@@ -7,10 +7,10 @@ use Omnipay\Tests\GatewayTestCase;
 
 class GatewayTest extends GatewayTestCase
 {
-    protected $purchaseOptions   = [];
-    protected $refundOptions     = [];
-    protected $voidOptions       = [];
-    protected $createCardOptions = [];
+    protected $purchaseOptions      = [];
+    protected $voidOptions          = [];
+    protected $createCardOptions    = [];
+    protected $expressReturnOptions = [];
 
     public function setUp()
     {
@@ -19,9 +19,9 @@ class GatewayTest extends GatewayTestCase
         $this->gateway = new Gateway($this->getHttpClient(), $this->getHttpRequest());
 
         // Configure enough to pass validation.
-        $this->purchaseOptions = ['amount' => '10.00'];
-        $this->refundOptions   = ['amount' => '10.00'];
-        $this->createCardOptions = ['PaymentAccountType' => PaymentAccountType::CREDIT_CARD()];
+        $this->purchaseOptions      = ['amount' => '10.00'];
+        $this->createCardOptions    = ['PaymentAccountType' => PaymentAccountType::CREDIT_CARD()];
+        $this->expressReturnOptions = ['amount' => '10.00'];
     }
 
     public function testPurchaseSuccess()
@@ -35,20 +35,6 @@ class GatewayTest extends GatewayTestCase
     {
         $this->setMockHttpResponse('PurchaseFailure.txt');
         $response = $this->gateway->purchase($this->purchaseOptions)->send();
-        $this->assertFalse($response->isSuccessful());
-    }
-
-    public function testRefundSuccess()
-    {
-        $this->setMockHttpResponse('RefundSuccess.txt');
-        $response = $this->gateway->refund($this->refundOptions)->send();
-        $this->assertTrue($response->isSuccessful());
-    }
-
-    public function testRefundFailure()
-    {
-        $this->setMockHttpResponse('RefundFailure.txt');
-        $response = $this->gateway->refund($this->refundOptions)->send();
         $this->assertFalse($response->isSuccessful());
     }
 
@@ -78,5 +64,34 @@ class GatewayTest extends GatewayTestCase
         $this->setMockHttpResponse('CreateCardFailure.txt');
         $response = $this->gateway->createCard($this->createCardOptions)->send();
         $this->assertFalse($response->isSuccessful());
+    }
+
+    public function testExpressReturnSuccess()
+    {
+        $this->setMockHttpResponse('ExpressReturnSuccess.txt');
+        $response = $this->gateway->expressReturn($this->expressReturnOptions)->send();
+        $this->assertTrue($response->isSuccessful());
+    }
+
+    public function testExpressReturnFailure()
+    {
+        $this->setMockHttpResponse('ExpressReturnFailure.txt');
+        $response = $this->gateway->expressReturn($this->expressReturnOptions)->send();
+        $this->assertFalse($response->isSuccessful());
+    }
+
+    public function testExpressReturnParameters()
+    {
+        foreach ($this->gateway->getDefaultParameters() as $key => $default) {
+            // set property on gateway
+            $getter = 'get'.ucfirst($key);
+            $setter = 'set'.ucfirst($key);
+            $value = uniqid();
+            $this->gateway->$setter($value);
+
+            // request should have matching property, with correct value
+            $request = $this->gateway->expressReturn();
+            $this->assertSame($value, $request->$getter());
+        }
     }
 }
