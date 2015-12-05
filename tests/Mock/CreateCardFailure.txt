@@ -1,0 +1,23 @@
+HTTP/1.1 200 200 OK
+Cache-Control: private
+Transfer-Encoding: chunked
+Content-Type: text/xml; charset=utf-8
+Server: Microsoft-IIS/7.5
+X-AspNet-Version: 4.0.30319
+X-Powered-By: ASP.NET
+Date: Sat, 05 Dec 2015 01:04:01 GMT
+
+<?xml version="1.0"?>
+<PaymentAccountCreateResponse xmlns="https://services.elementexpress.com">
+  <Response>
+    <ExpressResponseCode>101</ExpressResponseCode>
+    <ExpressResponseMessage>CardNumber required</ExpressResponseMessage>
+    <ExpressTransactionDate>20151204</ExpressTransactionDate>
+    <ExpressTransactionTime>190401</ExpressTransactionTime>
+    <ExpressTransactionTimezone>UTC-06:00:00</ExpressTransactionTimezone>
+    <ServicesID>45776258</ServicesID>
+    <PaymentAccount>
+      <PaymentAccountReferenceNumber>56623800d5226</PaymentAccountReferenceNumber>
+    </PaymentAccount>
+  </Response>
+</PaymentAccountCreateResponse>

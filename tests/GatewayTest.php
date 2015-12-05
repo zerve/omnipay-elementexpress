@@ -2,13 +2,15 @@
 namespace Omnipay\ElementExpress\Tests;
 
 use Omnipay\ElementExpress\Gateway;
+use Omnipay\ElementExpress\Enumeration\PaymentAccountType;
 use Omnipay\Tests\GatewayTestCase;
 
 class GatewayTest extends GatewayTestCase
 {
-    protected $purchaseOptions = [];
-    protected $refundOptions   = [];
-    protected $voidOptions     = [];
+    protected $purchaseOptions   = [];
+    protected $refundOptions     = [];
+    protected $voidOptions       = [];
+    protected $createCardOptions = [];
 
     public function setUp()
     {
@@ -19,6 +21,7 @@ class GatewayTest extends GatewayTestCase
         // Configure enough to pass validation.
         $this->purchaseOptions = ['amount' => '10.00'];
         $this->refundOptions   = ['amount' => '10.00'];
+        $this->createCardOptions = ['PaymentAccountType' => PaymentAccountType::CREDIT_CARD()];
     }
 
     public function testPurchaseSuccess()
@@ -60,6 +63,20 @@ class GatewayTest extends GatewayTestCase
     {
         $this->setMockHttpResponse('VoidFailure.txt');
         $response = $this->gateway->void($this->voidOptions)->send();
+        $this->assertFalse($response->isSuccessful());
+    }
+
+    public function testCreateCardSuccess()
+    {
+        $this->setMockHttpResponse('CreateCardSuccess.txt');
+        $response = $this->gateway->createCard($this->createCardOptions)->send();
+        $this->assertTrue($response->isSuccessful());
+    }
+
+    public function testCreateCardFailure()
+    {
+        $this->setMockHttpResponse('CreateCardFailure.txt');
+        $response = $this->gateway->createCard($this->createCardOptions)->send();
         $this->assertFalse($response->isSuccessful());
     }
 }
