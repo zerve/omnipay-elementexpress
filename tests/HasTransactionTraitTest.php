@@ -1,10 +1,9 @@
 <?php
-namespace Omnipay\ElementExpressTests;
+namespace Omnipay\ElementExpress\Tests;
 
 use Mockery as m;
 use Omnipay\ElementExpress\HasTransactionTrait;
 use Omnipay\ElementExpress\Message\AbstractRequest;
-use Omnipay\Tests\TestCase;
 
 class MockTransactionTraitImplementation extends AbstractRequest
 {
@@ -14,42 +13,24 @@ class MockTransactionTraitImplementation extends AbstractRequest
     protected function getXmlNamespace() {}
 }
 
-class HasTransactionTraitTest extends TestCase
+class HasTransactionTraitTest extends AbstractHasTraitTestCase
 {
-    protected $mockRequest;
-
     public function getMockRequest()
     {
+        $client  = m::mock('Guzzle\Http\Client');
+        $request = m::mock('Symfony\Component\HttpFoundation\Request');
         if (null === $this->mockRequest) {
-            $this->mockRequest = new MockTransactionTraitImplementation(
-                $this->getHttpClient(), $this->getHttpRequest());
+            $this->mockRequest = new MockTransactionTraitImplementation($client, $request);
         }
         return $this->mockRequest;
     }
 
-    public function parameterDataProvider()
+    public function getMockModel()
     {
-        $request  = $this->getMockRequest();
-        $settings = $request->getTransaction()->getDefaultParameters();
-        foreach ($settings as $key => $default) {
-            $setter = 'set' . ucfirst($key);
-            $getter = 'get' . ucfirst($key);
-            $value  = $default ?: uniqid();
-            yield [$setter, $getter, $value];
+        if (null === $this->mockModel) {
+            $request = $this->getMockRequest();
+            $this->mockModel = $request->getTransaction();
         }
-    }
-
-    /**
-     * @dataProvider parameterDataProvider
-     */
-    public function testParameterAccessors($setter, $getter, $value)
-    {
-        $request = $this->getMockRequest();
-        $this->assertTrue(method_exists($request, $setter), "Trait must implement $setter()");
-        $this->assertTrue(method_exists($request, $getter), "Trait must implement $getter()");
-
-        // Setter must provide fluent interface.
-        $this->assertSame($request, $request->$setter($value));
-        $this->assertSame($value, $request->$getter());
+        return $this->mockModel;
     }
 }

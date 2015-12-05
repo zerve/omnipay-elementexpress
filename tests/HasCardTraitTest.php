@@ -4,7 +4,6 @@ namespace Omnipay\ElementExpress\Tests;
 use Mockery as m;
 use Omnipay\ElementExpress\HasCardTrait;
 use Omnipay\ElementExpress\Message\AbstractRequest;
-use Omnipay\Tests\TestCase;
 
 class MockCardTraitImplementation extends AbstractRequest
 {
@@ -14,42 +13,24 @@ class MockCardTraitImplementation extends AbstractRequest
     protected function getXmlNamespace() {}
 }
 
-class HasCardTraitTest extends TestCase
+class HasCardTraitTest extends AbstractHasTraitTestCase
 {
-    protected $mockRequest;
-
     public function getMockRequest()
     {
+        $client  = m::mock('Guzzle\Http\Client');
+        $request = m::mock('Symfony\Component\HttpFoundation\Request');
         if (null === $this->mockRequest) {
-            $this->mockRequest = new MockCardTraitImplementation(
-                $this->getHttpClient(), $this->getHttpRequest());
+            $this->mockRequest = new MockCardTraitImplementation($client, $request);
         }
         return $this->mockRequest;
     }
 
-    public function parameterDataProvider()
+    public function getMockModel()
     {
-        $request  = $this->getMockRequest();
-        $settings = $request->getCard()->getDefaultParameters();
-        foreach ($settings as $key => $default) {
-            $setter = 'set' . ucfirst($key);
-            $getter = 'get' . ucfirst($key);
-            $value  = $default ?: uniqid();
-            yield [$setter, $getter, $value];
+        if (null === $this->mockModel) {
+            $request = $this->getMockRequest();
+            $this->mockModel = $request->getCard();
         }
-    }
-
-    /**
-     * @dataProvider parameterDataProvider
-     */
-    public function testParameterAccessors($setter, $getter, $value)
-    {
-        $request = $this->getMockRequest();
-        $this->assertTrue(method_exists($request, $setter), "Trait must implement $setter()");
-        $this->assertTrue(method_exists($request, $getter), "Trait must implement $getter()");
-
-        // Setter must provide fluent interface.
-        $this->assertSame($request, $request->$setter($value));
-        $this->assertSame($value, $request->$getter());
+        return $this->mockModel;
     }
 }
