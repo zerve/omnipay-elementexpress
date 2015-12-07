@@ -16,15 +16,22 @@ trait HasPaymentAccountTrait
         return $model->initialize($this->getParameters());
     }
 
-    public function getPaymentAccountID()
+    // The following mutators/accessors correspond to parameters that have
+    // Omnipay equivalents. These are named with the Omnipay convention and
+    // mapped to the ElementExpress domain in the model.
+
+    public function getCardReference()
     {
-        return $this->getParameter('PaymentAccountID');
+        return $this->getParameter('cardReference');
     }
 
-    public function setPaymentAccountID($value)
+    public function setCardReference($value)
     {
-        return $this->setParameter('PaymentAccountID', $value);
+        return $this->setParameter('cardReference', $value);
     }
+
+    // The following mutators/accessors correspond to parameters that are
+    // unique to the ElementExpress domain.
 
     public function getPaymentAccountType()
     {

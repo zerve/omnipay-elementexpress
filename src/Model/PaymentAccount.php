@@ -8,7 +8,14 @@ class PaymentAccount extends ModelAbstract
     public function getDefaultParameters()
     {
         return [
-            'PaymentAccountID'              => '',
+
+            // Elements corresponding directly with standard Omnipay parameter
+            // names use those same names here instead of ElementExpress names.
+
+            'cardReference'                 => '', // ElementExpress "PaymentAccountID"
+
+            // Remaining elements correspond to ElementExpress parameters.
+
             'PaymentAccountType'            => '',
             'PaymentAccountReferenceNumber' => '',
         ];
@@ -17,7 +24,7 @@ class PaymentAccount extends ModelAbstract
     public function appendToDom(\DOMNode $parent)
     {
         $node = $parent->appendChild(new \DOMElement('PaymentAccount'));
-        $node->appendChild(new \DOMElement('PaymentAccountID', $this['PaymentAccountID']));
+        $node->appendChild(new \DOMElement('PaymentAccountID', $this['cardReference']));
         if (!empty($this['PaymentAccountType'])) {
             $node->appendChild(new \DOMElement('PaymentAccountType', $this['PaymentAccountType']->value()));
         }
