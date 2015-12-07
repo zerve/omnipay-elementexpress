@@ -125,4 +125,34 @@ class GatewayTest extends GatewayTestCase
             $this->assertSame($value, $request->$getter());
         }
     }
+
+    public function testHealthCheckSuccess()
+    {
+        $this->setMockHttpResponse('HealthCheckSuccess.txt');
+        $response = $this->gateway->healthCheck()->send();
+        $this->assertTrue($response->isSuccessful());
+    }
+
+    public function testHealthCheckFailure()
+    {
+        $this->setMockHttpResponse('HealthCheckFailure.txt');
+        $response = $this->gateway->healthCheck()->send();
+        $this->assertFalse($response->isSuccessful());
+    }
+
+    public function testHealthCheckParameters()
+    {
+        foreach ($this->gateway->getDefaultParameters() as $key => $default) {
+            // set property on gateway
+            $getter = 'get'.ucfirst($key);
+            $setter = 'set'.ucfirst($key);
+            $value = uniqid();
+            $this->gateway->$setter($value);
+
+            // request should have matching property, with correct value
+            $request = $this->gateway->healthCheck();
+            $this->assertSame($value, $request->$getter());
+        }
+    }
+
 }

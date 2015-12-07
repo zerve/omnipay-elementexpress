@@ -1,0 +1,22 @@
+HTTP/1.1 200 200 OK
+Cache-Control: private
+Transfer-Encoding: chunked
+Content-Type: text/xml; charset=utf-8
+Server: Microsoft-IIS/7.5
+X-AspNet-Version: 4.0.30319
+X-Powered-By: ASP.NET
+Date: Mon, 07 Dec 2015 22:39:11 GMT
+
+<?xml version="1.0"?>
+<HealthCheckResponse xmlns="https://transaction.elementexpress.com">
+  <Response>
+    <ExpressResponseCode>0</ExpressResponseCode>
+    <ExpressResponseMessage>ONLINE</ExpressResponseMessage>
+    <ExpressTransactionDate>20151207</ExpressTransactionDate>
+    <ExpressTransactionTime>163911</ExpressTransactionTime>
+    <ExpressTransactionTimezone>UTC-06:00:00</ExpressTransactionTimezone>
+    <Transaction>
+      <ProcessorName>NULL_PROCESSOR_TEST</ProcessorName>
+    </Transaction>
+  </Response>
+</HealthCheckResponse>

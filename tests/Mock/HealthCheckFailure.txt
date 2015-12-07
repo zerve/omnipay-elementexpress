@@ -1,0 +1,16 @@
+HTTP/1.1 200 200 OK
+Cache-Control: private
+Transfer-Encoding: chunked
+Content-Type: text/xml; charset=utf-8
+Server: Microsoft-IIS/7.5
+X-AspNet-Version: 4.0.30319
+X-Powered-By: ASP.NET
+Date: Mon, 07 Dec 2015 22:44:42 GMT
+
+<?xml version="1.0"?>
+<Response xmlns="https://transaction.elementexpress.com">
+  <Response>
+    <ExpressResponseCode>103</ExpressResponseCode>
+    <ExpressResponseMessage>The element 'HealthCheck' in namespace 'https://transaction.elementexpress.com' has incomplete content. List of possible elements expected: 'Credentials' in namespace 'https://transaction.elementexpress.com'.</ExpressResponseMessage>
+  </Response>
+</Response>
