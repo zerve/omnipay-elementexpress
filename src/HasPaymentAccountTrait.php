@@ -16,6 +16,16 @@ trait HasPaymentAccountTrait
         return $model->initialize($this->getParameters());
     }
 
+    public function getPaymentAccountID()
+    {
+        return $this->getParameter('PaymentAccountID');
+    }
+
+    public function setPaymentAccountID($value)
+    {
+        return $this->setParameter('PaymentAccountID', $value);
+    }
+
     public function getPaymentAccountType()
     {
         return $this->getParameter('PaymentAccountType');

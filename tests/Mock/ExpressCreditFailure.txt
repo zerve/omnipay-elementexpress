@@ -1,0 +1,27 @@
+HTTP/1.1 200 200 OK
+Cache-Control: private
+Transfer-Encoding: chunked
+Content-Type: text/xml; charset=utf-8
+Server: Microsoft-IIS/7.5
+X-AspNet-Version: 4.0.30319
+X-Powered-By: ASP.NET
+Date: Mon, 07 Dec 2015 14:58:37 GMT
+
+<?xml version="1.0"?>
+<CreditCardCreditResponse xmlns="https://transaction.elementexpress.com">
+  <Response>
+    <ExpressResponseCode>103</ExpressResponseCode>
+    <ExpressResponseMessage>PAYMENT ACCOUNT NOT FOUND</ExpressResponseMessage>
+    <ExpressTransactionDate>20151207</ExpressTransactionDate>
+    <ExpressTransactionTime>085837</ExpressTransactionTime>
+    <ExpressTransactionTimezone>UTC-06:00:00</ExpressTransactionTimezone>
+    <Batch>
+      <HostBatchID>1</HostBatchID>
+    </Batch>
+    <Transaction>
+      <TransactionID>2005859787</TransactionID>
+      <ReferenceNumber>56659ea1b99da</ReferenceNumber>
+      <ProcessorName>NULL_PROCESSOR_TEST</ProcessorName>
+    </Transaction>
+  </Response>
+</CreditCardCreditResponse>

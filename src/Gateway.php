@@ -37,14 +37,14 @@ class Gateway extends AbstractGateway
         return [
 
             // Credentials Model
-            'accountID'               => '',
-            'accountToken'            => '',
-            'acceptorID'              => '',
+            'AccountID'               => '',
+            'AccountToken'            => '',
+            'AcceptorID'              => '',
 
             // Application Model
-            'applicationID'           => '',
-            'applicationName'         => self::NAME,
-            'applicationVersion'      => self::VERSION,
+            'ApplicationID'           => '',
+            'ApplicationName'         => self::NAME,
+            'ApplicationVersion'      => self::VERSION,
 
             // Omnipay Internal
             'testMode'                => false,
@@ -74,5 +74,10 @@ class Gateway extends AbstractGateway
     public function expressReturn(array $parameters = array())
     {
         return $this->createRequest('\Omnipay\ElementExpress\Message\CreditCardReturnRequest', $parameters);
+    }
+
+    public function expressCredit(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\ElementExpress\Message\CreditCardCreditRequest', $parameters);
     }
 }

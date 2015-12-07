@@ -11,6 +11,7 @@ class GatewayTest extends GatewayTestCase
     protected $voidOptions          = [];
     protected $createCardOptions    = [];
     protected $expressReturnOptions = [];
+    protected $expressCreditOptions = [];
 
     public function setUp()
     {
@@ -22,6 +23,7 @@ class GatewayTest extends GatewayTestCase
         $this->purchaseOptions      = ['amount' => '10.00'];
         $this->createCardOptions    = ['PaymentAccountType' => PaymentAccountType::CREDIT_CARD()];
         $this->expressReturnOptions = ['amount' => '10.00'];
+        $this->expressCreditOptions = ['amount' => '10.00'];
     }
 
     public function testPurchaseSuccess()
@@ -91,6 +93,35 @@ class GatewayTest extends GatewayTestCase
 
             // request should have matching property, with correct value
             $request = $this->gateway->expressReturn();
+            $this->assertSame($value, $request->$getter());
+        }
+    }
+
+    public function testExpressCreditSuccess()
+    {
+        $this->setMockHttpResponse('ExpressCreditSuccess.txt');
+        $response = $this->gateway->expressCredit($this->expressCreditOptions)->send();
+        $this->assertTrue($response->isSuccessful());
+    }
+
+    public function testExpressCreditFailure()
+    {
+        $this->setMockHttpResponse('ExpressCreditFailure.txt');
+        $response = $this->gateway->expressCredit($this->expressCreditOptions)->send();
+        $this->assertFalse($response->isSuccessful());
+    }
+
+    public function testExpressCreditParameters()
+    {
+        foreach ($this->gateway->getDefaultParameters() as $key => $default) {
+            // set property on gateway
+            $getter = 'get'.ucfirst($key);
+            $setter = 'set'.ucfirst($key);
+            $value = uniqid();
+            $this->gateway->$setter($value);
+
+            // request should have matching property, with correct value
+            $request = $this->gateway->expressCredit();
             $this->assertSame($value, $request->$getter());
         }
     }
