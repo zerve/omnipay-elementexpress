@@ -14,6 +14,7 @@ class Gateway extends AbstractGateway
 {
     use HasApplicationTrait;
     use HasCredentialsTrait;
+    use HasTerminalTrait;
 
     const NAME    = 'omnipay/elementexpress';
     const VERSION = '1.0.0';
@@ -45,6 +46,9 @@ class Gateway extends AbstractGateway
             'ApplicationID'           => '',
             'ApplicationName'         => self::NAME,
             'ApplicationVersion'      => self::VERSION,
+
+            // Terminal Model
+            'TerminalID'              => '',
 
             // Omnipay Internal
             'testMode'                => false,
