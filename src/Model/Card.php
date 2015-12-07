@@ -59,10 +59,10 @@ class Card extends ModelAbstract
 
             foreach ($cardData as $field => $isEncrypted) {
                 if (!empty($this[$field])) {
-                    $node->appendChild(new \DOMElement($field, $this[$field]));
+                    $node->appendChild(new \DOMElement($field, strtoupper($this[$field])));
                     if ($isEncrypted) {
                         $node->appendChild(
-                            new \DOMElement('CardDataKeySerialNumber', $this['CardDataKeySerialNumber'])
+                            new \DOMElement('CardDataKeySerialNumber', strtoupper($this['CardDataKeySerialNumber']))
                         );
                         $node->appendChild(new \DOMElement('EncryptedFormat', $this['EncryptedFormat']->value()));
                     }
