@@ -1,19 +1,19 @@
 <?php
-namespace Omnipay\ElementExpress\Tests;
+namespace Omnipay\ElementExpress\Tests\Model;
 
 use Mockery as m;
-use Omnipay\ElementExpress\HasTerminalTrait;
+use Omnipay\ElementExpress\Model\TerminalTrait;
 use Omnipay\ElementExpress\Message\AbstractRequest;
 
 class MockTerminalTraitImplementation extends AbstractRequest
 {
-    use HasTerminalTrait;
+    use TerminalTrait;
     public function getData() {}
     protected function getEndpoint() {}
     protected function getXmlNamespace() {}
 }
 
-class HasTerminalTraitTest extends AbstractHasTraitTestCase
+class TerminalTraitTest extends AbstractHasTraitTestCase
 {
     public function getMockRequest()
     {

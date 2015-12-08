@@ -3,8 +3,8 @@ namespace Omnipay\ElementExpress\Message;
 
 use Omnipay\Common\Helper;
 use Omnipay\Common\Message\AbstractRequest as CommonAbstractRequest;
-use Omnipay\ElementExpress\HasApplicationTrait;
-use Omnipay\ElementExpress\HasCredentialsTrait;
+use Omnipay\ElementExpress\Model\ApplicationTrait;
+use Omnipay\ElementExpress\Model\CredentialsTrait;
 use Omnipay\ElementExpress\Model\ModelAbstract;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
@@ -13,8 +13,8 @@ use Symfony\Component\HttpFoundation\ParameterBag;
  */
 abstract class AbstractRequest extends CommonAbstractRequest
 {
-    use HasApplicationTrait;
-    use HasCredentialsTrait;
+    use ApplicationTrait;
+    use CredentialsTrait;
 
     abstract protected function getEndpoint();
     abstract protected function getXmlNamespace();

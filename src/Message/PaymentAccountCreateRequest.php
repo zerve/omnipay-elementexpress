@@ -1,16 +1,16 @@
 <?php
 namespace Omnipay\ElementExpress\Message;
 
-use Omnipay\ElementExpress\HasCardTrait;
-use Omnipay\ElementExpress\HasPaymentAccountTrait;
+use Omnipay\ElementExpress\Model\CardTrait;
+use Omnipay\ElementExpress\Model\PaymentAccountTrait;
 
 /**
  * ElementExpress CreditCardVoid Request
  */
 class PaymentAccountCreateRequest extends AbstractServicesRequest
 {
-    use HasCardTrait;
-    use HasPaymentAccountTrait;
+    use CardTrait;
+    use PaymentAccountTrait;
 
     /**
      * Get data

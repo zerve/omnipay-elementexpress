@@ -3,6 +3,8 @@
 namespace Omnipay\ElementExpress;
 
 use Omnipay\Common\AbstractGateway;
+use Omnipay\ElementExpress\Model\ApplicationTrait;
+use Omnipay\ElementExpress\Model\CredentialsTrait;
 
 /**
  * ElementExpress Gateway
@@ -12,8 +14,8 @@ use Omnipay\Common\AbstractGateway;
  */
 class Gateway extends AbstractGateway
 {
-    use HasApplicationTrait;
-    use HasCredentialsTrait;
+    use ApplicationTrait;
+    use CredentialsTrait;
 
     const NAME    = 'omnipay/elementexpress';
     const VERSION = '1.0.0';

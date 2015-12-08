@@ -1,20 +1,20 @@
 <?php
 namespace Omnipay\ElementExpress\Message;
 
-use Omnipay\ElementExpress\HasCardTrait;
-use Omnipay\ElementExpress\HasPaymentAccountTrait;
-use Omnipay\ElementExpress\HasTerminalTrait;
-use Omnipay\ElementExpress\HasTransactionTrait;
+use Omnipay\ElementExpress\Model\CardTrait;
+use Omnipay\ElementExpress\Model\PaymentAccountTrait;
+use Omnipay\ElementExpress\Model\TerminalTrait;
+use Omnipay\ElementExpress\Model\TransactionTrait;
 
 /**
  * ElementExpress CreditCardCredit Request
  */
 class CreditCardCreditRequest extends AbstractTransactionRequest
 {
-    use HasCardTrait;
-    use HasPaymentAccountTrait;
-    use HasTerminalTrait;
-    use HasTransactionTrait;
+    use CardTrait;
+    use PaymentAccountTrait;
+    use TerminalTrait;
+    use TransactionTrait;
 
     /**
      * Get data

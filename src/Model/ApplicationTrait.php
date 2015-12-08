@@ -1,9 +1,7 @@
 <?php
-namespace Omnipay\ElementExpress;
+namespace Omnipay\ElementExpress\Model;
 
-use Omnipay\ElementExpress\Model\Application;
-
-trait HasApplicationTrait
+trait ApplicationTrait
 {
     abstract public function getParameters();
     abstract public function getParameter($key);

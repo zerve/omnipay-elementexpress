@@ -1,27 +1,26 @@
 <?php
-namespace Omnipay\ElementExpress\Tests;
+namespace Omnipay\ElementExpress\Tests\Model;
 
 use Mockery as m;
-use Omnipay\ElementExpress\HasPaymentAccountTrait;
-use Omnipay\ElementExpress\Enumeration\PaymentAccountType;
 use Omnipay\ElementExpress\Message\AbstractRequest;
+use Omnipay\ElementExpress\Model\CardTrait;
 
-class MockPaymentAccountTraitImplementation extends AbstractRequest
+class MockCardTraitImplementation extends AbstractRequest
 {
-    use HasPaymentAccountTrait;
+    use CardTrait;
     public function getData() {}
     protected function getEndpoint() {}
     protected function getXmlNamespace() {}
 }
 
-class HasPaymentAccountTraitTest extends AbstractHasTraitTestCase
+class CardTraitTest extends AbstractHasTraitTestCase
 {
     public function getMockRequest()
     {
         $client  = m::mock('Guzzle\Http\Client');
         $request = m::mock('Symfony\Component\HttpFoundation\Request');
         if (null === $this->mockRequest) {
-            $this->mockRequest = new MockPaymentAccountTraitImplementation($client, $request);
+            $this->mockRequest = new MockCardTraitImplementation($client, $request);
         }
         return $this->mockRequest;
     }
@@ -30,9 +29,7 @@ class HasPaymentAccountTraitTest extends AbstractHasTraitTestCase
     {
         if (null === $this->mockModel) {
             $request = $this->getMockRequest();
-            $this->mockModel = $request->getPaymentAccount()->initialize([
-                'PaymentAccountType' => PaymentAccountType::CREDIT_CARD()
-            ]);
+            $this->mockModel = $request->getCard();
         }
         return $this->mockModel;
     }

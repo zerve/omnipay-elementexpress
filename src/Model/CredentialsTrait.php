@@ -1,9 +1,7 @@
 <?php
-namespace Omnipay\ElementExpress;
+namespace Omnipay\ElementExpress\Model;
 
-use Omnipay\ElementExpress\Model\Credentials;
-
-trait HasCredentialsTrait
+trait CredentialsTrait
 {
     abstract public function getParameters();
     abstract public function getParameter($key);

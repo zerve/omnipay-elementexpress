@@ -1,16 +1,16 @@
 <?php
 namespace Omnipay\ElementExpress\Message;
 
-use Omnipay\ElementExpress\HasTerminalTrait;
-use Omnipay\ElementExpress\HasTransactionTrait;
+use Omnipay\ElementExpress\Model\TerminalTrait;
+use Omnipay\ElementExpress\Model\TransactionTrait;
 
 /**
  * ElementExpress CreditCardReturn Request
  */
 class CreditCardReturnRequest extends AbstractTransactionRequest
 {
-    use HasTerminalTrait;
-    use HasTransactionTrait;
+    use TerminalTrait;
+    use TransactionTrait;
 
     /**
      * Get data

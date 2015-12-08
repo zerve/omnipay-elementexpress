@@ -1,5 +1,5 @@
 <?php
-namespace Omnipay\ElementExpress\Tests;
+namespace Omnipay\ElementExpress\Tests\Model;
 
 use Omnipay\Tests\TestCase;
 

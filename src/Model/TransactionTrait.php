@@ -1,10 +1,9 @@
 <?php
-namespace Omnipay\ElementExpress;
+namespace Omnipay\ElementExpress\Model;
 
 use Omnipay\ElementExpress\Enumeration\MarketCode;
-use Omnipay\ElementExpress\Model\Transaction;
 
-trait HasTransactionTrait
+trait TransactionTrait
 {
     abstract public function getParameters();
     abstract public function getParameter($key);

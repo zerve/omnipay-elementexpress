@@ -1,10 +1,9 @@
 <?php
-namespace Omnipay\ElementExpress;
+namespace Omnipay\ElementExpress\Model;
 
 use Omnipay\ElementExpress\Enumeration\PaymentAccountType;
-use Omnipay\ElementExpress\Model\PaymentAccount;
 
-trait HasPaymentAccountTrait
+trait PaymentAccountTrait
 {
     abstract public function getParameters();
     abstract public function getParameter($key);

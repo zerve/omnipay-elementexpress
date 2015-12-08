@@ -1,19 +1,19 @@
 <?php
-namespace Omnipay\ElementExpress\Tests;
+namespace Omnipay\ElementExpress\Tests\Model;
 
 use Mockery as m;
-use Omnipay\ElementExpress\HasTransactionTrait;
+use Omnipay\ElementExpress\Model\TransactionTrait;
 use Omnipay\ElementExpress\Message\AbstractRequest;
 
 class MockTransactionTraitImplementation extends AbstractRequest
 {
-    use HasTransactionTrait;
+    use TransactionTrait;
     public function getData() {}
     protected function getEndpoint() {}
     protected function getXmlNamespace() {}
 }
 
-class HasTransactionTraitTest extends AbstractHasTraitTestCase
+class TransactionTraitTest extends AbstractHasTraitTestCase
 {
     public function getMockRequest()
     {

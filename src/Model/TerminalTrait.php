@@ -1,5 +1,5 @@
 <?php
-namespace Omnipay\ElementExpress;
+namespace Omnipay\ElementExpress\Model;
 
 use Omnipay\ElementExpress\Enumeration\CardPresentCode;
 use Omnipay\ElementExpress\Enumeration\CardholderPresentCode;
@@ -8,9 +8,8 @@ use Omnipay\ElementExpress\Enumeration\CVVPresenceCode;
 use Omnipay\ElementExpress\Enumeration\TerminalCapabilityCode;
 use Omnipay\ElementExpress\Enumeration\TerminalEnvironmentCode;
 use Omnipay\ElementExpress\Enumeration\MotoECICode;
-use Omnipay\ElementExpress\Model\Terminal;
 
-trait HasTerminalTrait
+trait TerminalTrait
 {
     abstract public function getParameters();
     abstract public function getParameter($key);

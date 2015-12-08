@@ -1,10 +1,9 @@
 <?php
-namespace Omnipay\ElementExpress;
+namespace Omnipay\ElementExpress\Model;
 
 use Omnipay\ElementExpress\Enumeration\EncryptedFormat;
-use Omnipay\ElementExpress\Model\Card;
 
-trait HasCardTrait
+trait CardTrait
 {
     abstract public function getParameters();
     abstract public function getParameter($key);

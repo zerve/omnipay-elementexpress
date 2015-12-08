@@ -1,19 +1,19 @@
 <?php
-namespace Omnipay\ElementExpress\Tests;
+namespace Omnipay\ElementExpress\Tests\Model;
 
 use Mockery as m;
-use Omnipay\ElementExpress\HasCredentialsTrait;
 use Omnipay\ElementExpress\Message\AbstractRequest;
+use Omnipay\ElementExpress\Model\CredentialsTrait;
 
 class MockCredentialsTraitImplementation extends AbstractRequest
 {
-    use HasCredentialsTrait;
+    use CredentialsTrait;
     public function getData() {}
     protected function getEndpoint() {}
     protected function getXmlNamespace() {}
 }
 
-class HasCredentialsTraitTest extends AbstractHasTraitTestCase
+class CredentialsTraitTest extends AbstractHasTraitTestCase
 {
     public function getMockRequest()
     {
