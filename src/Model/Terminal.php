@@ -10,7 +10,7 @@ use Omnipay\ElementExpress\Enumeration\TerminalEnvironmentCode;
 use Omnipay\ElementExpress\Enumeration\TerminalType;
 use Omnipay\ElementExpress\Enumeration\MotoECICode;
 
-class Terminal extends ModelAbstract
+class Terminal extends AbstractModel
 {
     public function getDefaultParameters()
     {

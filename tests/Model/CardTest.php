@@ -2,7 +2,6 @@
 namespace Omnipay\ElementExpress\Tests\Model;
 
 use Mockery as m;
-use Omnipay\ElementExpress\Model\ModelAbstract;
 use Omnipay\ElementExpress\Model\Card;
 use Omnipay\ElementExpress\Enumeration\EncryptedFormat;
 use Omnipay\Tests\TestCase;

@@ -3,7 +3,7 @@ namespace Omnipay\ElementExpress\Model;
 
 use Omnipay\ElementExpress\Enumeration\EncryptedFormat;
 
-class Card extends ModelAbstract
+class Card extends AbstractModel
 {
     public function getDefaultParameters()
     {

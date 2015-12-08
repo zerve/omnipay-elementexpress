@@ -1,7 +1,7 @@
 <?php
 namespace Omnipay\ElementExpress\Model;
 
-class Credentials extends ModelAbstract
+class Credentials extends AbstractModel
 {
     public function getDefaultParameters()
     {

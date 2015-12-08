@@ -3,7 +3,7 @@ namespace Omnipay\ElementExpress\Model;
 
 use Omnipay\Common\Exception\InvalidRequestException;
 
-class Application extends ModelAbstract
+class Application extends AbstractModel
 {
     public function getDefaultParameters()
     {

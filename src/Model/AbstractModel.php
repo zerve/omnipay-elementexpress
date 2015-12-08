@@ -1,7 +1,7 @@
 <?php
 namespace Omnipay\ElementExpress\Model;
 
-abstract class ModelAbstract implements \ArrayAccess
+abstract class AbstractModel implements \ArrayAccess
 {
     /**
      * Internal data set.

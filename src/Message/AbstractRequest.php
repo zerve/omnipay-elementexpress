@@ -5,7 +5,7 @@ use Omnipay\Common\Helper;
 use Omnipay\Common\Message\AbstractRequest as CommonAbstractRequest;
 use Omnipay\ElementExpress\Model\ApplicationTrait;
 use Omnipay\ElementExpress\Model\CredentialsTrait;
-use Omnipay\ElementExpress\Model\ModelAbstract;
+use Omnipay\ElementExpress\Model\AbstractModel;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 /**
@@ -25,7 +25,7 @@ abstract class AbstractRequest extends CommonAbstractRequest
      * is the name of the model.
      *
      * @return array
-     * @throws \UnexpectedValueException if any found model does not inherit from ModelAbstract
+     * @throws \UnexpectedValueException if any found model does not inherit from AbstractModel
      */
     public function getModels()
     {
@@ -33,8 +33,8 @@ abstract class AbstractRequest extends CommonAbstractRequest
         $methods = preg_grep('/^get\w+Model$/', get_class_methods($this));
         foreach ($methods as $method) {
             $model = $this->$method();
-            if (!$model instanceof ModelAbstract) {
-                throw new \UnexpectedValueException('Expected model to be instance of ModelAbstract');
+            if (!$model instanceof AbstractModel) {
+                throw new \UnexpectedValueException('Expected model to be instance of AbstractModel');
             }
             $models[] = $this->$method();
         }

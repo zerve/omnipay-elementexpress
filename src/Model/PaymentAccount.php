@@ -3,7 +3,7 @@ namespace Omnipay\ElementExpress\Model;
 
 use Omnipay\ElementExpress\Enumeration\PaymentAccountType;
 
-class PaymentAccount extends ModelAbstract
+class PaymentAccount extends AbstractModel
 {
     public function getDefaultParameters()
     {
