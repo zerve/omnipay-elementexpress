@@ -9,7 +9,7 @@ trait PaymentAccountTrait
     abstract public function getParameter($key);
     abstract public function setParameter($key, $value);
 
-    public function getPaymentAccount()
+    public function getPaymentAccountModel()
     {
         $model = new PaymentAccount();
         return $model->initialize($this->getParameters());

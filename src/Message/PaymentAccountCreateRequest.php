@@ -19,11 +19,6 @@ class PaymentAccountCreateRequest extends AbstractServicesRequest
      */
     public function getData()
     {
-        return $this->domDocumentFactory('PaymentAccountCreate', ...[
-            $this->getApplication(),
-            $this->getCredentials(),
-            $this->getPaymentAccount(),
-            $this->getCard(),
-        ]);
+        return $this->domDocumentFactory('PaymentAccountCreate');
     }
 }

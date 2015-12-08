@@ -15,7 +15,7 @@ trait TerminalTrait
     abstract public function getParameter($key);
     abstract public function setParameter($key, $value);
 
-    public function getTerminal()
+    public function getTerminalModel()
     {
         $model = new Terminal();
         return $model->initialize($this->getParameters());

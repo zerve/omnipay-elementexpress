@@ -7,7 +7,7 @@ trait CredentialsTrait
     abstract public function getParameter($key);
     abstract public function setParameter($key, $value);
 
-    public function getCredentials()
+    public function getCredentialsModel()
     {
         $model = new Credentials();
         return $model->initialize($this->getParameters());

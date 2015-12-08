@@ -20,19 +20,40 @@ abstract class AbstractRequest extends CommonAbstractRequest
     abstract protected function getXmlNamespace();
 
     /**
+     * Retrieve an array of models used by this request. Models are found based
+     * on the presence of a getter following the format getNameModel where "Name"
+     * is the name of the model.
+     *
+     * @return array
+     * @throws \UnexpectedValueException if any found model does not inherit from ModelAbstract
+     */
+    public function getModels()
+    {
+        $models  = array();
+        $methods = preg_grep('/^get\w+Model$/', get_class_methods($this));
+        foreach ($methods as $method) {
+            $model = $this->$method();
+            if (!$model instanceof ModelAbstract) {
+                throw new \UnexpectedValueException('Expected model to be instance of ModelAbstract');
+            }
+            $models[] = $this->$method();
+        }
+        return $models;
+    }
+
+    /**
      * Create a DOM document using the provide $tagName and correct namespace as
      * the document element.
      *
      * @param string $tagName The name of the tag for the documentElement
-     * @param ModelAbstract $models Variable length list of ModelAbstract instances.
      * @return \DOMDocument
      */
-    protected function domDocumentFactory($tagName, ModelAbstract ...$models)
+    protected function domDocumentFactory($tagName)
     {
         $namespace = $this->getXmlNamespace();
         $document  = new \DOMDocument('1.0');
         $document->appendChild(new \DOMElement($tagName, null, $namespace));
-        foreach ($models as $model) {
+        foreach ($this->getModels() as $model) {
             $model->appendToDom($document->documentElement);
         }
         return $document;

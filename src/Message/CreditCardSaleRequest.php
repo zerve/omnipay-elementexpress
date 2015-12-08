@@ -23,12 +23,6 @@ class CreditCardSaleRequest extends AbstractTransactionRequest
     {
         // $this->validate('amount', 'card');
         // $this->getCard()->validate();
-        return $this->domDocumentFactory('CreditCardSale', ...[
-            $this->getApplication(),
-            $this->getCredentials(),
-            $this->getTransaction(),
-            $this->getTerminal(),
-            $this->getCard(),
-        ]);
+        return $this->domDocumentFactory('CreditCardSale');
     }
 }

@@ -13,9 +13,6 @@ class HealthCheckRequest extends AbstractTransactionRequest
      */
     public function getData()
     {
-        return $this->domDocumentFactory('HealthCheck', ...[
-            $this->getApplication(),
-            $this->getCredentials(),
-        ]);
+        return $this->domDocumentFactory('HealthCheck');
     }
 }

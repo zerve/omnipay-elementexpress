@@ -24,13 +24,6 @@ class CreditCardCreditRequest extends AbstractTransactionRequest
     public function getData()
     {
         // $this->validate('amount');
-        return $this->domDocumentFactory('CreditCardCredit', ...[
-            $this->getApplication(),
-            $this->getCredentials(),
-            $this->getTransaction(),
-            $this->getTerminal(),
-            $this->getPaymentAccount(),
-            $this->getCard(),
-        ]);
+        return $this->domDocumentFactory('CreditCardCredit');
     }
 }

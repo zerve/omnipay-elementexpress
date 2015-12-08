@@ -19,11 +19,6 @@ class CreditCardVoidRequest extends AbstractTransactionRequest
      */
     public function getData()
     {
-        return $this->domDocumentFactory('CreditCardVoid', ...[
-            $this->getApplication(),
-            $this->getCredentials(),
-            $this->getTransaction(),
-            $this->getTerminal(),
-        ]);
+        return $this->domDocumentFactory('CreditCardVoid');
     }
 }

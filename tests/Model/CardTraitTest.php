@@ -29,7 +29,7 @@ class CardTraitTest extends AbstractHasTraitTestCase
     {
         if (null === $this->mockModel) {
             $request = $this->getMockRequest();
-            $this->mockModel = $request->getCard();
+            $this->mockModel = $request->getCardModel();
         }
         return $this->mockModel;
     }

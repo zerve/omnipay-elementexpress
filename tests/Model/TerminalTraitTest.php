@@ -29,7 +29,7 @@ class TerminalTraitTest extends AbstractHasTraitTestCase
     {
         if (null === $this->mockModel) {
             $request = $this->getMockRequest();
-            $this->mockModel = $request->getTerminal();
+            $this->mockModel = $request->getTerminalModel();
         }
         return $this->mockModel;
     }

@@ -29,7 +29,7 @@ class CredentialsTraitTest extends AbstractHasTraitTestCase
     {
         if (null === $this->mockModel) {
             $request = $this->getMockRequest();
-            $this->mockModel = $request->getCredentials();
+            $this->mockModel = $request->getCredentialsModel();
         }
         return $this->mockModel;
     }

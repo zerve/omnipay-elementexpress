@@ -7,7 +7,7 @@ trait ApplicationTrait
     abstract public function getParameter($key);
     abstract public function setParameter($key, $value);
 
-    public function getApplication()
+    public function getApplicationModel()
     {
         $model = new Application();
         return $model->initialize($this->getParameters());

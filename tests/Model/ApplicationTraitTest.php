@@ -29,7 +29,7 @@ class ApplicationTraitTest extends AbstractHasTraitTestCase
     {
         if (null === $this->mockModel) {
             $request = $this->getMockRequest();
-            $this->mockModel = $request->getApplication();
+            $this->mockModel = $request->getApplicationModel();
         }
         return $this->mockModel;
     }

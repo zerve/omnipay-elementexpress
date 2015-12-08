@@ -30,7 +30,7 @@ class PaymentAccountTraitTest extends AbstractHasTraitTestCase
     {
         if (null === $this->mockModel) {
             $request = $this->getMockRequest();
-            $this->mockModel = $request->getPaymentAccount()->initialize([
+            $this->mockModel = $request->getPaymentAccountModel()->initialize([
                 'PaymentAccountType' => PaymentAccountType::CREDIT_CARD()
             ]);
         }

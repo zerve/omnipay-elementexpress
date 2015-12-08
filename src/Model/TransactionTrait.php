@@ -9,7 +9,7 @@ trait TransactionTrait
     abstract public function getParameter($key);
     abstract public function setParameter($key, $value);
 
-    public function getTransaction()
+    public function getTransactionModel()
     {
         $model = new Transaction();
         return $model->initialize($this->getParameters());

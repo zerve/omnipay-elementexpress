@@ -14,7 +14,7 @@ trait CardTrait
      * data from the Omnipay 'card' parameter which is an object in the Omnipay
      * domain.
      */
-    public function getCard()
+    public function getCardModel()
     {
         $model = new Card();
         $parameters = $this->getParameters();

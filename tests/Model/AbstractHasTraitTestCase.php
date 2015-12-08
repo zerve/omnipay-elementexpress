@@ -35,4 +35,14 @@ abstract class AbstractHasTraitTestCase extends \PHPUnit_Framework_TestCase
         $this->assertSame($request, $request->$setter($value));
         $this->assertSame($value, $request->$getter());
     }
+
+    public function testGetModelsIncludesModelForTrait()
+    {
+        $request = $this->getMockRequest();
+        $models  = array_filter($request->getModels(), function($value) {
+            $expectedClass = get_class($this->getMockModel());
+            return $value instanceof $expectedClass;
+        });
+        $this->assertNotEmpty($models);
+    }
 }

@@ -20,11 +20,6 @@ class CreditCardReturnRequest extends AbstractTransactionRequest
     public function getData()
     {
         // $this->validate('amount');
-        return $this->domDocumentFactory('CreditCardReturn', ...[
-            $this->getApplication(),
-            $this->getCredentials(),
-            $this->getTransaction(),
-            $this->getTerminal(),
-        ]);
+        return $this->domDocumentFactory('CreditCardReturn');
     }
 }

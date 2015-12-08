@@ -29,7 +29,7 @@ class TransactionTraitTest extends AbstractHasTraitTestCase
     {
         if (null === $this->mockModel) {
             $request = $this->getMockRequest();
-            $this->mockModel = $request->getTransaction();
+            $this->mockModel = $request->getTransactionModel();
         }
         return $this->mockModel;
     }
