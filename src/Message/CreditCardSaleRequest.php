@@ -1,6 +1,7 @@
 <?php
 namespace Omnipay\ElementExpress\Message;
 
+use Omnipay\ElementExpress\Model\AddressTrait;
 use Omnipay\ElementExpress\Model\CardTrait;
 use Omnipay\ElementExpress\Model\TerminalTrait;
 use Omnipay\ElementExpress\Model\TransactionTrait;
@@ -10,6 +11,7 @@ use Omnipay\ElementExpress\Model\TransactionTrait;
  */
 class CreditCardSaleRequest extends AbstractTransactionRequest
 {
+    use AddressTrait;
     use CardTrait;
     use TerminalTrait;
     use TransactionTrait;

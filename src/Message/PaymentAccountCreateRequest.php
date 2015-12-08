@@ -1,6 +1,7 @@
 <?php
 namespace Omnipay\ElementExpress\Message;
 
+use Omnipay\ElementExpress\Model\AddressTrait;
 use Omnipay\ElementExpress\Model\CardTrait;
 use Omnipay\ElementExpress\Model\PaymentAccountTrait;
 
@@ -9,6 +10,7 @@ use Omnipay\ElementExpress\Model\PaymentAccountTrait;
  */
 class PaymentAccountCreateRequest extends AbstractServicesRequest
 {
+    use AddressTrait;
     use CardTrait;
     use PaymentAccountTrait;
 
