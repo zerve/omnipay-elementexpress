@@ -61,4 +61,14 @@ trait TransactionTrait
     {
         return $this->setParameter('MarketCode', $value);
     }
+
+    public function getPartialApprovedFlag()
+    {
+        return $this->getParameter('PartialApprovedFlag');
+    }
+
+    public function setPartialApprovedFlag($value)
+    {
+        return $this->setParameter('PartialApprovedFlag', $value);
+    }
 }

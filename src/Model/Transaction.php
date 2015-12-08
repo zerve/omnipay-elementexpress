@@ -18,7 +18,8 @@ class Transaction extends ModelAbstract
 
             // Remaining elements correspond to ElementExpress parameters.
 
-            'MarketCode'           => MarketCode::__DEFAULT()
+            'MarketCode'           => MarketCode::__DEFAULT(),
+            'PartialApprovedFlag'  => '',
 
         ];
     }
@@ -33,5 +34,6 @@ class Transaction extends ModelAbstract
         $node->appendChild(new \DOMElement('TransactionID', $this['transactionReference']));
         $node->appendChild(new \DOMElement('ReferenceNumber', $this['transactionId']));
         $node->appendChild(new \DOMElement('MarketCode', $this['MarketCode']->value()));
+        $node->appendChild(new \DOMElement('PartialApprovedFlag', $this['PartialApprovedFlag']));
     }
 }
