@@ -7,6 +7,7 @@ use Omnipay\ElementExpress\Enumeration\CardInputCode;
 use Omnipay\ElementExpress\Enumeration\CVVPresenceCode;
 use Omnipay\ElementExpress\Enumeration\TerminalCapabilityCode;
 use Omnipay\ElementExpress\Enumeration\TerminalEnvironmentCode;
+use Omnipay\ElementExpress\Enumeration\TerminalType;
 use Omnipay\ElementExpress\Enumeration\MotoECICode;
 
 trait TerminalTrait
@@ -29,6 +30,16 @@ trait TerminalTrait
     public function setTerminalID($value)
     {
         return $this->setParameter('TerminalID', $value);
+    }
+
+    public function getTerminalType()
+    {
+        return $this->getParameter('TerminalType');
+    }
+
+    public function setTerminalType(TerminalType $value)
+    {
+        return $this->setParameter('TerminalType', $value);
     }
 
     public function getCardPresentCode()
