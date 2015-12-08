@@ -75,12 +75,22 @@ class Response extends AbstractResponse
     }
 
     /**
-     * Gateway Reference
+     * Transaction Reference
      *
      * @return null|string A reference provided by the gateway to represent this transaction
      */
     public function getTransactionReference()
     {
         return (string) $this->data->Transaction->TransactionID;
+    }
+
+    /**
+     * Card Reference
+     *
+     * @return null|string A card reference for used in tokenized transactions.
+     */
+    public function getCardReference()
+    {
+        return (string) $this->data->PaymentAccount->PaymentAccountID;
     }
 }
