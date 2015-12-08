@@ -13,7 +13,7 @@ class MockTransactionTraitImplementation extends AbstractRequest
     protected function getXmlNamespace() {}
 }
 
-class TransactionTraitTest extends AbstractHasTraitTestCase
+class TransactionTraitTest extends AbstractTraitTestCase
 {
     public function getMockRequest()
     {

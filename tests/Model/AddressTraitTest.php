@@ -13,7 +13,7 @@ class MockAddressTraitImplementation extends AbstractRequest
     protected function getXmlNamespace() {}
 }
 
-class AddressTraitTest extends AbstractHasTraitTestCase
+class AddressTraitTest extends AbstractTraitTestCase
 {
     public function getMockRequest()
     {

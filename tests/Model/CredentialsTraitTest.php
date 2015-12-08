@@ -13,7 +13,7 @@ class MockCredentialsTraitImplementation extends AbstractRequest
     protected function getXmlNamespace() {}
 }
 
-class CredentialsTraitTest extends AbstractHasTraitTestCase
+class CredentialsTraitTest extends AbstractTraitTestCase
 {
     public function getMockRequest()
     {

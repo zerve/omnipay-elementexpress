@@ -13,7 +13,7 @@ class MockTerminalTraitImplementation extends AbstractRequest
     protected function getXmlNamespace() {}
 }
 
-class TerminalTraitTest extends AbstractHasTraitTestCase
+class TerminalTraitTest extends AbstractTraitTestCase
 {
     public function getMockRequest()
     {

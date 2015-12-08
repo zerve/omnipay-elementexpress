@@ -14,7 +14,7 @@ class MockPaymentAccountTraitImplementation extends AbstractRequest
     protected function getXmlNamespace() {}
 }
 
-class PaymentAccountTraitTest extends AbstractHasTraitTestCase
+class PaymentAccountTraitTest extends AbstractTraitTestCase
 {
     public function getMockRequest()
     {

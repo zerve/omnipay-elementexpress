@@ -3,7 +3,7 @@ namespace Omnipay\ElementExpress\Tests\Model;
 
 use Omnipay\Tests\TestCase;
 
-abstract class AbstractHasTraitTestCase extends \PHPUnit_Framework_TestCase
+abstract class AbstractTraitTestCase extends \PHPUnit_Framework_TestCase
 {
     protected $mockRequest;
     protected $mockModel;

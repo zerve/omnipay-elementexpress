@@ -13,7 +13,7 @@ class MockCardTraitImplementation extends AbstractRequest
     protected function getXmlNamespace() {}
 }
 
-class CardTraitTest extends AbstractHasTraitTestCase
+class CardTraitTest extends AbstractTraitTestCase
 {
     public function getMockRequest()
     {
