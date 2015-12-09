@@ -1,6 +1,7 @@
 <?php
 namespace Omnipay\ElementExpress\Model;
 
+use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\ElementExpress\Enumeration\CardPresentCode;
 use Omnipay\ElementExpress\Enumeration\CardholderPresentCode;
 use Omnipay\ElementExpress\Enumeration\CardInputCode;
@@ -41,5 +42,61 @@ class Terminal extends AbstractModel
         $node->appendChild(new \DOMElement('TerminalEnvironmentCode', $this['TerminalEnvironmentCode']->value()));
         $node->appendChild(new \DOMElement('MotoECICode', $this['MotoECICode']->value()));
         $node->appendChild(new \DOMElement('TerminalSerialNumber', $this['TerminalSerialNumber']));
+    }
+
+    /**
+     * Model validation ensures that any data that is present in the model is
+     * formatted correctly. No business logic validation is performed at this
+     * level.
+     *
+     * @throws InvalidRequestException if validation fails.
+     */
+    public function validate()
+    {
+        if (strlen($this['TerminalID']) && !preg_match('/^.{1,40}$/', $this['TerminalID'])) {
+            throw new InvalidRequestException('TerminalID should 40 or fewer characters');
+        }
+
+        if (isset($this['TerminalType']) && !$this['TerminalType'] instanceof TerminalType) {
+            throw new InvalidRequestException('Invalid value for TerminalType');
+        }
+
+        if (isset($this['CardPresentCode']) && !$this['CardPresentCode'] instanceof CardPresentCode) {
+            throw new InvalidRequestException('Invalid value for CardPresentCode');
+        }
+
+        if (isset($this['CardholderPresentCode'])) {
+            if (!$this['CardholderPresentCode'] instanceof CardholderPresentCode) {
+                throw new InvalidRequestException('Invalid value for CardholderPresentCode');
+            }
+        }
+
+        if (isset($this['CardInputCode']) && !$this['CardInputCode'] instanceof CardInputCode) {
+            throw new InvalidRequestException('Invalid value for CardInputCode');
+        }
+
+        if (isset($this['CVVPresenceCode']) && !$this['CVVPresenceCode'] instanceof CVVPresenceCode) {
+            throw new InvalidRequestException('Invalid value for CVVPresenceCode');
+        }
+
+        if (isset($this['TerminalCapabilityCode'])) {
+            if (!$this['TerminalCapabilityCode'] instanceof TerminalCapabilityCode) {
+                throw new InvalidRequestException('Invalid value for TerminalCapabilityCode');
+            }
+        }
+
+        if (isset($this['TerminalEnvironmentCode'])) {
+            if (!$this['TerminalEnvironmentCode'] instanceof TerminalEnvironmentCode) {
+                throw new InvalidRequestException('Invalid value for TerminalEnvironmentCode');
+            }
+        }
+
+        if (isset($this['MotoECICode']) && !$this['MotoECICode'] instanceof MotoECICode) {
+            throw new InvalidRequestException('Invalid value for MotoECICode');
+        }
+
+        if (strlen($this['TerminalSerialNumber']) && !preg_match('/^.{1,40}$/', $this['TerminalSerialNumber'])) {
+            throw new InvalidRequestException('TerminalSerialNumber should 40 or fewer characters');
+        }
     }
 }

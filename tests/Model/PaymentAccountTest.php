@@ -24,7 +24,7 @@ class PaymentAccountTest extends TestCase
     {
         return [
             'cardReference: max-length'                 => ['cardReference', str_repeat('x', 50)],
-            'PaymentAccountType: max-length'            => ['PaymentAccountType', PaymentAccountType::CREDIT_CARD()],
+            'PaymentAccountType: valid-enum'            => ['PaymentAccountType', PaymentAccountType::CREDIT_CARD()],
             'PaymentAccountReferenceNumber: max-length' => ['PaymentAccountReferenceNumber', str_repeat('x', 50)],
         ];
     }
