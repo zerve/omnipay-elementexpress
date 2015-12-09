@@ -1,8 +1,6 @@
 <?php
 namespace Omnipay\ElementExpress\Model;
 
-use Omnipay\Common\Exception\InvalidRequestException;
-
 class Application extends AbstractModel
 {
     public function getDefaultParameters()
@@ -24,43 +22,38 @@ class Application extends AbstractModel
 
     public function validate()
     {
-        $valid = filter_var($this['ApplicationID'], FILTER_VALIDATE_REGEXP, [
-            'options' => ['regexp' => '/^.{0,40}$/']
-        ]);
-        if (false === $valid) {
-            throw new InvalidRequestException(
-                'ApplicationID must be a string that is 40 characters or less in length'
-            );
-        }
+        $config = [
+            'ApplicationID' => [
+                [
+                    'regexp'  => '/^.{0,40}$/',
+                    'message' => 'ApplicationID must be a string that is 40 characters or less in length',
+                ]
+            ],
+            'ApplicationName' => [
+                [
+                    'regexp'  => '/^.{0,50}$/',
+                    'message' => 'ApplicationName must be a string that is 50 characters or less in length',
+                ]
+            ],
+            'ApplicationVersion' => [
+                [
+                    'regexp'  => '/^\d+\.\d+\.\d+$/',
+                    'message' => 'ApplicationVersion must be a string in the #.#.# format',
+                ],
+                [
+                    'regexp'  => '/^.{0,50}$/',
+                    'message' => 'ApplicationVersion must be a string that is 50 characters or less in length',
+                ]
+            ]
+        ];
 
-        $valid = filter_var($this['ApplicationName'], FILTER_VALIDATE_REGEXP, [
-            'options' => ['regexp' => '/^.{0,50}$/']
-        ]);
-        if (false === $valid) {
-            throw new InvalidRequestException(
-                'ApplicationName must be a string that is 50 characters or less in length'
-            );
-        }
-
-        if (strlen($this['ApplicationVersion'])) {
-            $valid = filter_var($this['ApplicationVersion'], FILTER_VALIDATE_REGEXP, [
-                'options' => ['regexp' => '/^\d+\.\d+\.\d+$/']
-            ]);
-            if (false === $valid) {
-                throw new InvalidRequestException(
-                    'ApplicationVersion must be a string in the #.#.# format'
-                );
+        foreach ($config as $field => $rules) {
+            $value = $this[$field];
+            if (strlen($value)) {
+                foreach ($rules as $rule) {
+                    $this->validateRegex($value, $rule['regexp'], $rule['message']);
+                }
             }
         }
-
-        $valid = filter_var($this['ApplicationVersion'], FILTER_VALIDATE_REGEXP, [
-            'options' => ['regexp' => '/^.{0,50}$/']
-        ]);
-        if (false === $valid) {
-            throw new InvalidRequestException(
-                'ApplicationVersion must be a string that is 50 characters or less in length'
-            );
-        }
-
     }
 }
