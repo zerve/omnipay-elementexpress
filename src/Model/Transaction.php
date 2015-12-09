@@ -55,16 +55,16 @@ class Transaction extends AbstractModel
                 throw new InvalidRequestException('amount should be non-zero and positive');
             }
             if (!preg_match('/^.{1,10}$/', $this['amount'])) {
-                throw new InvalidRequestException('amount should be 10 or fewer characters');
+                throw new InvalidRequestException('amount should have 10 or fewer characters');
             }
         }
 
         if (strlen($this['transactionReference']) && !preg_match('/^.{1,10}$/', $this['transactionReference'])) {
-            throw new InvalidRequestException('transactionReference should be 10 or fewer characters');
+            throw new InvalidRequestException('transactionReference should have 10 or fewer characters');
         }
 
         if (strlen($this['transactionId']) && !preg_match('/^.{1,50}$/', $this['transactionId'])) {
-            throw new InvalidRequestException('transactionId should be 50 or fewer characters');
+            throw new InvalidRequestException('transactionId should have 50 or fewer characters');
         }
 
         if (isset($this['MarketCode']) && !$this['MarketCode'] instanceof MarketCode) {

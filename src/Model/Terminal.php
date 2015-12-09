@@ -54,7 +54,7 @@ class Terminal extends AbstractModel
     public function validate()
     {
         if (strlen($this['TerminalID']) && !preg_match('/^.{1,40}$/', $this['TerminalID'])) {
-            throw new InvalidRequestException('TerminalID should 40 or fewer characters');
+            throw new InvalidRequestException('TerminalID should have 40 or fewer characters');
         }
 
         if (isset($this['TerminalType']) && !$this['TerminalType'] instanceof TerminalType) {
@@ -96,7 +96,7 @@ class Terminal extends AbstractModel
         }
 
         if (strlen($this['TerminalSerialNumber']) && !preg_match('/^.{1,40}$/', $this['TerminalSerialNumber'])) {
-            throw new InvalidRequestException('TerminalSerialNumber should 40 or fewer characters');
+            throw new InvalidRequestException('TerminalSerialNumber should have 40 or fewer characters');
         }
     }
 }

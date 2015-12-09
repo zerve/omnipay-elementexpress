@@ -43,7 +43,7 @@ class PaymentAccount extends AbstractModel
     public function validate()
     {
         if (strlen($this['cardReference']) && !preg_match('/^.{1,50}$/', $this['cardReference'])) {
-            throw new InvalidRequestException('cardReference should 50 or fewer characters');
+            throw new InvalidRequestException('cardReference should have 50 or fewer characters');
         }
 
         if (isset($this['PaymentAccountType']) && !$this['PaymentAccountType'] instanceof PaymentAccountType) {
@@ -52,7 +52,7 @@ class PaymentAccount extends AbstractModel
 
         if (strlen($this['PaymentAccountReferenceNumber'])) {
             if (!preg_match('/^.{1,50}$/', $this['PaymentAccountReferenceNumber'])) {
-                throw new InvalidRequestException('PaymentAccountReferenceNumber should 50 or fewer characters');
+                throw new InvalidRequestException('PaymentAccountReferenceNumber should have 50 or fewer characters');
             }
         }
     }

@@ -34,19 +34,19 @@ class Credentials extends AbstractModel
     public function validate()
     {
         if (strlen($this['AccountID']) && !preg_match('/^.{1,10}$/', $this['AccountID'])) {
-            throw new InvalidRequestException('AccountID should 10 or fewer characters');
+            throw new InvalidRequestException('AccountID should have 10 or fewer characters');
         }
 
         if (strlen($this['AccountToken']) && !preg_match('/^.{1,140}$/', $this['AccountToken'])) {
-            throw new InvalidRequestException('AccountToken should 140 or fewer characters');
+            throw new InvalidRequestException('AccountToken should have 140 or fewer characters');
         }
 
         if (strlen($this['AcceptorID']) && !preg_match('/^.{1,50}$/', $this['AcceptorID'])) {
-            throw new InvalidRequestException('AcceptorID should 50 or fewer characters');
+            throw new InvalidRequestException('AcceptorID should have 50 or fewer characters');
         }
 
         if (strlen($this['NewAccountToken']) && !preg_match('/^.{1,140}$/', $this['NewAccountToken'])) {
-            throw new InvalidRequestException('NewAccountToken should 140 or fewer characters');
+            throw new InvalidRequestException('NewAccountToken should have 140 or fewer characters');
         }
     }
 }

@@ -66,16 +66,16 @@ class Address extends AbstractModel
     public function validate()
     {
         if (strlen($this['billingName']) && !preg_match('/^.{1,100}$/', $this['billingName'])) {
-            throw new InvalidRequestException('billingName should have 100 or fewer digits');
+            throw new InvalidRequestException('billingName should have 100 or fewer characters');
         }
 
         if (strlen($this['billingPhone']) && !preg_match('/^.{1,20}$/', $this['billingPhone'])) {
-            throw new InvalidRequestException('billingPhone should have 20 or fewer digits');
+            throw new InvalidRequestException('billingPhone should have 20 or fewer characters');
         }
 
         if (strlen($this['billingEmail'])) {
             if (!preg_match('/^.{1,80}$/', $this['billingEmail'])) {
-                throw new InvalidRequestException('billingEmail should have 80 or fewer digits');
+                throw new InvalidRequestException('billingEmail should have 80 or fewer characters');
             }
             if (!filter_var($this['billingEmail'], FILTER_VALIDATE_EMAIL)) {
                 throw new InvalidRequestException('billingEmail is invalid');
@@ -83,36 +83,36 @@ class Address extends AbstractModel
         }
 
         if (strlen($this['billingAddress1']) && !preg_match('/^.{1,50}$/', $this['billingAddress1'])) {
-            throw new InvalidRequestException('billingAddress1 should have 50 or fewer digits');
+            throw new InvalidRequestException('billingAddress1 should have 50 or fewer characters');
         }
 
         if (strlen($this['billingAddress2']) && !preg_match('/^.{1,50}$/', $this['billingAddress2'])) {
-            throw new InvalidRequestException('billingAddress2 should have 50 or fewer digits');
+            throw new InvalidRequestException('billingAddress2 should have 50 or fewer characters');
         }
 
         if (strlen($this['billingCity']) && !preg_match('/^.{1,40}$/', $this['billingCity'])) {
-            throw new InvalidRequestException('billingCity should have 40 or fewer digits');
+            throw new InvalidRequestException('billingCity should have 40 or fewer characters');
         }
 
         if (strlen($this['billingState']) && !preg_match('/^.{1,30}$/', $this['billingState'])) {
-            throw new InvalidRequestException('billingState should have 30 or fewer digits');
+            throw new InvalidRequestException('billingState should have 30 or fewer characters');
         }
 
         if (strlen($this['billingPostcode']) && !preg_match('/^.{1,20}$/', $this['billingPostcode'])) {
-            throw new InvalidRequestException('billingPostcode should have 20 or fewer digits');
+            throw new InvalidRequestException('billingPostcode should have 20 or fewer characters');
         }
 
         if (strlen($this['shippingName']) && !preg_match('/^.{1,100}$/', $this['shippingName'])) {
-            throw new InvalidRequestException('shippingName should have 100 or fewer digits');
+            throw new InvalidRequestException('shippingName should have 100 or fewer characters');
         }
 
         if (strlen($this['shippingPhone']) && !preg_match('/^.{1,20}$/', $this['shippingPhone'])) {
-            throw new InvalidRequestException('shippingPhone should have 20 or fewer digits');
+            throw new InvalidRequestException('shippingPhone should have 20 or fewer characters');
         }
 
         if (strlen($this['shippingEmail'])) {
             if (!preg_match('/^.{1,80}$/', $this['shippingEmail'])) {
-                throw new InvalidRequestException('shippingEmail should have 80 or fewer digits');
+                throw new InvalidRequestException('shippingEmail should have 80 or fewer characters');
             }
             if (!filter_var($this['shippingEmail'], FILTER_VALIDATE_EMAIL)) {
                 throw new InvalidRequestException('shippingEmail is invalid');
@@ -120,23 +120,23 @@ class Address extends AbstractModel
         }
 
         if (strlen($this['shippingAddress1']) && !preg_match('/^.{1,50}$/', $this['shippingAddress1'])) {
-            throw new InvalidRequestException('shippingAddress1 should have 50 or fewer digits');
+            throw new InvalidRequestException('shippingAddress1 should have 50 or fewer characters');
         }
 
         if (strlen($this['shippingAddress2']) && !preg_match('/^.{1,50}$/', $this['shippingAddress2'])) {
-            throw new InvalidRequestException('shippingAddress2 should have 50 or fewer digits');
+            throw new InvalidRequestException('shippingAddress2 should have 50 or fewer characters');
         }
 
         if (strlen($this['shippingCity']) && !preg_match('/^.{1,40}$/', $this['shippingCity'])) {
-            throw new InvalidRequestException('shippingCity should have 40 or fewer digits');
+            throw new InvalidRequestException('shippingCity should have 40 or fewer characters');
         }
 
         if (strlen($this['shippingState']) && !preg_match('/^.{1,30}$/', $this['shippingState'])) {
-            throw new InvalidRequestException('shippingState should have 30 or fewer digits');
+            throw new InvalidRequestException('shippingState should have 30 or fewer characters');
         }
 
         if (strlen($this['shippingPostcode']) && !preg_match('/^.{1,20}$/', $this['shippingPostcode'])) {
-            throw new InvalidRequestException('shippingPostcode should have 20 or fewer digits');
+            throw new InvalidRequestException('shippingPostcode should have 20 or fewer characters');
         }
 
     }

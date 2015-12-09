@@ -32,11 +32,11 @@ class Application extends AbstractModel
     public function validate()
     {
         if (strlen($this['ApplicationID']) && !preg_match('/^.{1,40}$/', $this['ApplicationID'])) {
-            throw new InvalidRequestException('ApplicationID should 40 or fewer characters');
+            throw new InvalidRequestException('ApplicationID should have 40 or fewer characters');
         }
 
         if (strlen($this['ApplicationName']) && !preg_match('/^.{1,50}$/', $this['ApplicationName'])) {
-            throw new InvalidRequestException('ApplicationName should 50 or fewer characters');
+            throw new InvalidRequestException('ApplicationName should have 50 or fewer characters');
         }
 
         if (strlen($this['ApplicationVersion'])) {
@@ -44,7 +44,7 @@ class Application extends AbstractModel
                 throw new InvalidRequestException('ApplicationVersion should have 50 or fewer characters');
             }
             if (!preg_match('/^\d+\.\d+\.\d+$/', $this['ApplicationVersion'])) {
-                throw new InvalidRequestException('ApplicationVersion must follow #.#.# format');
+                throw new InvalidRequestException('ApplicationVersion should follow #.#.# format');
             }
         }
     }
