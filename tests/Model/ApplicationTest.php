@@ -15,7 +15,7 @@ class ApplicationTest extends TestCase
         return [
             'ApplicationID: too-long'        => ['ApplicationID', str_repeat('x', 41)],
             'ApplicationName: too-long'      => ['ApplicationName', str_repeat('x', 51)],
-            'ApplicationVersion: too-long'   => ['ApplicationVersion', '1.2.' . str_repeat('3', 51 - strlen('1.2.'))],
+            'ApplicationVersion: too-long'   => ['ApplicationVersion', str_pad('1.2.', 51, '3')],
             'ApplicationVersion: bad-format' => ['ApplicationVersion', '123'],
         ];
     }
@@ -25,7 +25,7 @@ class ApplicationTest extends TestCase
         return [
             'ApplicationID: max-length'      => ['ApplicationID', str_repeat('x', 40)],
             'ApplicationName: max-length'    => ['ApplicationName', str_repeat('x', 50)],
-            'ApplicationVersion: max-length' => ['ApplicationVersion', '1.2.' . str_repeat('3', 50 - strlen('1.2.'))],
+            'ApplicationVersion: max-length' => ['ApplicationVersion', str_pad('1.2.', 50, '3')],
         ];
     }
 
