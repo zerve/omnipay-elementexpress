@@ -1,6 +1,8 @@
 <?php
 namespace Omnipay\ElementExpress\Model;
 
+use Omnipay\Common\Exception\InvalidRequestException;
+
 class Application extends AbstractModel
 {
     public function getDefaultParameters()
@@ -20,39 +22,29 @@ class Application extends AbstractModel
         $node->appendChild(new \DOMElement('ApplicationVersion', $this['ApplicationVersion']));
     }
 
+    /**
+     * Model validation ensures that any data that is present in the model is
+     * formatted correctly. No business logic validation is performed at this
+     * level.
+     *
+     * @throws InvalidRequestException if validation fails.
+     */
     public function validate()
     {
-        $config = [
-            'ApplicationID' => [
-                [
-                    'regexp'  => '/^.{0,40}$/',
-                    'message' => 'ApplicationID must be a string that is 40 characters or less in length',
-                ]
-            ],
-            'ApplicationName' => [
-                [
-                    'regexp'  => '/^.{0,50}$/',
-                    'message' => 'ApplicationName must be a string that is 50 characters or less in length',
-                ]
-            ],
-            'ApplicationVersion' => [
-                [
-                    'regexp'  => '/^\d+\.\d+\.\d+$/',
-                    'message' => 'ApplicationVersion must be a string in the #.#.# format',
-                ],
-                [
-                    'regexp'  => '/^.{0,50}$/',
-                    'message' => 'ApplicationVersion must be a string that is 50 characters or less in length',
-                ]
-            ]
-        ];
+        if (strlen($this['ApplicationID']) && !preg_match('/^.{1,40}$/', $this['ApplicationID'])) {
+            throw new InvalidRequestException('ApplicationID should 40 or fewer characters');
+        }
 
-        foreach ($config as $field => $rules) {
-            $value = $this[$field];
-            if (strlen($value)) {
-                foreach ($rules as $rule) {
-                    $this->validateRegex($value, $rule['regexp'], $rule['message']);
-                }
+        if (strlen($this['ApplicationName']) && !preg_match('/^.{1,50}$/', $this['ApplicationName'])) {
+            throw new InvalidRequestException('ApplicationName should 50 or fewer characters');
+        }
+
+        if (strlen($this['ApplicationVersion'])) {
+            if (!preg_match('/^.{1,50}$/', $this['ApplicationVersion'])) {
+                throw new InvalidRequestException('ApplicationVersion should have 50 or fewer characters');
+            }
+            if (!preg_match('/^\d+\.\d+\.\d+$/', $this['ApplicationVersion'])) {
+                throw new InvalidRequestException('ApplicationVersion must follow #.#.# format');
             }
         }
     }

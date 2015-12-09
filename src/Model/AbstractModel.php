@@ -1,8 +1,6 @@
 <?php
 namespace Omnipay\ElementExpress\Model;
 
-use Omnipay\Common\Exception\InvalidRequestException;
-
 abstract class AbstractModel implements \ArrayAccess
 {
     /**
@@ -83,24 +81,5 @@ abstract class AbstractModel implements \ArrayAccess
     public function offsetGet($offset)
     {
         return isset($this->data[$offset]) ? $this->data[$offset] : null;
-    }
-
-    /**
-     * Convenience method for validating value against regex.
-     *
-     * @param string $value Value to validate
-     * @param string $regexp Full regular expression, with delimiters
-     * @param string $message Failure message
-     *
-     * @throws InvalidRequestException if validation fails
-     */
-    protected function validateRegex($value, $regexp, $message)
-    {
-        $valid = filter_var($value, FILTER_VALIDATE_REGEXP, [
-            'options' => ['regexp' => $regexp]
-        ]);
-        if (false === $valid) {
-            throw new InvalidRequestException($message);
-        }
     }
 }

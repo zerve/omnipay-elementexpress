@@ -1,81 +1,52 @@
 <?php
 namespace Omnipay\ElementExpress\Tests\Model;
 
-use Mockery as m;
+use Omnipay\ElementExpress\Model\Application;
 use Omnipay\Tests\TestCase;
 
 class ApplicationTest extends TestCase
 {
     //
-    // ApplicationID Validation
+    // Generic Data Validation
     //
 
-    /**
-     * @expectedException \Omnipay\Common\Exception\InvalidRequestException
-     */
-    public function testApplicationIDValidationFails()
-    {
-        $model = new \Omnipay\ElementExpress\Model\Application;
-        $model['ApplicationID'] = 'tooLong' . str_repeat('x', 41);
-        $model->validate();
-    }
-
-    public function testApplicationIDValidationSucceeds()
-    {
-        $model = new \Omnipay\ElementExpress\Model\Application;
-        $model['ApplicationID'] = 'maxLength' . str_repeat('x', 40 - strlen('maxLength'));
-        $model->validate();
-    }
-
-    //
-    // ApplicationName Validation
-    //
-
-    /**
-     * @expectedException \Omnipay\Common\Exception\InvalidRequestException
-     */
-    public function testApplicationNameValidationFails()
-    {
-        $model = new \Omnipay\ElementExpress\Model\Application;
-        $model['ApplicationName'] = 'tooLong' . str_repeat('x', 51);
-        $model->validate();
-    }
-
-    public function testApplicationNameValidationSucceeds()
-    {
-        $model = new \Omnipay\ElementExpress\Model\Application;
-        $model['ApplicationName'] = 'maxLength' . str_repeat('x', 50 - strlen('maxLength'));
-        $model->validate();
-    }
-
-    //
-    // ApplicationVersion Validation
-    //
-
-    public function applicationVersionFailureDataProvider()
+    public function invalidData()
     {
         return [
-            ['1.2.' . str_repeat('3', 51)], // Too long
-            ['badFormat'],
+            'ApplicationID: too-long'        => ['ApplicationID', str_repeat('x', 41)],
+            'ApplicationName: too-long'      => ['ApplicationName', str_repeat('x', 51)],
+            'ApplicationVersion: too-long'   => ['ApplicationVersion', '1.2.' . str_repeat('3', 51 - strlen('1.2.'))],
+            'ApplicationVersion: bad-format' => ['ApplicationVersion', '123'],
+        ];
+    }
+
+    public function validData()
+    {
+        return [
+            'ApplicationID: max-length'      => ['ApplicationID', str_repeat('x', 40)],
+            'ApplicationName: max-length'    => ['ApplicationName', str_repeat('x', 50)],
+            'ApplicationVersion: max-length' => ['ApplicationVersion', '1.2.' . str_repeat('3', 50 - strlen('1.2.'))],
         ];
     }
 
     /**
-     * @dataProvider applicationVersionFailureDataProvider
+     * @dataProvider invalidData
      * @expectedException \Omnipay\Common\Exception\InvalidRequestException
      */
-    public function testApplicationVersionValidationFails($value)
+    public function testDataValidationFails($field, $value)
     {
-        $model = new \Omnipay\ElementExpress\Model\Application;
-        $model['ApplicationVersion'] = $value;
+        $model = new Application();
+        $model[$field] = $value;
         $model->validate();
     }
 
-    public function testApplicationVersionValidationSucceeds()
+    /**
+     * @dataProvider validData
+     */
+    public function testDataValidationSucceeds($field, $value)
     {
-        $model = new \Omnipay\ElementExpress\Model\Application;
-        $model['ApplicationVersion'] = '1.2.' . str_repeat('3', 50 - strlen('1.2.'));
+        $model = new Application();
+        $model[$field] = $value;
         $model->validate();
     }
-
 }

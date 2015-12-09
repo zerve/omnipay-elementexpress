@@ -1,6 +1,8 @@
 <?php
 namespace Omnipay\ElementExpress\Model;
 
+use Omnipay\Common\Exception\InvalidRequestException;
+use Omnipay\Common\Helper;
 use Omnipay\ElementExpress\Enumeration\EncryptedFormat;
 
 class Card extends AbstractModel
@@ -82,5 +84,67 @@ class Card extends AbstractModel
 
         } while (false);
 
+    }
+
+    /**
+     * Model validation ensures that any data that is present in the model is
+     * formatted correctly. No business logic validation is performed at this
+     * level.
+     *
+     * @throws InvalidRequestException if validation fails.
+     */
+    public function validate()
+    {
+        if (strlen($this['number'])) {
+            if (!preg_match('/^\d{12,19}$/', $this['number'])) {
+                throw new InvalidRequestException('Card number should have 12 to 19 digits');
+            }
+            if (!Helper::validateLuhn($this['number'])) {
+                throw new InvalidRequestException('Card number is invalid');
+            }
+        }
+
+        if (strlen($this['expiryMonth'] && strlen($this['expiryYear']))) {
+            $time = gmmktime(0, 0, 0, $this['expiryMonth'], 1, $this['expiryYear']);
+            if (gmdate('Ym', $time) < gmdate('Ym')) {
+                throw new InvalidRequestException('Card has expired');
+            }
+        }
+
+        if (strlen($this['cvv']) && !preg_match('/^\d{1,4}$/', $this['cvv'])) {
+            throw new InvalidRequestException('cvv should have 4 or fewer digits');
+        }
+
+        if (strlen($this['Track1Data']) && !preg_match('/^.{1,76}$/', $this['Track1Data'])) {
+            throw new InvalidRequestException('Track1Data should have 76 or fewer characters');
+        }
+
+        if (strlen($this['Track2Data']) && !preg_match('/^.{1,37}$/', $this['Track2Data'])) {
+            throw new InvalidRequestException('Track2Data should have 37 or fewer characters');
+        }
+
+        if (strlen($this['MagneprintData']) && !preg_match('/^.{1,700}$/', $this['MagneprintData'])) {
+            throw new InvalidRequestException('MagneprintData should have 700 or fewer characters');
+        }
+
+        if (strlen($this['EncryptedTrack1Data']) && !preg_match('/^.{1,300}$/', $this['EncryptedTrack1Data'])) {
+            throw new InvalidRequestException('EncryptedTrack1Data should have 300 or fewer characters');
+        }
+
+        if (strlen($this['EncryptedTrack2Data']) && !preg_match('/^.{1,200}$/', $this['EncryptedTrack2Data'])) {
+            throw new InvalidRequestException('EncryptedTrack2Data should have 200 or fewer characters');
+        }
+
+        if (strlen($this['EncryptedCardData']) && !preg_match('/^.{1,200}$/', $this['EncryptedCardData'])) {
+            throw new InvalidRequestException('EncryptedCardData should have 200 or fewer characters');
+        }
+
+        if (strlen($this['CardDataKeySerialNumber']) && !preg_match('/^.{1,26}$/', $this['CardDataKeySerialNumber'])) {
+            throw new InvalidRequestException('CardDataKeySerialNumber should have 26 or fewer characters');
+        }
+
+        if (isset($this['EncryptedFormat']) && !$this['EncryptedFormat'] instanceof EncryptedFormat) {
+            throw new InvalidRequestException('Invalid value for EncryptedFormat');
+        }
     }
 }
