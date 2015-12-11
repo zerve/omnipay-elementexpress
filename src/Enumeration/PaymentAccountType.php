@@ -5,10 +5,8 @@ namespace Omnipay\ElementExpress\Enumeration;
 use Eloquent\Enumeration\AbstractEnumeration;
 
 /**
- * CardholderPresentCode specifies the location of the cardholder at the time of
- * the transaction.
- *
- * 'Default' is a PHP reserved word, so the string '__DEFAULT' is used instead.
+ * PaymentAccountType indicates the type of Payment Account that is being
+ * created.
  */
 final class PaymentAccountType extends AbstractEnumeration
 {

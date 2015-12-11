@@ -8,8 +8,6 @@ use Eloquent\Enumeration\AbstractEnumeration;
  * TerminalType specifies what type of conditions the Terminal is
  * operated in. For example: a card reader at a fuel pump would be considered
  * LocalUnattended.
- *
- * 'Default' is a PHP reserved word, so the string '__DEFAULT' is used instead.
  */
 final class TerminalType extends AbstractEnumeration
 {

@@ -5,8 +5,8 @@ namespace Omnipay\ElementExpress\Enumeration;
 use Eloquent\Enumeration\AbstractEnumeration;
 
 /**
- * MarketCode specifies the industry type of the merchant. Set this to a value
- * of Default if you would like to use the MarketCode from the merchant profile.
+ * EncryptedFormat specifies the encryption format of the device used for the
+ * transaction.
  *
  * 'Default' is a PHP reserved word, so the string '__DEFAULT' is used instead.
  */
