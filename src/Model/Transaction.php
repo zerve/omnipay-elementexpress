@@ -14,15 +14,17 @@ class Transaction extends AbstractModel
             // Elements corresponding directly with standard Omnipay parameter
             // names use those same names here instead of ElementExpress names.
 
-            'amount'               => '', // ElementExpress "TransactionAmount"
-            'transactionReference' => '', // ElementExpress "TransactionID"
-            'transactionId'        => '', // ElementExpress "ReferenceNumber"
+            'amount'                    => '', // ElementExpress "TransactionAmount"
+            'transactionReference'      => '', // ElementExpress "TransactionID"
+            'transactionId'             => '', // ElementExpress "ReferenceNumber"
 
             // Remaining elements correspond to ElementExpress parameters.
 
-            'ReversalType'         => '',
-            'MarketCode'           => MarketCode::__DEFAULT(),
-            'PartialApprovedFlag'  => '',
+            'ReversalType'              => '',
+            'MarketCode'                => MarketCode::__DEFAULT(),
+            'PartialApprovedFlag'       => '',
+            'DuplicateOverrideFlag'     => '',
+            'DuplicateCheckDisableFlag' => '',
 
         ];
     }
@@ -41,6 +43,8 @@ class Transaction extends AbstractModel
         }
         $node->appendChild(new \DOMElement('MarketCode', $this['MarketCode']->value()));
         $node->appendChild(new \DOMElement('PartialApprovedFlag', $this['PartialApprovedFlag']));
+        $node->appendChild(new \DOMElement('DuplicateOverrideFlag', $this['DuplicateOverrideFlag']));
+        $node->appendChild(new \DOMElement('DuplicateCheckDisableFlag', $this['DuplicateCheckDisableFlag']));
     }
 
     /**
@@ -82,6 +86,16 @@ class Transaction extends AbstractModel
 
         if (strlen($this['PartialApprovedFlag']) && !preg_match('/^(0|1)$/', $this['PartialApprovedFlag'])) {
             throw new InvalidRequestException('PartialApprovedFlag should be "0" or "1"');
+        }
+
+        if (strlen($this['DuplicateOverrideFlag']) && !preg_match('/^(0|1)$/', $this['DuplicateOverrideFlag'])) {
+            throw new InvalidRequestException('DuplicateOverrideFlag should be "0" or "1"');
+        }
+
+        if (strlen($this['DuplicateCheckDisableFlag'])) {
+            if (!preg_match('/^(0|1)$/', $this['DuplicateCheckDisableFlag'])) {
+                throw new InvalidRequestException('DuplicateCheckDisableFlag should be "0" or "1"');
+            }
         }
     }
 }

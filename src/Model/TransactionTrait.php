@@ -82,4 +82,24 @@ trait TransactionTrait
     {
         return $this->setParameter('PartialApprovedFlag', $value);
     }
+
+    public function getDuplicateOverrideFlag()
+    {
+        return $this->getParameter('DuplicateOverrideFlag');
+    }
+
+    public function setDuplicateOverrideFlag($value)
+    {
+        return $this->setParameter('DuplicateOverrideFlag', $value);
+    }
+
+    public function getDuplicateCheckDisableFlag()
+    {
+        return $this->getParameter('DuplicateCheckDisableFlag');
+    }
+
+    public function setDuplicateCheckDisableFlag($value)
+    {
+        return $this->setParameter('DuplicateCheckDisableFlag', $value);
+    }
 }
