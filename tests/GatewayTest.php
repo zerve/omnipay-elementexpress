@@ -7,11 +7,12 @@ use Omnipay\Tests\GatewayTestCase;
 
 class GatewayTest extends GatewayTestCase
 {
-    protected $purchaseOptions      = [];
-    protected $voidOptions          = [];
-    protected $createCardOptions    = [];
-    protected $expressReturnOptions = [];
-    protected $expressCreditOptions = [];
+    protected $purchaseOptions        = [];
+    protected $voidOptions            = [];
+    protected $createCardOptions      = [];
+    protected $expressReturnOptions   = [];
+    protected $expressCreditOptions   = [];
+    protected $expressReversalOptions = [];
 
     public function setUp()
     {
@@ -122,6 +123,35 @@ class GatewayTest extends GatewayTestCase
 
             // request should have matching property, with correct value
             $request = $this->gateway->expressCredit();
+            $this->assertSame($value, $request->$getter());
+        }
+    }
+
+    public function testExpressReversalSuccess()
+    {
+        $this->setMockHttpResponse('ExpressReversalSuccess.txt');
+        $response = $this->gateway->expressReversal($this->expressReversalOptions)->send();
+        $this->assertTrue($response->isSuccessful());
+    }
+
+    public function testExpressReversalFailure()
+    {
+        $this->setMockHttpResponse('ExpressReversalFailure.txt');
+        $response = $this->gateway->expressReversal($this->expressReversalOptions)->send();
+        $this->assertFalse($response->isSuccessful());
+    }
+
+    public function testExpressReversalParameters()
+    {
+        foreach ($this->gateway->getDefaultParameters() as $key => $default) {
+            // set property on gateway
+            $getter = 'get'.ucfirst($key);
+            $setter = 'set'.ucfirst($key);
+            $value = uniqid();
+            $this->gateway->$setter($value);
+
+            // request should have matching property, with correct value
+            $request = $this->gateway->expressReversal();
             $this->assertSame($value, $request->$getter());
         }
     }

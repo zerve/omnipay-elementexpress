@@ -1,0 +1,30 @@
+HTTP/1.1 200 200 OK
+Cache-Control: private
+Transfer-Encoding: chunked
+Content-Type: text/xml; charset=utf-8
+Server: Microsoft-IIS/7.5
+X-AspNet-Version: 4.0.30319
+X-Powered-By: ASP.NET
+Date: Fri, 11 Dec 2015 21:13:52 GMT
+
+<?xml version="1.0"?>
+<CreditCardReversalResponse xmlns="https://transaction.elementexpress.com">
+  <Response>
+    <ExpressResponseCode>103</ExpressResponseCode>
+    <ExpressResponseMessage>Transaction Not Found</ExpressResponseMessage>
+    <ExpressTransactionDate>20151211</ExpressTransactionDate>
+    <ExpressTransactionTime>151352</ExpressTransactionTime>
+    <ExpressTransactionTimezone>UTC-06:00:00</ExpressTransactionTimezone>
+    <Batch>
+      <HostBatchID>1</HostBatchID>
+    </Batch>
+    <Card>
+      <CardLogo>Visa</CardLogo>
+      <CardNumberMasked>xxxx-xxxx-xxxx-1111</CardNumberMasked>
+    </Card>
+    <Transaction>
+      <ReferenceNumber>566b3c904ac40</ReferenceNumber>
+      <ProcessorName>NULL_PROCESSOR_TEST</ProcessorName>
+    </Transaction>
+  </Response>
+</CreditCardReversalResponse>

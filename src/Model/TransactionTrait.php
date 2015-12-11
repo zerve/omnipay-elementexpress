@@ -2,6 +2,7 @@
 namespace Omnipay\ElementExpress\Model;
 
 use Omnipay\ElementExpress\Enumeration\MarketCode;
+use Omnipay\ElementExpress\Enumeration\ReversalType;
 
 trait TransactionTrait
 {
@@ -60,6 +61,16 @@ trait TransactionTrait
     public function setMarketCode(MarketCode $value)
     {
         return $this->setParameter('MarketCode', $value);
+    }
+
+    public function getReversalType()
+    {
+        return $this->getParameter('ReversalType');
+    }
+
+    public function setReversalType(ReversalType $value)
+    {
+        return $this->setParameter('ReversalType', $value);
     }
 
     public function getPartialApprovedFlag()

@@ -2,6 +2,7 @@
 namespace Omnipay\ElementExpress\Tests\Model;
 
 use Mockery as m;
+use Omnipay\ElementExpress\Enumeration\ReversalType;
 use Omnipay\ElementExpress\Model\TransactionTrait;
 use Omnipay\ElementExpress\Message\AbstractRequest;
 
@@ -29,7 +30,9 @@ class TransactionTraitTest extends AbstractTraitTestCase
     {
         if (null === $this->mockModel) {
             $request = $this->getMockRequest();
-            $this->mockModel = $request->getTransactionModel();
+            $this->mockModel = $request->getTransactionModel()->initialize([
+                'ReversalType' => ReversalType::SYSTEM()
+            ]);
         }
         return $this->mockModel;
     }

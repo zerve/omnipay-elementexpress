@@ -3,6 +3,7 @@ namespace Omnipay\ElementExpress\Model;
 
 use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\ElementExpress\Enumeration\MarketCode;
+use Omnipay\ElementExpress\Enumeration\ReversalType;
 
 class Transaction extends AbstractModel
 {
@@ -19,6 +20,7 @@ class Transaction extends AbstractModel
 
             // Remaining elements correspond to ElementExpress parameters.
 
+            'ReversalType'         => '',
             'MarketCode'           => MarketCode::__DEFAULT(),
             'PartialApprovedFlag'  => '',
 
@@ -34,6 +36,9 @@ class Transaction extends AbstractModel
         $node->appendChild(new \DOMElement('TransactionAmount', $this['amount']));
         $node->appendChild(new \DOMElement('TransactionID', $this['transactionReference']));
         $node->appendChild(new \DOMElement('ReferenceNumber', $this['transactionId']));
+        if (!empty($this['ReversalType'])) {
+            $node->appendChild(new \DOMElement('ReversalType', $this['ReversalType']->value()));
+        }
         $node->appendChild(new \DOMElement('MarketCode', $this['MarketCode']->value()));
         $node->appendChild(new \DOMElement('PartialApprovedFlag', $this['PartialApprovedFlag']));
     }
@@ -65,6 +70,10 @@ class Transaction extends AbstractModel
 
         if (strlen($this['transactionId']) && !preg_match('/^.{1,50}$/', $this['transactionId'])) {
             throw new InvalidRequestException('transactionId should have 50 or fewer characters');
+        }
+
+        if (isset($this['ReversalType']) && !$this['ReversalType'] instanceof ReversalType) {
+            throw new InvalidRequestException('Invalid value for ReversalType');
         }
 
         if (isset($this['MarketCode']) && !$this['MarketCode'] instanceof MarketCode) {

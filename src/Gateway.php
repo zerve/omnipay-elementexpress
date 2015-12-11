@@ -83,6 +83,11 @@ class Gateway extends AbstractGateway
         return $this->createRequest('\Omnipay\ElementExpress\Message\CreditCardCreditRequest', $parameters);
     }
 
+    public function expressReversal(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\ElementExpress\Message\CreditCardReversalRequest', $parameters);
+    }
+
     public function healthCheck(array $parameters = array())
     {
         return $this->createRequest('\Omnipay\ElementExpress\Message\HealthCheckRequest', $parameters);
