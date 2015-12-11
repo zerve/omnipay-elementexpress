@@ -2,9 +2,9 @@
 namespace Omnipay\ElementExpress\Tests\Model;
 
 use Mockery as m;
-use Omnipay\ElementExpress\Model\PaymentAccountTrait;
 use Omnipay\ElementExpress\Enumeration\PaymentAccountType;
 use Omnipay\ElementExpress\Message\AbstractRequest;
+use Omnipay\ElementExpress\Model\PaymentAccountTrait;
 
 class MockPaymentAccountTraitImplementation extends AbstractRequest
 {
