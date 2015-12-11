@@ -9,17 +9,65 @@
          processIsolation="false"
          stopOnFailure="false"
          syntaxCheck="false">
+
+    <!-- Sensitive data used in the certification test suite is provided    -->
+    <!-- through environment variables. Update your own copy of phpunit.xml -->
+    <!-- with the proper values, this is only an example.                   -->
+
+    <php>
+
+        <!-- Sensitive Application Data -->
+        <env name="APPLICATION_ID" value="" />
+        <env name="APPLICATION_NAME" value="" />
+        <env name="APPLICATION_VERSION" value="" />
+
+        <!-- Sensitive Credentials Data -->
+        <env name="ACCOUNT_ID" value="" />
+        <env name="ACCOUNT_TOKEN" value="" />
+        <env name="ACCEPTOR_ID" value="" />
+
+        <!-- Sensitive Card Data -->
+        <env name="ENCRYPTED_TRACK1_DATA" value="" />
+        <env name="ENCRYPTED_TRACK2_DATA" value="" />
+        <env name="CARD_DATA_KEY_SERIAL_NUMBER" value="" />
+        <env name="ENCRYPTED_FORMAT" value="" />
+        <env name="CARD_NUMBER" value="" />
+        <env name="EXPIRATION_MONTH" value="" />
+        <env name="EXPIRATION_YEAR" value="" />
+
+        <!-- Sensitive Terminal Data -->
+        <env name="TERMINAL_SERIAL_NUMBER" value="" />
+
+    </php>
+
     <testsuites>
+
         <testsuite name="Omnipay Test Suite">
             <directory>./tests/</directory>
         </testsuite>
+
+        <testsuite name="Omnipay Certification Suite">
+            <directory>./certification</directory>
+        </testsuite>
+
     </testsuites>
+
+    <!-- Exclude the certification group by default -->
+
+    <groups>
+        <exclude>
+            <group>certification</group>
+        </exclude>
+    </groups>
+
     <listeners>
         <listener class="Mockery\Adapter\Phpunit\TestListener" file="vendor/mockery/mockery/library/Mockery/Adapter/Phpunit/TestListener.php" />
     </listeners>
+
     <filter>
         <whitelist>
             <directory>./src</directory>
         </whitelist>
     </filter>
+
 </phpunit>

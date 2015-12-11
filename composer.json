@@ -22,7 +22,8 @@
     "autoload": {
         "psr-4": {
           "Omnipay\\ElementExpress\\" : "src/",
-          "Omnipay\\ElementExpress\\Tests\\" : "tests/"
+          "Omnipay\\ElementExpress\\Tests\\" : "tests/",
+          "Omnipay\\ElementExpress\\Certification\\" : "certification/"
         }
     },
     "require": {
