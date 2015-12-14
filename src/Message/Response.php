@@ -93,4 +93,34 @@ class Response extends AbstractResponse
     {
         return (string) $this->data->PaymentAccount->PaymentAccountID;
     }
+
+    /**
+     * Approval Number
+     *
+     * @return null|string The approval number returned by the gateway
+     */
+    public function getApprovalNumber()
+    {
+        return (string) $this->data->Transaction->ApprovalNumber;
+    }
+
+    /**
+     * Customer Token
+     *
+     * @return null|string The customer token used for token billing
+     */
+    public function getCustomerToken()
+    {
+        return (string) $this->data->PaymentAccount->PaymentAccountID;
+    }
+
+    /**
+     * AVS Response
+     *
+     * @return null|string The AVS response for the card or token used.
+     */
+    public function getAvsResponse()
+    {
+        return (string) $this->data->Card->AVSResponseCode;
+    }
 }

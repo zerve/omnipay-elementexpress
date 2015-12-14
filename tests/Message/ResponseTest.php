@@ -16,7 +16,7 @@ class ResponseTest extends TestCase
 
         // Configure enough to pass validation.
         $this->voidOptions = [
-            'transactionId' => '5660bee6cb946'
+            'transactionId' => '566f2ecb0780c'
         ];
 
     }
@@ -32,12 +32,15 @@ class ResponseTest extends TestCase
 
     public function testResponseAccessors()
     {
-        $this->setMockHttpResponse('VoidSuccess.txt');
+        $this->setMockHttpResponse('PurchaseSuccess.txt');
         $response = $this->gateway->void($this->voidOptions)->send();
         $this->assertTrue($response->isSuccessful());
-        $this->assertSame('2005849846', $response->getTransactionReference());
+        $this->assertSame('2005890590', $response->getTransactionReference());
         $this->assertSame($this->voidOptions['transactionId'], $response->getTransactionId());
-        $this->assertSame('Success', $response->getMessage());
+        $this->assertSame('Approved', $response->getMessage());
         $this->assertSame('0', $response->getCode());
+        $this->assertSame('000004', $response->getApprovalNumber());
+        $this->assertSame('N', $response->getAvsResponse());
+        $this->assertSame('8F07972A-C442-4B49-838D-BFD73CCEEF7B', $response->getCustomerToken());
     }
 }

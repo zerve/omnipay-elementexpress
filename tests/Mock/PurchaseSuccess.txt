@@ -5,7 +5,7 @@ Content-Type: text/xml; charset=utf-8
 Server: Microsoft-IIS/7.5
 X-AspNet-Version: 4.0.30319
 X-Powered-By: ASP.NET
-Date: Thu, 03 Dec 2015 16:38:54 GMT
+Date: Mon, 14 Dec 2015 21:04:13 GMT
 
 <?xml version="1.0"?>
 <CreditCardSaleResponse xmlns="https://transaction.elementexpress.com">
@@ -14,28 +14,32 @@ Date: Thu, 03 Dec 2015 16:38:54 GMT
     <ExpressResponseMessage>Approved</ExpressResponseMessage>
     <HostResponseCode>000</HostResponseCode>
     <HostResponseMessage>AP</HostResponseMessage>
-    <ExpressTransactionDate>20151203</ExpressTransactionDate>
-    <ExpressTransactionTime>103853</ExpressTransactionTime>
+    <ExpressTransactionDate>20151214</ExpressTransactionDate>
+    <ExpressTransactionTime>150413</ExpressTransactionTime>
     <ExpressTransactionTimezone>UTC-06:00:00</ExpressTransactionTimezone>
     <Batch>
       <HostBatchID>1</HostBatchID>
-      <HostItemID>26</HostItemID>
-      <HostBatchAmount>327.78</HostBatchAmount>
+      <HostItemID>279</HostItemID>
+      <HostBatchAmount>1781.52</HostBatchAmount>
     </Batch>
     <Card>
       <AVSResponseCode>N</AVSResponseCode>
       <CardLogo>Visa</CardLogo>
-      <CardNumberMasked>xxxx-xxxx-xxxx-1111</CardNumberMasked>
+      <CardNumberMasked>xxxx-xxxx-xxxx-6781</CardNumberMasked>
     </Card>
     <Transaction>
-      <TransactionID>2005846437</TransactionID>
-      <ApprovalNumber>000038</ApprovalNumber>
-      <ReferenceNumber>5660701c2cc39</ReferenceNumber>
+      <TransactionID>2005890590</TransactionID>
+      <ApprovalNumber>000004</ApprovalNumber>
+      <ReferenceNumber>566f2ecb0780c</ReferenceNumber>
       <AcquirerData>aVb001234567810425c0425d5e00</AcquirerData>
       <ProcessorName>NULL_PROCESSOR_TEST</ProcessorName>
       <TransactionStatus>Approved</TransactionStatus>
       <TransactionStatusCode>1</TransactionStatusCode>
       <ApprovedAmount>1.00</ApprovedAmount>
     </Transaction>
+    <PaymentAccount>
+      <PaymentAccountID>8F07972A-C442-4B49-838D-BFD73CCEEF7B</PaymentAccountID>
+      <PaymentAccountReferenceNumber>566f2ecb0780c</PaymentAccountReferenceNumber>
+    </PaymentAccount>
   </Response>
 </CreditCardSaleResponse>
