@@ -17,9 +17,9 @@ class CreditCardReturnTest extends CertificationTestCase
         $response = $this->gw->purchase($this->optsRetailSwiped([
             'amount'                  => '3.20',
             'transactionId'           => uniqid(),
-            'CardDataKeySerialNumber' => getenv('CARD_DATA_KEY_SERIAL_NUMBER'),
+            'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
-            'EncryptedTrack1Data'     => getenv('ENCRYPTED_TRACK1_DATA'),
+            'EncryptedTrack1Data'     => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
         ]))->send();
         $this->assertSame("0", $response->getCode());
 
@@ -52,9 +52,9 @@ class CreditCardReturnTest extends CertificationTestCase
         $response = $this->gw->purchase($this->optsRetailSwiped([
             'amount'                  => '3.25',
             'transactionId'           => uniqid(),
-            'CardDataKeySerialNumber' => getenv('CARD_DATA_KEY_SERIAL_NUMBER'),
+            'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
-            'EncryptedTrack1Data'     => getenv('ENCRYPTED_TRACK1_DATA'),
+            'EncryptedTrack1Data'     => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
         ]))->send();
         $this->assertSame("0", $response->getCode());
 

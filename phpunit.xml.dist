@@ -27,13 +27,21 @@
         <env name="ACCEPTOR_ID" value="" />
 
         <!-- Sensitive Card Data -->
-        <env name="ENCRYPTED_TRACK1_DATA" value="" />
-        <env name="ENCRYPTED_TRACK2_DATA" value="" />
-        <env name="CARD_DATA_KEY_SERIAL_NUMBER" value="" />
         <env name="ENCRYPTED_FORMAT" value="" />
-        <env name="CARD_NUMBER" value="" />
-        <env name="EXPIRATION_MONTH" value="" />
-        <env name="EXPIRATION_YEAR" value="" />
+
+        <env name="VISA_CARD_DATA_KEY_SERIAL_NUMBER" value="" />
+        <env name="VISA_CARD_NUMBER" value="" />
+        <env name="VISA_ENCRYPTED_TRACK1_DATA" value="" />
+        <env name="VISA_ENCRYPTED_TRACK2_DATA" value="" />
+        <env name="VISA_EXPIRATION_MONTH" value="" />
+        <env name="VISA_EXPIRATION_YEAR" value="" />
+
+        <env name="MASTERCARD_CARD_DATA_KEY_SERIAL_NUMBER" value="" />
+        <env name="MASTERCARD_CARD_NUMBER" value="" />
+        <env name="MASTERCARD_ENCRYPTED_TRACK1_DATA" value="" />
+        <env name="MASTERCARD_ENCRYPTED_TRACK2_DATA" value="" />
+        <env name="MASTERCARD_EXPIRATION_MONTH" value="" />
+        <env name="MASTERCARD_EXPIRATION_YEAR" value="" />
 
         <!-- Sensitive Terminal Data -->
         <env name="TERMINAL_SERIAL_NUMBER" value="" />

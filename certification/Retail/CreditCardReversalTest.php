@@ -18,9 +18,9 @@ class CreditCardReversalTest extends CertificationTestCase
         $response = $this->gw->purchase($this->optsRetailSwiped([
             'amount'                  => '200.00',
             'transactionId'           => uniqid(),
-            'CardDataKeySerialNumber' => getenv('CARD_DATA_KEY_SERIAL_NUMBER'),
+            'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
-            'EncryptedTrack1Data'     => getenv('ENCRYPTED_TRACK1_DATA'),
+            'EncryptedTrack1Data'     => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
         ]))->send();
         $this->assertSame("0", $response->getCode());
 
@@ -29,9 +29,9 @@ class CreditCardReversalTest extends CertificationTestCase
             'amount'                  => '200.00',
             'transactionId'           => uniqid(),
             'ReversalType'            => ReversalType::SYSTEM(),
-            'CardDataKeySerialNumber' => getenv('CARD_DATA_KEY_SERIAL_NUMBER'),
+            'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
-            'EncryptedTrack1Data'     => getenv('ENCRYPTED_TRACK1_DATA'),
+            'EncryptedTrack1Data'     => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
         ]))->send();
         $this->assertSame("0", $response->getCode());
 
@@ -49,9 +49,9 @@ class CreditCardReversalTest extends CertificationTestCase
         $response = $this->gw->purchase($this->optsRetailSwiped([
             'amount'                  => '200.01',
             'transactionId'           => uniqid(),
-            'CardDataKeySerialNumber' => getenv('CARD_DATA_KEY_SERIAL_NUMBER'),
+            'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
-            'EncryptedTrack1Data'     => getenv('ENCRYPTED_TRACK1_DATA'),
+            'EncryptedTrack1Data'     => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
         ]))->send();
         $this->assertSame("0", $response->getCode());
 
