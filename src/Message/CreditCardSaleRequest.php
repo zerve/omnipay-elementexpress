@@ -5,6 +5,7 @@ use Omnipay\ElementExpress\Model\AddressTrait;
 use Omnipay\ElementExpress\Model\CardTrait;
 use Omnipay\ElementExpress\Model\TerminalTrait;
 use Omnipay\ElementExpress\Model\TransactionTrait;
+use Omnipay\ElementExpress\Model\PaymentAccountTrait;
 
 /**
  * ElementExpress CreditCardSale Request
@@ -13,6 +14,7 @@ class CreditCardSaleRequest extends AbstractTransactionRequest
 {
     use AddressTrait;
     use CardTrait;
+    use PaymentAccountTrait;
     use TerminalTrait;
     use TransactionTrait;
 
