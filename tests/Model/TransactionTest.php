@@ -42,6 +42,7 @@ class TransactionTest extends TestCase
             'PartialApprovedFlag: non-bool'       => ['PartialApprovedFlag', '5'],
             'DuplicateOverrideFlag: non-bool'     => ['DuplicateOverrideFlag', '5'],
             'DuplicateCheckDisableFlag: non-bool' => ['DuplicateCheckDisableFlag', '5'],
+            'TicketNumber: too-long'              => ['TicketNumber', str_repeat('x', 51)],
         ];
     }
 
@@ -62,6 +63,7 @@ class TransactionTest extends TestCase
             'DuplicateOverrideFlag: false'     => ['DuplicateOverrideFlag', "0"],
             'DuplicateCheckDisableFlag: true'  => ['DuplicateCheckDisableFlag', "1"],
             'DuplicateCheckDisableFlag: false' => ['DuplicateCheckDisableFlag', "0"],
+            'TicketNumber: max-length'         => ['TicketNumber', str_repeat('x', 50)],
         ];
     }
 

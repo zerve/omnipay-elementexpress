@@ -118,4 +118,14 @@ trait TransactionTrait
     {
         return $this->setParameter('DuplicateCheckDisableFlag', $value);
     }
+
+    public function getTicketNumber()
+    {
+        return $this->getParameter('TicketNumber');
+    }
+
+    public function setTicketNumber($value)
+    {
+        return $this->setParameter('TicketNumber', $value);
+    }
 }

@@ -41,6 +41,7 @@ class Transaction extends AbstractModel
             'PartialApprovedFlag'       => '',
             'DuplicateOverrideFlag'     => '',
             'DuplicateCheckDisableFlag' => '',
+            'TicketNumber'              => '',
 
         ];
     }
@@ -61,6 +62,7 @@ class Transaction extends AbstractModel
         $node->appendChild(new \DOMElement('PartialApprovedFlag', $this['PartialApprovedFlag']));
         $node->appendChild(new \DOMElement('DuplicateOverrideFlag', $this['DuplicateOverrideFlag']));
         $node->appendChild(new \DOMElement('DuplicateCheckDisableFlag', $this['DuplicateCheckDisableFlag']));
+        $node->appendChild(new \DOMElement('TicketNumber', $this['TicketNumber']));
     }
 
     /**
@@ -112,6 +114,10 @@ class Transaction extends AbstractModel
             if (!preg_match('/^(0|1)$/', $this['DuplicateCheckDisableFlag'])) {
                 throw new InvalidRequestException('DuplicateCheckDisableFlag should be "0" or "1"');
             }
+        }
+
+        if (strlen($this['TicketNumber']) && !preg_match('/^.{1,50}$/', $this['TicketNumber'])) {
+            throw new InvalidRequestException('TicketNumber should have 50 or fewer characters');
         }
     }
 }
