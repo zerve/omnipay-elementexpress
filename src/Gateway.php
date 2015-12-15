@@ -107,4 +107,9 @@ class Gateway extends AbstractGateway
     {
         return $this->createRequest('\Omnipay\ElementExpress\Message\HealthCheckRequest', $parameters);
     }
+
+    public function paymentAccountQuery(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\ElementExpress\Message\PaymentAccountQueryRequest', $parameters);
+    }
 }

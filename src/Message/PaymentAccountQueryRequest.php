@@ -17,18 +17,14 @@
 
 namespace Omnipay\ElementExpress\Message;
 
-use Omnipay\ElementExpress\Model\AddressTrait;
-use Omnipay\ElementExpress\Model\CardTrait;
-use Omnipay\ElementExpress\Model\PaymentAccountTrait;
+use Omnipay\ElementExpress\Model\PaymentAccountParametersTrait;
 
 /**
- * ElementExpress PaymentAccountCreate Request
+ * ElementExpress PaymentAccountQuery Request
  */
-class PaymentAccountCreateRequest extends AbstractServicesRequest
+class PaymentAccountQueryRequest extends AbstractServicesRequest
 {
-    use AddressTrait;
-    use CardTrait;
-    use PaymentAccountTrait;
+    use PaymentAccountParametersTrait;
 
     /**
      * Get data
@@ -37,6 +33,6 @@ class PaymentAccountCreateRequest extends AbstractServicesRequest
      */
     public function getData()
     {
-        return $this->domDocumentFactory('PaymentAccountCreate');
+        return $this->domDocumentFactory('PaymentAccountQuery');
     }
 }
