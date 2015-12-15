@@ -3,16 +3,15 @@
     "type": "library",
     "description": "ElementExpress gateway for the Omnipay payment processing library",
     "keywords": [
-        "vantiv",
-        "vantiv express",
+        "element express",
         "gateway",
         "merchant",
         "omnipay",
         "pay",
         "payment"
     ],
-    "homepage": "https://bitbucket.org/zerveinc/omnipay-vantiv",
-    "license": "Proprietary",
+    "homepage": "https://github.com/zerve/omnipay-elementexpress",
+    "license": "Apache-2.0",
     "authors": [
         {
             "name": "Zerve, Inc.",
