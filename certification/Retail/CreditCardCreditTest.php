@@ -103,7 +103,7 @@ class CreditCardCreditTest extends CertificationTestCase
         $this->assertSame("0", $response->getCode());
 
         // Then credit the card using the token
-        $response = $this->gw->expressCredit($this->optsRetailSwiped([
+        $response = $this->gw->expressCredit($this->optsRetailKeyed([
             'amount'        => '5.27',
             'transactionId' => uniqid(),
             'cardReference' => $response->getCardReference(),

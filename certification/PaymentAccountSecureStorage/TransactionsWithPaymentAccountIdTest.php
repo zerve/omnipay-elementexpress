@@ -45,7 +45,7 @@ class TransactionsWithPaymentAccountIdTest extends CertificationTestCase
         $this->assertSame("0", $response->getCode());
 
         // Perform a CreditCardSale with the token
-        $response = $this->gw->purchase($this->optsRetailSwiped([
+        $response = $this->gw->purchase($this->optsRetailKeyed([
             'amount'        => '1.81',
             'transactionId' => uniqid(),
             'cardReference' => $response->getCardReference(),
@@ -76,7 +76,7 @@ class TransactionsWithPaymentAccountIdTest extends CertificationTestCase
         $this->assertSame("0", $response->getCode());
 
         // Perform a CreditCardSale with the token
-        $response = $this->gw->purchase($this->optsRetailSwiped([
+        $response = $this->gw->purchase($this->optsRetailKeyed([
             'amount'        => '1.82',
             'transactionId' => uniqid(),
             'cardReference' => $response->getCardReference(),
@@ -109,7 +109,7 @@ class TransactionsWithPaymentAccountIdTest extends CertificationTestCase
         $cardReference = $response->getCardReference();
 
         // Create a CreditCardSale to reverse.
-        $response = $this->gw->purchase($this->optsRetailSwiped([
+        $response = $this->gw->purchase($this->optsRetailKeyed([
             'amount'        => '1.85',
             'transactionId' => uniqid(),
             'cardReference' => $cardReference,
@@ -117,7 +117,7 @@ class TransactionsWithPaymentAccountIdTest extends CertificationTestCase
         $this->assertSame("0", $response->getCode());
 
         // Reverse the CreditCardSale
-        $response = $this->gw->expressReversal($this->optsRetailSwiped([
+        $response = $this->gw->expressReversal($this->optsRetailKeyed([
             'amount'        => '1.85',
             'transactionId' => uniqid(),
             'ReversalType'  => ReversalType::SYSTEM(),
@@ -151,7 +151,7 @@ class TransactionsWithPaymentAccountIdTest extends CertificationTestCase
         $cardReference = $response->getCardReference();
 
         // Create a CreditCardSale to credit.
-        $response = $this->gw->purchase($this->optsRetailSwiped([
+        $response = $this->gw->purchase($this->optsRetailKeyed([
             'amount'        => '1.93',
             'transactionId' => uniqid(),
             'cardReference' => $cardReference,
@@ -159,7 +159,7 @@ class TransactionsWithPaymentAccountIdTest extends CertificationTestCase
         $this->assertSame("0", $response->getCode());
 
         // Credit the CreditCardSale amount back to the card
-        $response = $this->gw->expressCredit($this->optsRetailSwiped([
+        $response = $this->gw->expressCredit($this->optsRetailKeyed([
             'amount'        => '1.93',
             'transactionId' => uniqid(),
             'cardReference' => $cardReference,

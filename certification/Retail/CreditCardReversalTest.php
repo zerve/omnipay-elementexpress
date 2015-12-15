@@ -72,7 +72,7 @@ class CreditCardReversalTest extends CertificationTestCase
         $this->assertSame("0", $response->getCode());
 
         // Then reverse the sale
-        $response = $this->gw->expressReversal($this->optsRetailSwiped([
+        $response = $this->gw->expressReversal($this->optsRetailKeyed([
             'amount'                  => '200.01',
             'transactionId'           => uniqid(),
             'transactionReference'    => $response->getTransactionReference(),
