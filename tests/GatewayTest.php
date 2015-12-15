@@ -230,5 +230,32 @@ class GatewayTest extends GatewayTestCase
         }
     }
 
+    public function testPaymentAccountDeleteSuccess()
+    {
+        $this->setMockHttpResponse('PaymentAccountDeleteSuccess.txt');
+        $response = $this->gateway->paymentAccountQuery()->send();
+        $this->assertTrue($response->isSuccessful());
+    }
 
+    public function testPaymentAccountDeleteFailure()
+    {
+        $this->setMockHttpResponse('PaymentAccountDeleteFailure.txt');
+        $response = $this->gateway->paymentAccountQuery()->send();
+        $this->assertFalse($response->isSuccessful());
+    }
+
+    public function testPaymentAccountDeleteParameters()
+    {
+        foreach ($this->gateway->getDefaultParameters() as $key => $default) {
+            // set property on gateway
+            $getter = 'get'.ucfirst($key);
+            $setter = 'set'.ucfirst($key);
+            $value = uniqid();
+            $this->gateway->$setter($value);
+
+            // request should have matching property, with correct value
+            $request = $this->gateway->paymentAccountDelete();
+            $this->assertSame($value, $request->$getter());
+        }
+    }
 }

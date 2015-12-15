@@ -1,0 +1,23 @@
+HTTP/1.1 200 200 OK
+Cache-Control: private
+Transfer-Encoding: chunked
+Content-Type: text/xml; charset=utf-8
+Server: Microsoft-IIS/7.5
+X-AspNet-Version: 4.0.30319
+X-Powered-By: ASP.NET
+Date: Tue, 15 Dec 2015 20:27:19 GMT
+
+<?xml version="1.0"?>
+<PaymentAccountDeleteResponse xmlns="https://services.elementexpress.com">
+  <Response>
+    <ExpressResponseCode>0</ExpressResponseCode>
+    <ExpressResponseMessage>PaymentAccount deleted</ExpressResponseMessage>
+    <ExpressTransactionDate>20151215</ExpressTransactionDate>
+    <ExpressTransactionTime>142719</ExpressTransactionTime>
+    <ExpressTransactionTimezone>UTC-06:00:00</ExpressTransactionTimezone>
+    <ServicesID>46434752</ServicesID>
+    <PaymentAccount>
+      <PaymentAccountID>7B3F142D-7245-4AF7-90F5-E5FECF18C852</PaymentAccountID>
+    </PaymentAccount>
+  </Response>
+</PaymentAccountDeleteResponse>

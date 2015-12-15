@@ -112,4 +112,9 @@ class Gateway extends AbstractGateway
     {
         return $this->createRequest('\Omnipay\ElementExpress\Message\PaymentAccountQueryRequest', $parameters);
     }
+
+    public function paymentAccountDelete(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\ElementExpress\Message\PaymentAccountDeleteRequest', $parameters);
+    }
 }
