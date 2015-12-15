@@ -33,6 +33,7 @@ class CreditCardVoidTest extends CertificationTestCase
         $response = $this->gw->purchase($this->optsRetailSwiped([
             'amount'                  => '100.00',
             'transactionId'           => uniqid(),
+            'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
             'EncryptedTrack1Data'     => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
@@ -42,6 +43,7 @@ class CreditCardVoidTest extends CertificationTestCase
         // Then void the sale
         $response = $this->gw->void($this->optsRetailSwiped([
             'transactionId'        => uniqid(),
+            'TicketNumber'         => uniqid(),
             'transactionReference' => $response->getTransactionReference()
         ]))->send();
         $this->assertSame("0", $response->getCode());
@@ -60,6 +62,7 @@ class CreditCardVoidTest extends CertificationTestCase
         $response = $this->gw->purchase($this->optsRetailSwiped([
             'amount'                  => '100.01',
             'transactionId'           => uniqid(),
+            'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
             'EncryptedTrack1Data'     => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
@@ -70,6 +73,7 @@ class CreditCardVoidTest extends CertificationTestCase
         $response = $this->gw->expressReturn($this->optsRetailSwiped([
             'amount'                  => '100.01',
             'transactionId'           => uniqid(),
+            'TicketNumber'            => uniqid(),
             'transactionReference'    => $response->getTransactionReference(),
         ]))->send();
         $this->assertSame("0", $response->getCode());
@@ -77,6 +81,7 @@ class CreditCardVoidTest extends CertificationTestCase
         // Then void the return
         $response = $this->gw->void($this->optsRetailSwiped([
             'transactionId'        => uniqid(),
+            'TicketNumber'         => uniqid(),
             'transactionReference' => $response->getTransactionReference()
         ]))->send();
         $this->assertSame("0", $response->getCode());
@@ -96,6 +101,7 @@ class CreditCardVoidTest extends CertificationTestCase
         $response = $this->gw->expressCredit($this->optsRetailSwiped([
             'amount'                  => '100.02',
             'transactionId'           => uniqid(),
+            'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
             'EncryptedTrack1Data'     => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
@@ -105,6 +111,7 @@ class CreditCardVoidTest extends CertificationTestCase
         // Then void the credit
         $response = $this->gw->void($this->optsRetailSwiped([
             'transactionId'        => uniqid(),
+            'TicketNumber'         => uniqid(),
             'transactionReference' => $response->getTransactionReference()
         ]))->send();
         $this->assertSame("0", $response->getCode());

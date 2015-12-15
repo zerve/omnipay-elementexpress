@@ -34,6 +34,7 @@ class DuplicateOverrideTest extends CertificationTestCase
         $response = $this->gw->purchase($this->optsRetailSwiped([
             'amount'                  => '0.23',
             'transactionId'           => uniqid(),
+            'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
             'EncryptedTrack1Data'     => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
@@ -51,6 +52,7 @@ class DuplicateOverrideTest extends CertificationTestCase
         $response = $this->gw->purchase($this->optsRetailSwiped([
             'amount'                  => '0.23',
             'transactionId'           => uniqid(),
+            'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
             'EncryptedTrack1Data'     => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
@@ -72,6 +74,7 @@ class DuplicateOverrideTest extends CertificationTestCase
         $response = $this->gw->purchase($this->optsRetailSwiped([
             'amount'                  => '0.23',
             'transactionId'           => uniqid(),
+            'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
             'EncryptedTrack1Data'     => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
@@ -89,6 +92,7 @@ class DuplicateOverrideTest extends CertificationTestCase
         $response = $this->gw->purchase($this->optsRetailSwiped([
             'amount'                    => '0.23',
             'transactionId'             => uniqid(),
+            'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber'   => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'           => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
             'EncryptedTrack1Data'       => getenv('VISA_ENCRYPTED_TRACK1_DATA'),

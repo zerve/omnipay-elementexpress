@@ -48,6 +48,7 @@ class TransactionsWithPaymentAccountIdTest extends CertificationTestCase
         $response = $this->gw->purchase($this->optsRetailKeyed([
             'amount'        => '1.81',
             'transactionId' => uniqid(),
+            'TicketNumber'  => uniqid(),
             'cardReference' => $response->getCardReference(),
         ]))->send();
         $this->assertSame("0", $response->getCode());
@@ -79,6 +80,7 @@ class TransactionsWithPaymentAccountIdTest extends CertificationTestCase
         $response = $this->gw->purchase($this->optsRetailKeyed([
             'amount'        => '1.82',
             'transactionId' => uniqid(),
+            'TicketNumber'  => uniqid(),
             'cardReference' => $response->getCardReference(),
         ]))->send();
         $this->assertSame("0", $response->getCode());
@@ -112,6 +114,7 @@ class TransactionsWithPaymentAccountIdTest extends CertificationTestCase
         $response = $this->gw->purchase($this->optsRetailKeyed([
             'amount'        => '1.85',
             'transactionId' => uniqid(),
+            'TicketNumber'  => uniqid(),
             'cardReference' => $cardReference,
         ]))->send();
         $this->assertSame("0", $response->getCode());
@@ -120,6 +123,7 @@ class TransactionsWithPaymentAccountIdTest extends CertificationTestCase
         $response = $this->gw->expressReversal($this->optsRetailKeyed([
             'amount'        => '1.85',
             'transactionId' => uniqid(),
+            'TicketNumber'  => uniqid(),
             'ReversalType'  => ReversalType::SYSTEM(),
             'cardReference' => $cardReference,
         ]))->send();
@@ -154,6 +158,7 @@ class TransactionsWithPaymentAccountIdTest extends CertificationTestCase
         $response = $this->gw->purchase($this->optsRetailKeyed([
             'amount'        => '1.93',
             'transactionId' => uniqid(),
+            'TicketNumber'  => uniqid(),
             'cardReference' => $cardReference,
         ]))->send();
         $this->assertSame("0", $response->getCode());
@@ -162,6 +167,7 @@ class TransactionsWithPaymentAccountIdTest extends CertificationTestCase
         $response = $this->gw->expressCredit($this->optsRetailKeyed([
             'amount'        => '1.93',
             'transactionId' => uniqid(),
+            'TicketNumber'  => uniqid(),
             'cardReference' => $cardReference,
         ]))->send();
         $this->assertSame("0", $response->getCode());

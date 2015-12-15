@@ -34,6 +34,7 @@ class CreditCardReversalTest extends CertificationTestCase
         $response = $this->gw->purchase($this->optsRetailSwiped([
             'amount'                  => '200.00',
             'transactionId'           => uniqid(),
+            'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
             'EncryptedTrack1Data'     => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
@@ -44,6 +45,7 @@ class CreditCardReversalTest extends CertificationTestCase
         $response = $this->gw->expressReversal($this->optsRetailSwiped([
             'amount'                  => '200.00',
             'transactionId'           => uniqid(),
+            'TicketNumber'            => uniqid(),
             'ReversalType'            => ReversalType::SYSTEM(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
@@ -65,6 +67,7 @@ class CreditCardReversalTest extends CertificationTestCase
         $response = $this->gw->purchase($this->optsRetailSwiped([
             'amount'                  => '200.01',
             'transactionId'           => uniqid(),
+            'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
             'EncryptedTrack1Data'     => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
@@ -75,6 +78,7 @@ class CreditCardReversalTest extends CertificationTestCase
         $response = $this->gw->expressReversal($this->optsRetailKeyed([
             'amount'                  => '200.01',
             'transactionId'           => uniqid(),
+            'TicketNumber'            => uniqid(),
             'transactionReference'    => $response->getTransactionReference(),
             'ReversalType'            => ReversalType::FULL(),
         ]))->send();
