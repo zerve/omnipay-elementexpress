@@ -1,9 +1,9 @@
-# Omnipay: Vantiv
+# Omnipay: ElementExpress
 
-**Vantiv driver for the Omnipay PHP payment processing library**
+**ElementExpress driver for the Omnipay PHP payment processing library**
 
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic, multi-gateway payment
-processing library for PHP 5.3+. This package implements Vantiv support for Omnipay.
+processing library for PHP 5.3+. This package implements ElementExpress support for Omnipay.
 
 ## Installation
 
@@ -13,7 +13,7 @@ to your `composer.json` file:
 ```json
 {
     "require": {
-        "zerveinc/omnipay-vantiv": "~1.0"
+        "zerve/omnipay-elementexpress": "~1.0"
     }
 }
 ```
@@ -27,7 +27,7 @@ And run composer to update your dependencies:
 
 The following gateways are provided by this package:
 
-* Vantiv_Express
+* ElementExpress
 
 For general usage instructions, please see the main [Omnipay](https://github.com/thephpleague/omnipay)
 repository.
@@ -42,5 +42,5 @@ If you want to keep up to date with release anouncements, discuss ideas for the 
 or ask more detailed questions, there is also a [mailing list](https://groups.google.com/forum/#!forum/omnipay) which
 you can subscribe to.
 
-If you believe you have found a bug, please report it using the [Bitbucket issue tracker](https://bitbucket.org/zerveinc/omnipay-vantiv/issues),
+If you believe you have found a bug, please report it using the [GitHub issue tracker](https://github.com/zerve/omnipay-elementexpress/issues),
 or better yet, fork the library and submit a pull request.
