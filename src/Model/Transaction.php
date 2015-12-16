@@ -87,7 +87,7 @@ class Transaction extends AbstractModel
         if (isset($this['ReversalType'])) {
             try {
                 ReversalType::memberByValue($this['ReversalType']);
-            } catch(\Exception $e) {
+            } catch (\Exception $e) {
                 throw new InvalidRequestException('Invalid value for ReversalType');
             }
         }
@@ -95,7 +95,7 @@ class Transaction extends AbstractModel
         if (isset($this['MarketCode'])) {
             try {
                 MarketCode::memberByValue($this['MarketCode']);
-            } catch(\Exception $e) {
+            } catch (\Exception $e) {
                 throw new InvalidRequestException('Invalid value for MarketCode');
             }
         }

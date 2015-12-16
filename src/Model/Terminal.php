@@ -76,7 +76,7 @@ class Terminal extends AbstractModel
         if (isset($this['TerminalType'])) {
             try {
                 TerminalType::memberByValue($this['TerminalType']);
-            } catch(\Exception $e) {
+            } catch (\Exception $e) {
                 throw new InvalidRequestException('Invalid value for TerminalType');
             }
         }
@@ -84,7 +84,7 @@ class Terminal extends AbstractModel
         if (isset($this['TerminalCapabilityCode'])) {
             try {
                 TerminalCapabilityCode::memberByValue($this['TerminalCapabilityCode']);
-            } catch(\Exception $e) {
+            } catch (\Exception $e) {
                 throw new InvalidRequestException('Invalid value for TerminalCapabilityCode');
             }
         }
@@ -92,7 +92,7 @@ class Terminal extends AbstractModel
         if (isset($this['TerminalEnvironmentCode'])) {
             try {
                 TerminalEnvironmentCode::memberByValue($this['TerminalEnvironmentCode']);
-            } catch(\Exception $e) {
+            } catch (\Exception $e) {
                 throw new InvalidRequestException('Invalid value for TerminalEnvironmentCode');
             }
         }
@@ -100,7 +100,7 @@ class Terminal extends AbstractModel
         if (isset($this['CardPresentCode'])) {
             try {
                 CardPresentCode::memberByValue($this['CardPresentCode']);
-            } catch(\Exception $e) {
+            } catch (\Exception $e) {
                 throw new InvalidRequestException('Invalid value for CardPresentCode');
             }
         }
@@ -108,7 +108,7 @@ class Terminal extends AbstractModel
         if (isset($this['CVVPresenceCode'])) {
             try {
                 CVVPresenceCode::memberByValue($this['CVVPresenceCode']);
-            } catch(\Exception $e) {
+            } catch (\Exception $e) {
                 throw new InvalidRequestException('Invalid value for CVVPresenceCode');
             }
         }
@@ -116,7 +116,7 @@ class Terminal extends AbstractModel
         if (isset($this['CardInputCode'])) {
             try {
                 CardInputCode::memberByValue($this['CardInputCode']);
-            } catch(\Exception $e) {
+            } catch (\Exception $e) {
                 throw new InvalidRequestException('Invalid value for CardInputCode');
             }
         }
@@ -124,7 +124,7 @@ class Terminal extends AbstractModel
         if (isset($this['CardholderPresentCode'])) {
             try {
                 CardholderPresentCode::memberByValue($this['CardholderPresentCode']);
-            } catch(\Exception $e) {
+            } catch (\Exception $e) {
                 throw new InvalidRequestException('Invalid value for CardholderPresentCode');
             }
         }
@@ -132,7 +132,7 @@ class Terminal extends AbstractModel
         if (isset($this['MotoECICode'])) {
             try {
                 MotoECICode::memberByValue($this['MotoECICode']);
-            } catch(\Exception $e) {
+            } catch (\Exception $e) {
                 throw new InvalidRequestException('Invalid value for MotoECICode');
             }
         }

@@ -65,7 +65,7 @@ class PaymentAccountParameters extends AbstractModel
         if (isset($this['PaymentAccountType'])) {
             try {
                 PaymentAccountType::memberByValue($this['PaymentAccountType']);
-            } catch(\Exception $e) {
+            } catch (\Exception $e) {
                 throw new InvalidRequestException('Invalid value for PaymentAccountType');
             }
         }

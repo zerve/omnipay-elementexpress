@@ -153,7 +153,7 @@ class Card extends AbstractModel
         if (isset($this['EncryptedFormat'])) {
             try {
                 EncryptedFormat::memberByValue($this['EncryptedFormat']);
-            } catch(\Exception $e) {
+            } catch (\Exception $e) {
                 throw new InvalidRequestException('Invalid value for EncryptedFormat');
             }
         }
