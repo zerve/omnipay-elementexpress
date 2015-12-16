@@ -46,8 +46,9 @@ trait PaymentAccountParametersTrait
         return $this->getParameter('PaymentAccountType');
     }
 
-    public function setPaymentAccountType(PaymentAccountType $value)
+    public function setPaymentAccountType($value)
     {
+        $value = PaymentAccountType::memberByValue($value)->value();
         return $this->setParameter('PaymentAccountType', $value);
     }
 

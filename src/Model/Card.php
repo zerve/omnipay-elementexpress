@@ -37,7 +37,7 @@ class Card extends AbstractModel
             'EncryptedTrack2Data'     => '',
             'EncryptedCardData'       => '',
             'CardDataKeySerialNumber' => '',
-            'EncryptedFormat'         => EncryptedFormat::__DEFAULT(),
+            'EncryptedFormat'         => EncryptedFormat::__DEFAULT,
         ];
     }
 
@@ -73,7 +73,7 @@ class Card extends AbstractModel
                         $node->appendChild(
                             new \DOMElement('CardDataKeySerialNumber', strtoupper($this['CardDataKeySerialNumber']))
                         );
-                        $node->appendChild(new \DOMElement('EncryptedFormat', $this['EncryptedFormat']->value()));
+                        $node->appendChild(new \DOMElement('EncryptedFormat', $this['EncryptedFormat']));
                     }
                     break 2;
                 }
@@ -150,8 +150,12 @@ class Card extends AbstractModel
             throw new InvalidRequestException('CardDataKeySerialNumber should have 26 or fewer characters');
         }
 
-        if (isset($this['EncryptedFormat']) && !$this['EncryptedFormat'] instanceof EncryptedFormat) {
-            throw new InvalidRequestException('Invalid value for EncryptedFormat');
+        if (isset($this['EncryptedFormat'])) {
+            try {
+                EncryptedFormat::memberByValue($this['EncryptedFormat']);
+            } catch(\Exception $e) {
+                throw new InvalidRequestException('Invalid value for EncryptedFormat');
+            }
         }
     }
 }

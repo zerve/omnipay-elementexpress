@@ -36,7 +36,7 @@ class DuplicateOverrideTest extends CertificationTestCase
             'ReferenceNumber'         => uniqid(),
             'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
-            'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
+            'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT'))->value(),
             'EncryptedTrack1Data'     => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
         ]))->send();
         $this->assertSame("23", $response->getCode());
@@ -54,7 +54,7 @@ class DuplicateOverrideTest extends CertificationTestCase
             'ReferenceNumber'         => uniqid(),
             'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
-            'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
+            'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT'))->value(),
             'EncryptedTrack1Data'     => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
             'DuplicateOverrideFlag'   => "1",
         ]))->send();
@@ -76,7 +76,7 @@ class DuplicateOverrideTest extends CertificationTestCase
             'ReferenceNumber'         => uniqid(),
             'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
-            'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
+            'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT'))->value(),
             'EncryptedTrack1Data'     => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
         ]))->send();
         $this->assertSame("23", $response->getCode());
@@ -94,7 +94,7 @@ class DuplicateOverrideTest extends CertificationTestCase
             'ReferenceNumber'           => uniqid(),
             'TicketNumber'              => uniqid(),
             'CardDataKeySerialNumber'   => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
-            'EncryptedFormat'           => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
+            'EncryptedFormat'           => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT'))->value(),
             'EncryptedTrack1Data'       => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
             'DuplicateCheckDisableFlag' => "1",
         ]))->send();

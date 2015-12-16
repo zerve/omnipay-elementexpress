@@ -33,10 +33,10 @@ class TransactionsWithPaymentAccountIdTest extends CertificationTestCase
     {
         // Create a card token
         $response = $this->gw->paymentAccountCreate([
-            'PaymentAccountType'            => PaymentAccountType::CREDIT_CARD(),
+            'PaymentAccountType'            => PaymentAccountType::CREDIT_CARD,
             'PaymentAccountReferenceNumber' => uniqid(),
             'CardDataKeySerialNumber'       => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
-            'EncryptedFormat'               => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
+            'EncryptedFormat'               => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT'))->value(),
             'EncryptedTrack1Data'           => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
             'card' => [
                 'BillingZipcode' => '90210'
@@ -65,10 +65,10 @@ class TransactionsWithPaymentAccountIdTest extends CertificationTestCase
     {
         // Create a card token
         $response = $this->gw->paymentAccountCreate([
-            'PaymentAccountType'            => PaymentAccountType::CREDIT_CARD(),
+            'PaymentAccountType'            => PaymentAccountType::CREDIT_CARD,
             'PaymentAccountReferenceNumber' => uniqid(),
             'CardDataKeySerialNumber'       => getenv('MASTERCARD_CARD_DATA_KEY_SERIAL_NUMBER'),
-            'EncryptedFormat'               => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
+            'EncryptedFormat'               => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT'))->value(),
             'EncryptedTrack1Data'           => getenv('MASTERCARD_ENCRYPTED_TRACK1_DATA'),
             'card' => [
                 'BillingZipcode' => '90210'
@@ -97,10 +97,10 @@ class TransactionsWithPaymentAccountIdTest extends CertificationTestCase
     {
         // Create a card token
         $response = $this->gw->paymentAccountCreate([
-            'PaymentAccountType'            => PaymentAccountType::CREDIT_CARD(),
+            'PaymentAccountType'            => PaymentAccountType::CREDIT_CARD,
             'PaymentAccountReferenceNumber' => uniqid(),
             'CardDataKeySerialNumber'       => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
-            'EncryptedFormat'               => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
+            'EncryptedFormat'               => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT'))->value(),
             'EncryptedTrack1Data'           => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
             'card' => [
                 'BillingZipcode' => '90210'
@@ -124,7 +124,7 @@ class TransactionsWithPaymentAccountIdTest extends CertificationTestCase
             'TransactionAmount' => '1.85',
             'ReferenceNumber'   => uniqid(),
             'TicketNumber'      => uniqid(),
-            'ReversalType'      => ReversalType::SYSTEM(),
+            'ReversalType'      => ReversalType::SYSTEM,
             'PaymentAccountID'  => $paymentAccountId,
         ]))->send();
         $this->assertSame("0", $response->getCode());
@@ -141,10 +141,10 @@ class TransactionsWithPaymentAccountIdTest extends CertificationTestCase
     {
         // Create a card token
         $response = $this->gw->paymentAccountCreate([
-            'PaymentAccountType'            => PaymentAccountType::CREDIT_CARD(),
+            'PaymentAccountType'            => PaymentAccountType::CREDIT_CARD,
             'PaymentAccountReferenceNumber' => uniqid(),
             'CardDataKeySerialNumber'       => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
-            'EncryptedFormat'               => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
+            'EncryptedFormat'               => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT'))->value(),
             'EncryptedTrack1Data'           => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
             'card' => [
                 'BillingZipcode' => '90210'

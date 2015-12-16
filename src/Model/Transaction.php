@@ -30,7 +30,7 @@ class Transaction extends AbstractModel
             'TransactionAmount'         => '',
             'ReferenceNumber'           => '',
             'ReversalType'              => '',
-            'MarketCode'                => MarketCode::__DEFAULT(),
+            'MarketCode'                => MarketCode::__DEFAULT,
             'DuplicateCheckDisableFlag' => '',
             'DuplicateOverrideFlag'     => '',
             'TicketNumber'              => '',
@@ -47,10 +47,8 @@ class Transaction extends AbstractModel
         $node->appendChild(new \DOMElement('TransactionID', $this['TransactionID']));
         $node->appendChild(new \DOMElement('TransactionAmount', $this['TransactionAmount']));
         $node->appendChild(new \DOMElement('ReferenceNumber', $this['ReferenceNumber']));
-        if (!empty($this['ReversalType'])) {
-            $node->appendChild(new \DOMElement('ReversalType', $this['ReversalType']->value()));
-        }
-        $node->appendChild(new \DOMElement('MarketCode', $this['MarketCode']->value()));
+        $node->appendChild(new \DOMElement('ReversalType', $this['ReversalType']));
+        $node->appendChild(new \DOMElement('MarketCode', $this['MarketCode']));
         $node->appendChild(new \DOMElement('DuplicateCheckDisableFlag', $this['DuplicateCheckDisableFlag']));
         $node->appendChild(new \DOMElement('DuplicateOverrideFlag', $this['DuplicateOverrideFlag']));
         $node->appendChild(new \DOMElement('TicketNumber', $this['TicketNumber']));
@@ -86,12 +84,20 @@ class Transaction extends AbstractModel
             throw new InvalidRequestException('ReferenceNumber should have 50 or fewer characters');
         }
 
-        if (isset($this['ReversalType']) && !$this['ReversalType'] instanceof ReversalType) {
-            throw new InvalidRequestException('Invalid value for ReversalType');
+        if (isset($this['ReversalType'])) {
+            try {
+                ReversalType::memberByValue($this['ReversalType']);
+            } catch(\Exception $e) {
+                throw new InvalidRequestException('Invalid value for ReversalType');
+            }
         }
 
-        if (isset($this['MarketCode']) && !$this['MarketCode'] instanceof MarketCode) {
-            throw new InvalidRequestException('Invalid value for MarketCode');
+        if (isset($this['MarketCode'])) {
+            try {
+                MarketCode::memberByValue($this['MarketCode']);
+            } catch(\Exception $e) {
+                throw new InvalidRequestException('Invalid value for MarketCode');
+            }
         }
 
         if (strlen($this['DuplicateCheckDisableFlag'])) {

@@ -38,14 +38,14 @@ class TerminalTest extends TestCase
     {
         return [
             'TerminalID: too-long'                   => ['TerminalID', str_repeat('x', 41)],
-            'TerminalType: invalid-value'            => ['TerminalType', 0],
-            'TerminalCapabilityCode: invalid-value'  => ['TerminalCapabilityCode', 0],
-            'TerminalEnvironmentCode: invalid-value' => ['TerminalEnvironmentCode', 0],
-            'CardPresentCode: invalid-value'         => ['CardPresentCode', 0],
-            'CVVPresenceCode: invalid-value'         => ['CVVPresenceCode', 0],
-            'CardInputCode: invalid-value'           => ['CardInputCode', 0],
-            'CardholderPresentCode: invalid-value'   => ['CardholderPresentCode', 0],
-            'MotoECICode: invalid-value'             => ['MotoECICode', 0],
+            'TerminalType: invalid-value'            => ['TerminalType', 'invalid-value'],
+            'TerminalCapabilityCode: invalid-value'  => ['TerminalCapabilityCode', 'invalid-value'],
+            'TerminalEnvironmentCode: invalid-value' => ['TerminalEnvironmentCode', 'invalid-value'],
+            'CardPresentCode: invalid-value'         => ['CardPresentCode', 'invalid-value'],
+            'CVVPresenceCode: invalid-value'         => ['CVVPresenceCode', 'invalid-value'],
+            'CardInputCode: invalid-value'           => ['CardInputCode', 'invalid-value'],
+            'CardholderPresentCode: invalid-value'   => ['CardholderPresentCode', 'invalid-value'],
+            'MotoECICode: invalid-value'             => ['MotoECICode', 'invalid-value'],
             'TerminalSerialNumber: too-long'         => ['TerminalSerialNumber', str_repeat('x', 41)],
         ];
     }
@@ -54,14 +54,14 @@ class TerminalTest extends TestCase
     {
         return [
             'TerminalID: max-length'                 => ['TerminalID', str_repeat('x', 40)],
-            'TerminalType: valid-enum'               => ['TerminalType', TerminalType::UNKNOWN()],
-            'TerminalCapabilityCode: valid-enum'     => ['TerminalCapabilityCode', TerminalCapabilityCode::__DEFAULT()],
-            'TerminalEnvironmentCode: valid-enum'    => ['TerminalEnvironmentCode', TerminalEnvironmentCode::__DEFAULT()],
-            'CardPresentCode: valid-enum'            => ['CardPresentCode', CardPresentCode::__DEFAULT()],
-            'CVVPresenceCode: valid-enum'            => ['CVVPresenceCode', CVVPresenceCode::__DEFAULT()],
-            'CardInputCode: valid-enum'              => ['CardInputCode', CardInputCode::__DEFAULT()],
-            'CardholderPresentCode: valid-enum'      => ['CardholderPresentCode', CardholderPresentCode::__DEFAULT()],
-            'MotoECICode: valid-enum'                => ['MotoECICode', MotoECICode::__DEFAULT()],
+            'TerminalType: valid-enum'               => ['TerminalType', TerminalType::UNKNOWN],
+            'TerminalCapabilityCode: valid-enum'     => ['TerminalCapabilityCode', TerminalCapabilityCode::__DEFAULT],
+            'TerminalEnvironmentCode: valid-enum'    => ['TerminalEnvironmentCode', TerminalEnvironmentCode::__DEFAULT],
+            'CardPresentCode: valid-enum'            => ['CardPresentCode', CardPresentCode::__DEFAULT],
+            'CVVPresenceCode: valid-enum'            => ['CVVPresenceCode', CVVPresenceCode::__DEFAULT],
+            'CardInputCode: valid-enum'              => ['CardInputCode', CardInputCode::__DEFAULT],
+            'CardholderPresentCode: valid-enum'      => ['CardholderPresentCode', CardholderPresentCode::__DEFAULT],
+            'MotoECICode: valid-enum'                => ['MotoECICode', MotoECICode::__DEFAULT],
             'TerminalSerialNumber: max-length'       => ['TerminalSerialNumber', str_repeat('x', 40)],
         ];
     }

@@ -36,7 +36,7 @@ class CreditCardCreditTest extends CertificationTestCase
             'ReferenceNumber'         => uniqid(),
             'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
-            'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
+            'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT'))->value(),
             'EncryptedTrack1Data'     => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
         ]))->send();
         $this->assertSame("0", $response->getCode());
@@ -56,7 +56,7 @@ class CreditCardCreditTest extends CertificationTestCase
             'ReferenceNumber'         => uniqid(),
             'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
-            'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
+            'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT'))->value(),
             'EncryptedTrack2Data'     => getenv('VISA_ENCRYPTED_TRACK2_DATA'),
         ]))->send();
         $this->assertSame("0", $response->getCode());
@@ -75,7 +75,7 @@ class CreditCardCreditTest extends CertificationTestCase
             'TransactionAmount' => '5.26',
             'ReferenceNumber'   => uniqid(),
             'TicketNumber'      => uniqid(),
-            'CVVPresenceCode'   => CVVPresenceCode::PROVIDED(),
+            'CVVPresenceCode'   => CVVPresenceCode::PROVIDED,
             'card'              => [
                 'CardNumber'      => getenv('VISA_CARD_NUMBER'),
                 'ExpirationMonth' => getenv('VISA_EXPIRATION_MONTH'),
@@ -97,10 +97,10 @@ class CreditCardCreditTest extends CertificationTestCase
     {
         // First create a card token
         $response = $this->gw->paymentAccountCreate([
-            'PaymentAccountType'            => PaymentAccountType::CREDIT_CARD(),
+            'PaymentAccountType'            => PaymentAccountType::CREDIT_CARD,
             'PaymentAccountReferenceNumber' => uniqid(),
             'CardDataKeySerialNumber'       => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
-            'EncryptedFormat'               => EncryptedFormat::FORMAT_4(),
+            'EncryptedFormat'               => EncryptedFormat::FORMAT_4,
             'EncryptedTrack2Data'           => getenv('VISA_ENCRYPTED_TRACK2_DATA'),
         ])->send();
         $this->assertSame("0", $response->getCode());

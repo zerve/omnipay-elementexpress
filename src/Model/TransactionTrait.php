@@ -67,8 +67,9 @@ trait TransactionTrait
         return $this->getParameter('MarketCode');
     }
 
-    public function setMarketCode(MarketCode $value)
+    public function setMarketCode($value)
     {
+        $value = MarketCode::memberByValue($value)->value();
         return $this->setParameter('MarketCode', $value);
     }
 
@@ -77,8 +78,9 @@ trait TransactionTrait
         return $this->getParameter('ReversalType');
     }
 
-    public function setReversalType(ReversalType $value)
+    public function setReversalType($value)
     {
+        $value = ReversalType::memberByValue($value)->value();
         return $this->setParameter('ReversalType', $value);
     }
 

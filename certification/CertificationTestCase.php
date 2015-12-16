@@ -83,17 +83,17 @@ class CertificationTestCase extends \PHPUnit_Framework_TestCase
 
             // Terminal
             'TerminalID'              => '0001',
-            'CardPresentCode'         => CardPresentCode::PRESENT(),
-            'CardholderPresentCode'   => CardholderPresentCode::PRESENT(),
-            'CardInputCode'           => CardInputCode::MAGSTRIPE_READ(),
-            'TerminalCapabilityCode'  => TerminalCapabilityCode::MAGSTRIPE_READER(),
-            'TerminalEnvironmentCode' => TerminalEnvironmentCode::LOCAL_ATTENDED(),
-            'MotoECICode'             => MotoECICode::NOT_USED(),
-            'TerminalType'            => TerminalType::POINT_OF_SALE(),
+            'CardPresentCode'         => CardPresentCode::PRESENT,
+            'CardholderPresentCode'   => CardholderPresentCode::PRESENT,
+            'CardInputCode'           => CardInputCode::MAGSTRIPE_READ,
+            'TerminalCapabilityCode'  => TerminalCapabilityCode::MAGSTRIPE_READER,
+            'TerminalEnvironmentCode' => TerminalEnvironmentCode::LOCAL_ATTENDED,
+            'MotoECICode'             => MotoECICode::NOT_USED,
+            'TerminalType'            => TerminalType::POINT_OF_SALE,
             'TerminalSerialNumber'    => getenv('TERMINAL_SERIAL_NUMBER'),
 
             // Transaction
-            'MarketCode'              => MarketCode::RETAIL(),
+            'MarketCode'              => MarketCode::RETAIL,
             'PartialApprovedFlag'     => '1',
             'DuplicateOverrideFlag'   => '0',
 
@@ -120,17 +120,17 @@ class CertificationTestCase extends \PHPUnit_Framework_TestCase
 
             // Terminal
             'TerminalID'              => '0001',
-            'CardPresentCode'         => CardPresentCode::PRESENT(),
-            'CardholderPresentCode'   => CardholderPresentCode::PRESENT(),
-            'CardInputCode'           => CardInputCode::MANUAL_KEYED_MAGSTRIPE_FAILURE(),
-            'TerminalCapabilityCode'  => TerminalCapabilityCode::MAGSTRIPE_READER(),
-            'TerminalEnvironmentCode' => TerminalEnvironmentCode::LOCAL_ATTENDED(),
-            'MotoECICode'             => MotoECICode::NOT_USED(),
-            'TerminalType'            => TerminalType::POINT_OF_SALE(),
+            'CardPresentCode'         => CardPresentCode::PRESENT,
+            'CardholderPresentCode'   => CardholderPresentCode::PRESENT,
+            'CardInputCode'           => CardInputCode::MANUAL_KEYED_MAGSTRIPE_FAILURE,
+            'TerminalCapabilityCode'  => TerminalCapabilityCode::MAGSTRIPE_READER,
+            'TerminalEnvironmentCode' => TerminalEnvironmentCode::LOCAL_ATTENDED,
+            'MotoECICode'             => MotoECICode::NOT_USED,
+            'TerminalType'            => TerminalType::POINT_OF_SALE,
             'TerminalSerialNumber'    => getenv('TERMINAL_SERIAL_NUMBER'),
 
             // Transaction
-            'MarketCode'              => MarketCode::RETAIL(),
+            'MarketCode'              => MarketCode::RETAIL,
             'PartialApprovedFlag'     => '1',
             'DuplicateOverrideFlag'   => '0',
 

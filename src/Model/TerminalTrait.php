@@ -53,8 +53,9 @@ trait TerminalTrait
         return $this->getParameter('TerminalType');
     }
 
-    public function setTerminalType(TerminalType $value)
+    public function setTerminalType($value)
     {
+        $value = TerminalType::memberByValue($value)->value();
         return $this->setParameter('TerminalType', $value);
     }
 
@@ -63,8 +64,9 @@ trait TerminalTrait
         return $this->getParameter('CardPresentCode');
     }
 
-    public function setCardPresentCode(CardPresentCode $value)
+    public function setCardPresentCode($value)
     {
+        $value = CardPresentCode::memberByValue($value)->value();
         return $this->setParameter('CardPresentCode', $value);
     }
 
@@ -73,8 +75,9 @@ trait TerminalTrait
         return $this->getParameter('CardholderPresentCode');
     }
 
-    public function setCardholderPresentCode(CardholderPresentCode $value)
+    public function setCardholderPresentCode($value)
     {
+        $value = CardholderPresentCode::memberByValue($value)->value();
         return $this->setParameter('CardholderPresentCode', $value);
     }
 
@@ -83,8 +86,9 @@ trait TerminalTrait
         return $this->getParameter('CardInputCode');
     }
 
-    public function setCardInputCode(CardInputCode $value)
+    public function setCardInputCode($value)
     {
+        $value = CardInputCode::memberByValue($value)->value();
         return $this->setParameter('CardInputCode', $value);
     }
 
@@ -93,8 +97,9 @@ trait TerminalTrait
         return $this->getParameter('CVVPresenceCode');
     }
 
-    public function setCVVPresenceCode(CVVPresenceCode $value)
+    public function setCVVPresenceCode($value)
     {
+        $value = CVVPresenceCode::memberByValue($value)->value();
         return $this->setParameter('CVVPresenceCode', $value);
     }
 
@@ -103,8 +108,9 @@ trait TerminalTrait
         return $this->getParameter('TerminalCapabilityCode');
     }
 
-    public function setTerminalCapabilityCode(TerminalCapabilityCode $value)
+    public function setTerminalCapabilityCode($value)
     {
+        $value = TerminalCapabilityCode::memberByValue($value)->value();
         return $this->setParameter('TerminalCapabilityCode', $value);
     }
 
@@ -113,8 +119,9 @@ trait TerminalTrait
         return $this->getParameter('TerminalEnvironmentCode');
     }
 
-    public function setTerminalEnvironmentCode(TerminalEnvironmentCode $value)
+    public function setTerminalEnvironmentCode($value)
     {
+        $value = TerminalEnvironmentCode::memberByValue($value)->value();
         return $this->setParameter('TerminalEnvironmentCode', $value);
     }
 
@@ -123,8 +130,9 @@ trait TerminalTrait
         return $this->getParameter('MotoECICode');
     }
 
-    public function setMotoECICode(MotoECICode $value)
+    public function setMotoECICode($value)
     {
+        $value = MotoECICode::memberByValue($value)->value();
         return $this->setParameter('MotoECICode', $value);
     }
 

@@ -31,10 +31,10 @@ class PaymentAccountCreateTest extends CertificationTestCase
     public function testVisaSwipedEncryptedTrack1Data()
     {
         $response = $this->gw->paymentAccountCreate([
-            'PaymentAccountType'            => PaymentAccountType::CREDIT_CARD(),
+            'PaymentAccountType'            => PaymentAccountType::CREDIT_CARD,
             'PaymentAccountReferenceNumber' => uniqid(),
             'CardDataKeySerialNumber'       => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
-            'EncryptedFormat'               => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
+            'EncryptedFormat'               => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT'))->value(),
             'EncryptedTrack1Data'           => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
             'card' => [
                 'BillingZipcode'  => '90210'
@@ -52,10 +52,10 @@ class PaymentAccountCreateTest extends CertificationTestCase
     public function testVisaSwipedEncryptedTrack2Data()
     {
         $response = $this->gw->paymentAccountCreate([
-            'PaymentAccountType'            => PaymentAccountType::CREDIT_CARD(),
+            'PaymentAccountType'            => PaymentAccountType::CREDIT_CARD,
             'PaymentAccountReferenceNumber' => uniqid(),
             'CardDataKeySerialNumber'       => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
-            'EncryptedFormat'               => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
+            'EncryptedFormat'               => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT'))->value(),
             'EncryptedTrack2Data'           => getenv('VISA_ENCRYPTED_TRACK2_DATA'),
             'card' => [
                 'BillingZipcode'  => '90210'
@@ -73,7 +73,7 @@ class PaymentAccountCreateTest extends CertificationTestCase
     public function testVisaKeyedCardNumber()
     {
         $response = $this->gw->paymentAccountCreate([
-            'PaymentAccountType'            => PaymentAccountType::CREDIT_CARD(),
+            'PaymentAccountType'            => PaymentAccountType::CREDIT_CARD,
             'PaymentAccountReferenceNumber' => uniqid(),
             'card' => [
                 'CardNumber'      => getenv('VISA_CARD_NUMBER'),

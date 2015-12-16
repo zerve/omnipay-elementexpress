@@ -35,9 +35,7 @@ class PaymentAccount extends AbstractModel
     {
         $node = $parent->appendChild(new \DOMElement('PaymentAccount'));
         $node->appendChild(new \DOMElement('PaymentAccountID', $this['PaymentAccountID']));
-        if (!empty($this['PaymentAccountType'])) {
-            $node->appendChild(new \DOMElement('PaymentAccountType', $this['PaymentAccountType']->value()));
-        }
+        $node->appendChild(new \DOMElement('PaymentAccountType', $this['PaymentAccountType']));
         $node->appendChild(new \DOMElement('PaymentAccountReferenceNumber', $this['PaymentAccountReferenceNumber']));
     }
 
@@ -55,8 +53,12 @@ class PaymentAccount extends AbstractModel
             throw new InvalidRequestException('PaymentAccountID should have 50 or fewer characters');
         }
 
-        if (isset($this['PaymentAccountType']) && !$this['PaymentAccountType'] instanceof PaymentAccountType) {
-            throw new InvalidRequestException('Invalid value for PaymentAccountType');
+        if (isset($this['PaymentAccountType'])) {
+            try {
+                PaymentAccountType::memberByValue($this['PaymentAccountType']);
+            } catch(\Exception $e) {
+                throw new InvalidRequestException('Invalid value for PaymentAccountType');
+            }
         }
 
         if (strlen($this['PaymentAccountReferenceNumber'])) {

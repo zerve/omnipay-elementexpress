@@ -27,7 +27,7 @@ class CardTest extends TestCase
     {
         $data = [
             'EncryptedTrack1Data'     => uniqid(),
-            'EncryptedFormat'         => EncryptedFormat::__DEFAULT(),
+            'EncryptedFormat'         => EncryptedFormat::__DEFAULT,
             'CardDataKeySerialNumber' => uniqid(),
         ];
 
@@ -45,7 +45,7 @@ class CardTest extends TestCase
     {
         $data = [
             'CardNumber'              => uniqid(),
-            'EncryptedFormat'         => EncryptedFormat::__DEFAULT(),
+            'EncryptedFormat'         => EncryptedFormat::__DEFAULT,
             'CardDataKeySerialNumber' => uniqid(),
         ];
 
@@ -169,7 +169,7 @@ class CardTest extends TestCase
             'EncryptedTrack2Data: too-long'     => ['EncryptedTrack2Data', str_repeat('x', 201)],
             'EncryptedCardData: too-long'       => ['EncryptedCardData', str_repeat('x', 201)],
             'CardDataKeySerialNumber: too-long' => ['CardDataKeySerialNumber', str_repeat('x', 27)],
-            'EncryptedFormat: invalid-value'    => ['EncryptedFormat', 0],
+            'EncryptedFormat: invalid-value'    => ['EncryptedFormat', 'invalid-value'],
         ];
     }
 
@@ -187,7 +187,7 @@ class CardTest extends TestCase
             'EncryptedTrack2Data: max-length'     => ['EncryptedTrack2Data', str_repeat('x', 200)],
             'EncryptedCardData: max-length'       => ['EncryptedCardData', str_repeat('x', 200)],
             'CardDataKeySerialNumber: max-length' => ['CardDataKeySerialNumber', str_repeat('x', 26)],
-            'EncryptedFormat: valid-enum'         => ['EncryptedFormat', EncryptedFormat::__DEFAULT()],
+            'EncryptedFormat: valid-enum'         => ['EncryptedFormat', EncryptedFormat::__DEFAULT],
         ];
     }
 

@@ -47,7 +47,7 @@ class TransactionTraitTest extends AbstractTraitTestCase
         if (null === $this->mockModel) {
             $request = $this->getMockRequest();
             $this->mockModel = $request->getTransactionModel()->initialize([
-                'ReversalType' => ReversalType::SYSTEM()
+                'ReversalType' => ReversalType::SYSTEM
             ]);
         }
         return $this->mockModel;

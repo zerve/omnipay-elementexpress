@@ -38,7 +38,7 @@ class GatewayTest extends GatewayTestCase
 
         // Configure enough to pass validation.
         $this->creditCardSaleOptions       = ['TransactionAmount' => '10.00'];
-        $this->paymentAccountCreateOptions = ['PaymentAccountType' => PaymentAccountType::CREDIT_CARD()];
+        $this->paymentAccountCreateOptions = ['PaymentAccountType' => PaymentAccountType::CREDIT_CARD];
         $this->creditCardReturnOptions        = ['TransactionAmount' => '10.00'];
         $this->creditCardCreditOptions        = ['TransactionAmount' => '10.00'];
     }

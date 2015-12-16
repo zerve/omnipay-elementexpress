@@ -33,7 +33,9 @@ abstract class AbstractTraitTestCase extends \PHPUnit_Framework_TestCase
         foreach ($model->toArray() as $key => $value) {
             $setter = 'set' . ucfirst($key);
             $getter = 'get' . ucfirst($key);
-            $value = $value ?: uniqid();
+            if ('' === $value) {
+                $value = uniqid();
+            }
             yield [$setter, $getter, $value];
         }
     }

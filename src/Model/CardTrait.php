@@ -155,8 +155,9 @@ trait CardTrait
         return $this->getParameter('EncryptedFormat');
     }
 
-    public function setEncryptedFormat(EncryptedFormat $value)
+    public function setEncryptedFormat($value)
     {
+        $value = EncryptedFormat::memberByValue($value)->value();
         return $this->setParameter('EncryptedFormat', $value);
     }
 }

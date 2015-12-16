@@ -36,7 +36,7 @@ class CreditCardReversalTest extends CertificationTestCase
             'ReferenceNumber'         => uniqid(),
             'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
-            'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
+            'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT'))->value(),
             'EncryptedTrack1Data'     => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
         ]))->send();
         $this->assertSame("0", $response->getCode());
@@ -46,9 +46,9 @@ class CreditCardReversalTest extends CertificationTestCase
             'TransactionAmount'       => '200.00',
             'ReferenceNumber'         => uniqid(),
             'TicketNumber'            => uniqid(),
-            'ReversalType'            => ReversalType::SYSTEM(),
+            'ReversalType'            => ReversalType::SYSTEM,
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
-            'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
+            'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT'))->value(),
             'EncryptedTrack1Data'     => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
         ]))->send();
         $this->assertSame("0", $response->getCode());
@@ -69,7 +69,7 @@ class CreditCardReversalTest extends CertificationTestCase
             'ReferenceNumber'         => uniqid(),
             'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
-            'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
+            'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT'))->value(),
             'EncryptedTrack1Data'     => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
         ]))->send();
         $this->assertSame("0", $response->getCode());
@@ -80,7 +80,7 @@ class CreditCardReversalTest extends CertificationTestCase
             'ReferenceNumber'   => uniqid(),
             'TicketNumber'      => uniqid(),
             'TransactionID'     => $response->getTransactionId(),
-            'ReversalType'      => ReversalType::FULL(),
+            'ReversalType'      => ReversalType::FULL,
         ]))->send();
         $this->assertSame("0", $response->getCode());
 

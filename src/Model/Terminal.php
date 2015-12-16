@@ -33,14 +33,14 @@ class Terminal extends AbstractModel
     {
         return [
             'TerminalID'              => '',
-            'TerminalType'            => TerminalType::UNKNOWN(),
-            'TerminalCapabilityCode'  => TerminalCapabilityCode::__DEFAULT(),
-            'TerminalEnvironmentCode' => TerminalEnvironmentCode::__DEFAULT(),
-            'CardPresentCode'         => CardPresentCode::__DEFAULT(),
-            'CVVPresenceCode'         => CVVPresenceCode::__DEFAULT(),
-            'CardInputCode'           => CardInputCode::__DEFAULT(),
-            'CardholderPresentCode'   => CardholderPresentCode::__DEFAULT(),
-            'MotoECICode'             => MotoECICode::__DEFAULT(),
+            'TerminalType'            => TerminalType::UNKNOWN,
+            'TerminalCapabilityCode'  => TerminalCapabilityCode::__DEFAULT,
+            'TerminalEnvironmentCode' => TerminalEnvironmentCode::__DEFAULT,
+            'CardPresentCode'         => CardPresentCode::__DEFAULT,
+            'CVVPresenceCode'         => CVVPresenceCode::__DEFAULT,
+            'CardInputCode'           => CardInputCode::__DEFAULT,
+            'CardholderPresentCode'   => CardholderPresentCode::__DEFAULT,
+            'MotoECICode'             => MotoECICode::__DEFAULT,
             'TerminalSerialNumber'    => '',
         ];
     }
@@ -49,14 +49,14 @@ class Terminal extends AbstractModel
     {
         $node = $parent->appendChild(new \DOMElement('Terminal'));
         $node->appendChild(new \DOMElement('TerminalID', $this['TerminalID']));
-        $node->appendChild(new \DOMElement('TerminalType', $this['TerminalType']->value()));
-        $node->appendChild(new \DOMElement('TerminalCapabilityCode', $this['TerminalCapabilityCode']->value()));
-        $node->appendChild(new \DOMElement('TerminalEnvironmentCode', $this['TerminalEnvironmentCode']->value()));
-        $node->appendChild(new \DOMElement('CardPresentCode', $this['CardPresentCode']->value()));
-        $node->appendChild(new \DOMElement('CVVPresenceCode', $this['CVVPresenceCode']->value()));
-        $node->appendChild(new \DOMElement('CardInputCode', $this['CardInputCode']->value()));
-        $node->appendChild(new \DOMElement('CardholderPresentCode', $this['CardholderPresentCode']->value()));
-        $node->appendChild(new \DOMElement('MotoECICode', $this['MotoECICode']->value()));
+        $node->appendChild(new \DOMElement('TerminalType', $this['TerminalType']));
+        $node->appendChild(new \DOMElement('TerminalCapabilityCode', $this['TerminalCapabilityCode']));
+        $node->appendChild(new \DOMElement('TerminalEnvironmentCode', $this['TerminalEnvironmentCode']));
+        $node->appendChild(new \DOMElement('CardPresentCode', $this['CardPresentCode']));
+        $node->appendChild(new \DOMElement('CVVPresenceCode', $this['CVVPresenceCode']));
+        $node->appendChild(new \DOMElement('CardInputCode', $this['CardInputCode']));
+        $node->appendChild(new \DOMElement('CardholderPresentCode', $this['CardholderPresentCode']));
+        $node->appendChild(new \DOMElement('MotoECICode', $this['MotoECICode']));
         $node->appendChild(new \DOMElement('TerminalSerialNumber', $this['TerminalSerialNumber']));
     }
 
@@ -73,42 +73,68 @@ class Terminal extends AbstractModel
             throw new InvalidRequestException('TerminalID should have 40 or fewer characters');
         }
 
-        if (isset($this['TerminalType']) && !$this['TerminalType'] instanceof TerminalType) {
-            throw new InvalidRequestException('Invalid value for TerminalType');
+        if (isset($this['TerminalType'])) {
+            try {
+                TerminalType::memberByValue($this['TerminalType']);
+            } catch(\Exception $e) {
+                throw new InvalidRequestException('Invalid value for TerminalType');
+            }
         }
 
         if (isset($this['TerminalCapabilityCode'])) {
-            if (!$this['TerminalCapabilityCode'] instanceof TerminalCapabilityCode) {
+            try {
+                TerminalCapabilityCode::memberByValue($this['TerminalCapabilityCode']);
+            } catch(\Exception $e) {
                 throw new InvalidRequestException('Invalid value for TerminalCapabilityCode');
             }
         }
 
         if (isset($this['TerminalEnvironmentCode'])) {
-            if (!$this['TerminalEnvironmentCode'] instanceof TerminalEnvironmentCode) {
+            try {
+                TerminalEnvironmentCode::memberByValue($this['TerminalEnvironmentCode']);
+            } catch(\Exception $e) {
                 throw new InvalidRequestException('Invalid value for TerminalEnvironmentCode');
             }
         }
 
-        if (isset($this['CardPresentCode']) && !$this['CardPresentCode'] instanceof CardPresentCode) {
-            throw new InvalidRequestException('Invalid value for CardPresentCode');
+        if (isset($this['CardPresentCode'])) {
+            try {
+                CardPresentCode::memberByValue($this['CardPresentCode']);
+            } catch(\Exception $e) {
+                throw new InvalidRequestException('Invalid value for CardPresentCode');
+            }
         }
 
-        if (isset($this['CVVPresenceCode']) && !$this['CVVPresenceCode'] instanceof CVVPresenceCode) {
-            throw new InvalidRequestException('Invalid value for CVVPresenceCode');
+        if (isset($this['CVVPresenceCode'])) {
+            try {
+                CVVPresenceCode::memberByValue($this['CVVPresenceCode']);
+            } catch(\Exception $e) {
+                throw new InvalidRequestException('Invalid value for CVVPresenceCode');
+            }
         }
 
-        if (isset($this['CardInputCode']) && !$this['CardInputCode'] instanceof CardInputCode) {
-            throw new InvalidRequestException('Invalid value for CardInputCode');
+        if (isset($this['CardInputCode'])) {
+            try {
+                CardInputCode::memberByValue($this['CardInputCode']);
+            } catch(\Exception $e) {
+                throw new InvalidRequestException('Invalid value for CardInputCode');
+            }
         }
 
         if (isset($this['CardholderPresentCode'])) {
-            if (!$this['CardholderPresentCode'] instanceof CardholderPresentCode) {
+            try {
+                CardholderPresentCode::memberByValue($this['CardholderPresentCode']);
+            } catch(\Exception $e) {
                 throw new InvalidRequestException('Invalid value for CardholderPresentCode');
             }
         }
 
-        if (isset($this['MotoECICode']) && !$this['MotoECICode'] instanceof MotoECICode) {
-            throw new InvalidRequestException('Invalid value for MotoECICode');
+        if (isset($this['MotoECICode'])) {
+            try {
+                MotoECICode::memberByValue($this['MotoECICode']);
+            } catch(\Exception $e) {
+                throw new InvalidRequestException('Invalid value for MotoECICode');
+            }
         }
 
         if (strlen($this['TerminalSerialNumber']) && !preg_match('/^.{1,40}$/', $this['TerminalSerialNumber'])) {
