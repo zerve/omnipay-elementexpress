@@ -54,12 +54,12 @@ trait TransactionTrait
 
     public function getTransactionID()
     {
-        return $this->getParameter('transactionID');
+        return $this->getParameter('TransactionID');
     }
 
     public function setTransactionID($value)
     {
-        return $this->setParameter('transactionID', $value);
+        return $this->setParameter('TransactionID', $value);
     }
 
     public function getMarketCode()
