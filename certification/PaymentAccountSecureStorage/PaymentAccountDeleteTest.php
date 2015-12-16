@@ -54,4 +54,30 @@ class PaymentAccountDeleteTest extends CertificationTestCase
             $response->getData()->ServicesID
         ]);
     }
-}
+
+    public function testDeletePaymentAccountMastercard()
+    {
+        // Create a card token
+        $response = $this->gw->paymentAccountCreate([
+            'PaymentAccountType'            => PaymentAccountType::CREDIT_CARD,
+            'PaymentAccountReferenceNumber' => uniqid(),
+            'CardDataKeySerialNumber'       => getenv('MASTERCARD_CARD_DATA_KEY_SERIAL_NUMBER'),
+            'EncryptedFormat'               => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT'))->value(),
+            'EncryptedTrack1Data'           => getenv('MASTERCARD_ENCRYPTED_TRACK1_DATA'),
+            'BillingZipcode'                => '90210'
+        ])->send();
+        $this->assertSame("0", $response->getCode());
+
+        // Delete PaymentAccount
+        $response = $this->gw->paymentAccountDelete([
+            'PaymentAccountID' => $response->getPaymentAccountId(),
+        ])->send();
+        $this->assertSame("0", $response->getCode());
+
+        static::$buffer .= self::dataRow(...[
+            'Delete Payment Account (Mastercard)',
+            'N/A',
+            $response->getCode(),
+            $response->getData()->ServicesID
+        ]);
+    }}

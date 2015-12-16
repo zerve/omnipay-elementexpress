@@ -27,7 +27,7 @@ use Omnipay\ElementExpress\Certification\CertificationTestCase;
  */
 class TransactionsWithPaymentAccountIdTest extends CertificationTestCase
 {
-    protected static $testDescription = 'Payment Account Create';
+    protected static $testDescription = 'Payment Account Usage';
 
     public function testCreditCardSaleVisaOneTime()
     {
