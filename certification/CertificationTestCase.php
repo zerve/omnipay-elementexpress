@@ -122,7 +122,7 @@ class CertificationTestCase extends \PHPUnit_Framework_TestCase
             'TerminalID'              => '0001',
             'CardPresentCode'         => CardPresentCode::PRESENT,
             'CardholderPresentCode'   => CardholderPresentCode::PRESENT,
-            'CardInputCode'           => CardInputCode::MANUAL_KEYED_MAGSTRIPE_FAILURE,
+            'CardInputCode'           => CardInputCode::MANUAL_KEYED,
             'TerminalCapabilityCode'  => TerminalCapabilityCode::MAGSTRIPE_READER,
             'TerminalEnvironmentCode' => TerminalEnvironmentCode::LOCAL_ATTENDED,
             'MotoECICode'             => MotoECICode::NOT_USED,

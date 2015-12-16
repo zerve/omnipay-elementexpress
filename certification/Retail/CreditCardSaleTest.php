@@ -18,7 +18,7 @@
 namespace Omnipay\ElementExpress\Certification\Retail;
 
 use Omnipay\ElementExpress\Certification\CertificationTestCase;
-use Omnipay\ElementExpress\Enumeration\CVVPresenceCode;
+use Omnipay\ElementExpress\Enumeration\CardInputCode;
 use Omnipay\ElementExpress\Enumeration\EncryptedFormat;
 
 /**
@@ -74,7 +74,7 @@ class CreditCardSaleTest extends CertificationTestCase
             'TransactionAmount' => '2.10',
             'ReferenceNumber'   => uniqid(),
             'TicketNumber'      => uniqid(),
-            'CVVPresenceCode'   => CVVPresenceCode::PROVIDED,
+            'CardInputCode'     => CardInputCode::MANUAL_KEYED_MAGSTRIPE_FAILURE,
             'CardNumber'        => getenv('VISA_CARD_NUMBER'),
             'BillingZipZode'    => '90210',
             'ExpirationMonth'   => getenv('VISA_EXPIRATION_MONTH'),
