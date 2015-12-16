@@ -75,13 +75,11 @@ class CreditCardSaleTest extends CertificationTestCase
             'ReferenceNumber'   => uniqid(),
             'TicketNumber'      => uniqid(),
             'CVVPresenceCode'   => CVVPresenceCode::PROVIDED,
-            'card'              => [
-                'CardNumber'      => getenv('VISA_CARD_NUMBER'),
-                'BillingZipZode'  => '90210',
-                'ExpirationMonth' => getenv('VISA_EXPIRATION_MONTH'),
-                'ExpirationYear'  => getenv('VISA_EXPIRATION_YEAR'),
-                'CVV'             => rand(100, 999),
-            ]
+            'CardNumber'        => getenv('VISA_CARD_NUMBER'),
+            'BillingZipZode'    => '90210',
+            'ExpirationMonth'   => getenv('VISA_EXPIRATION_MONTH'),
+            'ExpirationYear'    => getenv('VISA_EXPIRATION_YEAR'),
+            'CVV'               => rand(100, 999),
         ]))->send();
         $this->assertSame("0", $response->getCode());
 

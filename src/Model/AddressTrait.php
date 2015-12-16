@@ -23,24 +23,11 @@ trait AddressTrait
     abstract public function getParameter($key);
     abstract public function setParameter($key, $value);
 
-    /**
-     * Unlike other getModel() methods, the Address object is initialized using
-     * data from the Omnipay 'card' parameter which is an object in the Omnipay
-     * domain.
-     */
     public function getAddressModel()
     {
         $model = new Address();
-        $parameters = $this->getParameters();
-        if ($card = $this->getParameter('card')) {
-            $parameters = array_merge($parameters, $card->getParameters());
-        }
-        return $model->initialize($parameters);
+        return $model->initialize($this->getParameters());
     }
-
-    // The following mutators/accessors correspond to parameters that have
-    // Omnipay equivalents. These are named with the Omnipay convention and
-    // mapped to the ElementExpress domain in the model.
 
     public function getBillingName()
     {

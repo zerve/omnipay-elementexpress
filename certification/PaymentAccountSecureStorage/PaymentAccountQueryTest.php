@@ -37,9 +37,7 @@ class PaymentAccountQueryTest extends CertificationTestCase
             'CardDataKeySerialNumber'       => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'               => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT'))->value(),
             'EncryptedTrack1Data'           => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
-            'card' => [
-                'BillingZipcode' => '90210'
-            ]
+            'BillingZipcode'                => '90210'
         ])->send();
         $this->assertSame("0", $response->getCode());
 
@@ -68,9 +66,7 @@ class PaymentAccountQueryTest extends CertificationTestCase
             'CardDataKeySerialNumber'       => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'               => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT'))->value(),
             'EncryptedTrack1Data'           => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
-            'card' => [
-                'BillingZipcode' => '90210'
-            ]
+            'BillingZipcode'                => '90210'
         ])->send();
         $this->assertSame("0", $response->getCode());
 
@@ -97,9 +93,7 @@ class PaymentAccountQueryTest extends CertificationTestCase
             'CardDataKeySerialNumber'       => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'               => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT'))->value(),
             'EncryptedTrack1Data'           => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
-            'card' => [
-                'BillingZipcode' => '90210'
-            ]
+            'BillingZipcode'                => '90210'
         ])->send();
         $this->assertSame("0", $response->getCode());
 
@@ -126,9 +120,7 @@ class PaymentAccountQueryTest extends CertificationTestCase
             'CardDataKeySerialNumber'       => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'               => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT'))->value(),
             'EncryptedTrack1Data'           => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
-            'card' => [
-                'BillingZipcode' => '90210'
-            ]
+            'BillingZipcode'                => '90210'
         ])->send();
         $this->assertSame("0", $response->getCode());
 

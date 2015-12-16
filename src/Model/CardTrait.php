@@ -25,19 +25,10 @@ trait CardTrait
     abstract public function getParameter($key);
     abstract public function setParameter($key, $value);
 
-    /**
-     * Unlike other getModel() methods, the Card object is initialized using
-     * data from the Omnipay 'card' parameter which is an object in the Omnipay
-     * domain.
-     */
     public function getCardModel()
     {
         $model = new Card();
-        $parameters = $this->getParameters();
-        if ($card = $this->getParameter('card')) {
-            $parameters = array_merge($parameters, $card->getParameters());
-        }
-        return $model->initialize($parameters);
+        return $model->initialize($this->getParameters());
     }
 
     public function getCardNumber()
