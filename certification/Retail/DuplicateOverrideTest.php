@@ -31,7 +31,7 @@ class DuplicateOverrideTest extends CertificationTestCase
     public function testVisaOverrideDuplicateSale()
     {
         // First create a sale.
-        $response = $this->gw->creditCardPurchase($this->optsRetailSwiped([
+        $response = $this->gw->creditCardSale($this->optsRetailSwiped([
             'TransactionAmount'       => '0.23',
             'ReferenceNumber'         => uniqid(),
             'TicketNumber'            => uniqid(),
@@ -49,7 +49,7 @@ class DuplicateOverrideTest extends CertificationTestCase
         ]);
 
         // Run it again with duplicate override set to true.
-        $response = $this->gw->creditCardPurchase($this->optsRetailSwiped([
+        $response = $this->gw->creditCardSale($this->optsRetailSwiped([
             'TransactionAmount'       => '0.23',
             'ReferenceNumber'         => uniqid(),
             'TicketNumber'            => uniqid(),
@@ -71,7 +71,7 @@ class DuplicateOverrideTest extends CertificationTestCase
     public function testVisaDuplicateCheckDisabled()
     {
         // First create a sale.
-        $response = $this->gw->creditCardPurchase($this->optsRetailSwiped([
+        $response = $this->gw->creditCardSale($this->optsRetailSwiped([
             'TransactionAmount'       => '0.23',
             'ReferenceNumber'         => uniqid(),
             'TicketNumber'            => uniqid(),
@@ -89,7 +89,7 @@ class DuplicateOverrideTest extends CertificationTestCase
         ]);
 
         // Run it again with duplicate checks disabled set to true.
-        $response = $this->gw->creditCardPurchase($this->optsRetailSwiped([
+        $response = $this->gw->creditCardSale($this->optsRetailSwiped([
             'TransactionAmount'         => '0.23',
             'ReferenceNumber'           => uniqid(),
             'TicketNumber'              => uniqid(),
