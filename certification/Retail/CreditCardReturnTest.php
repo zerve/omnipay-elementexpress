@@ -48,7 +48,7 @@ class CreditCardReturnTest extends CertificationTestCase
         ]);
 
         // Perform a full return on the previous sale.
-        $response = $this->gw->creditCardReturn($this->optsRetailSwiped([
+        $response = $this->gw->creditCardReturn($this->optsRetailKeyed([
             'TransactionAmount' => '3.20',
             'ReferenceNumber'   => uniqid(),
             'TicketNumber'      => uniqid(),
@@ -85,7 +85,7 @@ class CreditCardReturnTest extends CertificationTestCase
         ]);
 
         // Perform a full return on the previous sale.
-        $response = $this->gw->creditCardReturn($this->optsRetailSwiped([
+        $response = $this->gw->creditCardReturn($this->optsRetailKeyed([
             'TransactionAmount' => '2.25',
             'ReferenceNumber'   => uniqid(),
             'TicketNumber'      => uniqid(),

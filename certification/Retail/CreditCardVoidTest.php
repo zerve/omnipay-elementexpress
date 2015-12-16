@@ -41,7 +41,7 @@ class CreditCardVoidTest extends CertificationTestCase
         $this->assertSame("0", $response->getCode());
 
         // Then void the sale
-        $response = $this->gw->creditCardVoid($this->optsRetailSwiped([
+        $response = $this->gw->creditCardVoid($this->optsRetailKeyed([
             'ReferenceNumber' => uniqid(),
             'TicketNumber'    => uniqid(),
             'TransactionID'   => $response->getTransactionId()
@@ -70,7 +70,7 @@ class CreditCardVoidTest extends CertificationTestCase
         $this->assertSame("0", $response->getCode());
 
         // Perform a full return on the previous sale.
-        $response = $this->gw->creditCardReturn($this->optsRetailSwiped([
+        $response = $this->gw->creditCardReturn($this->optsRetailKeyed([
             'TransactionAmount' => '100.01',
             'ReferenceNumber'   => uniqid(),
             'TicketNumber'      => uniqid(),
@@ -79,7 +79,7 @@ class CreditCardVoidTest extends CertificationTestCase
         $this->assertSame("0", $response->getCode());
 
         // Then void the return
-        $response = $this->gw->creditCardVoid($this->optsRetailSwiped([
+        $response = $this->gw->creditCardVoid($this->optsRetailKeyed([
             'ReferenceNumber' => uniqid(),
             'TicketNumber'    => uniqid(),
             'TransactionID'   => $response->getTransactionId()
@@ -109,7 +109,7 @@ class CreditCardVoidTest extends CertificationTestCase
         $this->assertSame("0", $response->getCode());
 
         // Then void the credit
-        $response = $this->gw->creditCardVoid($this->optsRetailSwiped([
+        $response = $this->gw->creditCardVoid($this->optsRetailKeyed([
             'ReferenceNumber' => uniqid(),
             'TicketNumber'    => uniqid(),
             'TransactionID'   => $response->getTransactionId()
