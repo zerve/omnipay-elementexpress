@@ -31,9 +31,9 @@ class CreditCardCreditTest extends CertificationTestCase
 
     public function testVisaSwipedEncryptedTrack1Data()
     {
-        $response = $this->gw->expressCredit($this->optsRetailSwiped([
-            'amount'                  => '5.20',
-            'transactionId'           => uniqid(),
+        $response = $this->gw->creditCardCredit($this->optsRetailSwiped([
+            'TransactionAmount'       => '5.20',
+            'ReferenceNumber'         => uniqid(),
             'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
@@ -45,15 +45,15 @@ class CreditCardCreditTest extends CertificationTestCase
             'Visa Swiped (EncryptedTrack1Data)',
             '5.20',
             $response->getCode(),
-            $response->getTransactionReference()
+            $response->getTransactionId()
         ]);
     }
 
     public function testVisaSwipedEncryptedTrack2Data()
     {
-        $response = $this->gw->expressCredit($this->optsRetailSwiped([
-            'amount'                  => '5.21',
-            'transactionId'           => uniqid(),
+        $response = $this->gw->creditCardCredit($this->optsRetailSwiped([
+            'TransactionAmount'       => '5.21',
+            'ReferenceNumber'         => uniqid(),
             'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
@@ -65,22 +65,22 @@ class CreditCardCreditTest extends CertificationTestCase
             'Visa Swiped (EncryptedTrack2Data)',
             '5.21',
             $response->getCode(),
-            $response->getTransactionReference()
+            $response->getTransactionId()
         ]);
     }
 
     public function testVisaKeyedMagstripeFailureCardNumber()
     {
-        $response = $this->gw->expressCredit($this->optsRetailKeyed([
-            'amount'          => '5.26',
-            'transactionId'   => uniqid(),
-            'TicketNumber'    => uniqid(),
-            'CVVPresenceCode' => CVVPresenceCode::PROVIDED(),
-            'card'            => [
-                'number'          => getenv('VISA_CARD_NUMBER'),
-                'expiryMonth'     => getenv('VISA_EXPIRATION_MONTH'),
-                'expiryYear'      => getenv('VISA_EXPIRATION_YEAR'),
-                'cvv'             => rand(100, 999),
+        $response = $this->gw->creditCardCredit($this->optsRetailKeyed([
+            'TransactionAmount' => '5.26',
+            'ReferenceNumber'   => uniqid(),
+            'TicketNumber'      => uniqid(),
+            'CVVPresenceCode'   => CVVPresenceCode::PROVIDED(),
+            'card'              => [
+                'CardNumber'      => getenv('VISA_CARD_NUMBER'),
+                'ExpirationMonth' => getenv('VISA_EXPIRATION_MONTH'),
+                'ExpirationYear'  => getenv('VISA_EXPIRATION_YEAR'),
+                'CVV'             => rand(100, 999),
             ]
         ]))->send();
         $this->assertSame("0", $response->getCode());
@@ -89,14 +89,14 @@ class CreditCardCreditTest extends CertificationTestCase
             'Visa Keyed Magstripe Failure (CardNumber)',
             '5.26',
             $response->getCode(),
-            $response->getTransactionReference()
+            $response->getTransactionId()
         ]);
     }
 
     public function testVisaPaymentAccountId()
     {
         // First create a card token
-        $response = $this->gw->createCard([
+        $response = $this->gw->paymentAccountCreate([
             'PaymentAccountType'            => PaymentAccountType::CREDIT_CARD(),
             'PaymentAccountReferenceNumber' => uniqid(),
             'CardDataKeySerialNumber'       => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
@@ -106,11 +106,11 @@ class CreditCardCreditTest extends CertificationTestCase
         $this->assertSame("0", $response->getCode());
 
         // Then credit the card using the token
-        $response = $this->gw->expressCredit($this->optsRetailKeyed([
-            'amount'        => '5.27',
-            'transactionId' => uniqid(),
-            'TicketNumber'  => uniqid(),
-            'cardReference' => $response->getCardReference(),
+        $response = $this->gw->creditCardCredit($this->optsRetailKeyed([
+            'TransactionAmount' => '5.27',
+            'ReferenceNumber'   => uniqid(),
+            'TicketNumber'      => uniqid(),
+            'PaymentAccountID'  => $response->getPaymentAccountId(),
         ]))->send();
         $this->assertSame("0", $response->getCode());
 
@@ -118,7 +118,7 @@ class CreditCardCreditTest extends CertificationTestCase
             'Visa (Payment Account ID)',
             '5.27',
             $response->getCode(),
-            $response->getTransactionReference()
+            $response->getTransactionId()
         ]);
     }
 }

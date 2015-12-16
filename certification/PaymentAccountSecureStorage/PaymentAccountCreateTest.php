@@ -30,14 +30,14 @@ class PaymentAccountCreateTest extends CertificationTestCase
 
     public function testVisaSwipedEncryptedTrack1Data()
     {
-        $response = $this->gw->createCard([
+        $response = $this->gw->paymentAccountCreate([
             'PaymentAccountType'            => PaymentAccountType::CREDIT_CARD(),
             'PaymentAccountReferenceNumber' => uniqid(),
             'CardDataKeySerialNumber'       => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'               => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
             'EncryptedTrack1Data'           => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
             'card' => [
-                'billingPostcode' => '90210'
+                'BillingZipcode'  => '90210'
             ]
         ])->send();
         $this->assertSame("0", $response->getCode());
@@ -51,14 +51,14 @@ class PaymentAccountCreateTest extends CertificationTestCase
 
     public function testVisaSwipedEncryptedTrack2Data()
     {
-        $response = $this->gw->createCard([
+        $response = $this->gw->paymentAccountCreate([
             'PaymentAccountType'            => PaymentAccountType::CREDIT_CARD(),
             'PaymentAccountReferenceNumber' => uniqid(),
             'CardDataKeySerialNumber'       => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'               => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
             'EncryptedTrack2Data'           => getenv('VISA_ENCRYPTED_TRACK2_DATA'),
             'card' => [
-                'billingPostcode' => '90210'
+                'BillingZipcode'  => '90210'
             ]
         ])->send();
         $this->assertSame("0", $response->getCode());
@@ -72,15 +72,15 @@ class PaymentAccountCreateTest extends CertificationTestCase
 
     public function testVisaKeyedCardNumber()
     {
-        $response = $this->gw->createCard([
+        $response = $this->gw->paymentAccountCreate([
             'PaymentAccountType'            => PaymentAccountType::CREDIT_CARD(),
             'PaymentAccountReferenceNumber' => uniqid(),
             'card' => [
-                'number'          => getenv('VISA_CARD_NUMBER'),
-                'billingPostcode' => '90210',
-                'expiryMonth'     => getenv('VISA_EXPIRATION_MONTH'),
-                'expiryYear'      => getenv('VISA_EXPIRATION_YEAR'),
-                'cvv'             => rand(100, 999),
+                'CardNumber'      => getenv('VISA_CARD_NUMBER'),
+                'BillingZipcode'  => '90210',
+                'ExpirationMonth' => getenv('VISA_EXPIRATION_MONTH'),
+                'ExpirationYear'  => getenv('VISA_EXPIRATION_YEAR'),
+                'CVV'             => rand(100, 999),
             ]
         ])->send();
         $this->assertSame("0", $response->getCode());

@@ -32,24 +32,24 @@ class TransactionsWithPaymentAccountIdTest extends CertificationTestCase
     public function testCreditCardSaleVisaOneTime()
     {
         // Create a card token
-        $response = $this->gw->createCard([
+        $response = $this->gw->paymentAccountCreate([
             'PaymentAccountType'            => PaymentAccountType::CREDIT_CARD(),
             'PaymentAccountReferenceNumber' => uniqid(),
             'CardDataKeySerialNumber'       => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'               => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
             'EncryptedTrack1Data'           => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
             'card' => [
-                'billingPostcode' => '90210'
+                'BillingZipcode' => '90210'
             ]
         ])->send();
         $this->assertSame("0", $response->getCode());
 
         // Perform a CreditCardSale with the token
-        $response = $this->gw->purchase($this->optsRetailKeyed([
-            'amount'        => '1.81',
-            'transactionId' => uniqid(),
-            'TicketNumber'  => uniqid(),
-            'cardReference' => $response->getCardReference(),
+        $response = $this->gw->creditCardSale($this->optsRetailKeyed([
+            'TransactionAmount' => '1.81',
+            'ReferenceNumber'   => uniqid(),
+            'TicketNumber'      => uniqid(),
+            'PaymentAccountID'  => $response->getPaymentAccountId(),
         ]))->send();
         $this->assertSame("0", $response->getCode());
 
@@ -57,31 +57,31 @@ class TransactionsWithPaymentAccountIdTest extends CertificationTestCase
             'CreditCardSale (Visa-one time)',
             '1.81',
             $response->getCode(),
-            $response->getTransactionReference()
+            $response->getTransactionId()
         ]);
     }
 
     public function testCreditCardSaleMastercardOneTime()
     {
         // Create a card token
-        $response = $this->gw->createCard([
+        $response = $this->gw->paymentAccountCreate([
             'PaymentAccountType'            => PaymentAccountType::CREDIT_CARD(),
             'PaymentAccountReferenceNumber' => uniqid(),
             'CardDataKeySerialNumber'       => getenv('MASTERCARD_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'               => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
             'EncryptedTrack1Data'           => getenv('MASTERCARD_ENCRYPTED_TRACK1_DATA'),
             'card' => [
-                'billingPostcode' => '90210'
+                'BillingZipcode' => '90210'
             ]
         ])->send();
         $this->assertSame("0", $response->getCode());
 
         // Perform a CreditCardSale with the token
-        $response = $this->gw->purchase($this->optsRetailKeyed([
-            'amount'        => '1.82',
-            'transactionId' => uniqid(),
-            'TicketNumber'  => uniqid(),
-            'cardReference' => $response->getCardReference(),
+        $response = $this->gw->creditCardSale($this->optsRetailKeyed([
+            'TransactionAmount' => '1.82',
+            'ReferenceNumber'   => uniqid(),
+            'TicketNumber'      => uniqid(),
+            'PaymentAccountID'  => $response->getPaymentAccountId(),
         ]))->send();
         $this->assertSame("0", $response->getCode());
 
@@ -89,43 +89,43 @@ class TransactionsWithPaymentAccountIdTest extends CertificationTestCase
             'CreditCardSale (MasterCard-one time)',
             '1.82',
             $response->getCode(),
-            $response->getTransactionReference()
+            $response->getTransactionId()
         ]);
     }
 
     public function testCreditCardReversalVisa()
     {
         // Create a card token
-        $response = $this->gw->createCard([
+        $response = $this->gw->paymentAccountCreate([
             'PaymentAccountType'            => PaymentAccountType::CREDIT_CARD(),
             'PaymentAccountReferenceNumber' => uniqid(),
             'CardDataKeySerialNumber'       => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'               => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
             'EncryptedTrack1Data'           => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
             'card' => [
-                'billingPostcode' => '90210'
+                'BillingZipcode' => '90210'
             ]
         ])->send();
         $this->assertSame("0", $response->getCode());
 
-        $cardReference = $response->getCardReference();
+        $paymentAccountId = $response->getPaymentAccountId();
 
         // Create a CreditCardSale to reverse.
-        $response = $this->gw->purchase($this->optsRetailKeyed([
-            'amount'        => '1.85',
-            'transactionId' => uniqid(),
-            'TicketNumber'  => uniqid(),
-            'cardReference' => $cardReference,
+        $response = $this->gw->creditCardSale($this->optsRetailKeyed([
+            'TransactionAmount' => '1.85',
+            'ReferenceNumber'   => uniqid(),
+            'TicketNumber'      => uniqid(),
+            'PaymentAccountID'  => $paymentAccountId,
         ]))->send();
         $this->assertSame("0", $response->getCode());
 
         // Reverse the CreditCardSale
-        $response = $this->gw->expressReversal($this->optsRetailKeyed([
-            'amount'        => '1.85',
-            'transactionId' => uniqid(),
-            'TicketNumber'  => uniqid(),
-            'ReversalType'  => ReversalType::SYSTEM(),
-            'cardReference' => $cardReference,
+        $response = $this->gw->creditCardReversal($this->optsRetailKeyed([
+            'TransactionAmount' => '1.85',
+            'ReferenceNumber'   => uniqid(),
+            'TicketNumber'      => uniqid(),
+            'ReversalType'      => ReversalType::SYSTEM(),
+            'PaymentAccountID'  => $paymentAccountId,
         ]))->send();
         $this->assertSame("0", $response->getCode());
 
@@ -133,42 +133,42 @@ class TransactionsWithPaymentAccountIdTest extends CertificationTestCase
             'CreditCardReversal (Visa)',
             '1.85',
             $response->getCode(),
-            $response->getTransactionReference()
+            $response->getTransactionId()
         ]);
     }
 
     public function testCreditCardCreditVisa()
     {
         // Create a card token
-        $response = $this->gw->createCard([
+        $response = $this->gw->paymentAccountCreate([
             'PaymentAccountType'            => PaymentAccountType::CREDIT_CARD(),
             'PaymentAccountReferenceNumber' => uniqid(),
             'CardDataKeySerialNumber'       => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'               => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
             'EncryptedTrack1Data'           => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
             'card' => [
-                'billingPostcode' => '90210'
+                'BillingZipcode' => '90210'
             ]
         ])->send();
         $this->assertSame("0", $response->getCode());
 
-        $cardReference = $response->getCardReference();
+        $paymentAccountId = $response->getPaymentAccountId();
 
         // Create a CreditCardSale to credit.
-        $response = $this->gw->purchase($this->optsRetailKeyed([
-            'amount'        => '1.93',
-            'transactionId' => uniqid(),
-            'TicketNumber'  => uniqid(),
-            'cardReference' => $cardReference,
+        $response = $this->gw->creditCardSale($this->optsRetailKeyed([
+            'TransactionAmount' => '1.93',
+            'ReferenceNumber'   => uniqid(),
+            'TicketNumber'      => uniqid(),
+            'PaymentAccountID'  => $paymentAccountId,
         ]))->send();
         $this->assertSame("0", $response->getCode());
 
         // Credit the CreditCardSale amount back to the card
-        $response = $this->gw->expressCredit($this->optsRetailKeyed([
-            'amount'        => '1.93',
-            'transactionId' => uniqid(),
-            'TicketNumber'  => uniqid(),
-            'cardReference' => $cardReference,
+        $response = $this->gw->creditCardCredit($this->optsRetailKeyed([
+            'TransactionAmount' => '1.93',
+            'ReferenceNumber'   => uniqid(),
+            'TicketNumber'      => uniqid(),
+            'PaymentAccountID'  => $paymentAccountId,
         ]))->send();
         $this->assertSame("0", $response->getCode());
 
@@ -176,7 +176,7 @@ class TransactionsWithPaymentAccountIdTest extends CertificationTestCase
             'CreditCardCredit (Visa)',
             '1.93',
             $response->getCode(),
-            $response->getTransactionReference()
+            $response->getTransactionId()
         ]);
     }
 }

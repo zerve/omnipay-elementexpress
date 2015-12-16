@@ -224,8 +224,8 @@ class CertificationTestCase extends \PHPUnit_Framework_TestCase
         return sprintf("+-%'-44s-+-%'-6s-+-%'-8s-+-%'-10s-+\n", '-', '-', '-', '-');
     }
 
-    protected static function dataRow($description, $amount, $response, $transactionReference)
+    protected static function dataRow($description, $amount, $response, $reference)
     {
-        return sprintf("| %-44s | %6s | %8s | %10s |\n", $description, $amount, $response, $transactionReference);
+        return sprintf("| %-44s | %6s | %8s | %10s |\n", $description, $amount, $response, $reference);
     }
 }

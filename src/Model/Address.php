@@ -24,52 +24,44 @@ class Address extends AbstractModel
     public function getDefaultParameters()
     {
         return [
-
-            // Elements corresponding directly with standard Omnipay parameter
-            // names use those same names here instead of ElementExpress names.
-
-            'billingName'      => '',
-            'billingPhone'     => '',
-            'billingAddress1'  => '',
-            'billingAddress2'  => '',
-            'billingCity'      => '',
-            'billingState'     => '',
-            'billingPostcode'  => '',
-            'shippingName'     => '',
-            'shippingPhone'    => '',
-            'shippingAddress1' => '',
-            'shippingAddress2' => '',
-            'shippingCity'     => '',
-            'shippingState'    => '',
-            'shippingPostcode' => '',
-
-            // Remaining elements correspond to ElementExpress parameters.
-
+            'BillingName'      => '',
             'BillingEmail'     => '',
+            'BillingPhone'     => '',
+            'BillingAddress1'  => '',
+            'BillingAddress2'  => '',
+            'BillingCity'      => '',
+            'BillingState'     => '',
+            'BillingZipcode'   => '',
+            'ShippingName'     => '',
             'ShippingEmail'    => '',
-
+            'ShippingPhone'    => '',
+            'ShippingAddress1' => '',
+            'ShippingAddress2' => '',
+            'ShippingCity'     => '',
+            'ShippingState'    => '',
+            'ShippingZipcode'  => '',
         ];
     }
 
     public function appendToDom(\DOMNode $parent)
     {
         $node = $parent->appendChild(new \DOMElement('Address'));
-        $node->appendChild(new \DOMElement('BillingName', $this['billingName']));
+        $node->appendChild(new \DOMElement('BillingName', $this['BillingName']));
         $node->appendChild(new \DOMElement('BillingEmail', $this['BillingEmail']));
-        $node->appendChild(new \DOMElement('BillingPhone', $this['billingPhone']));
-        $node->appendChild(new \DOMElement('BillingAddress1', $this['billingAddress1']));
-        $node->appendChild(new \DOMElement('BillingAddress2', $this['billingAddress2']));
-        $node->appendChild(new \DOMElement('BillingCity', $this['billingCity']));
-        $node->appendChild(new \DOMElement('BillingState', $this['billingState']));
-        $node->appendChild(new \DOMElement('BillingZipcode', $this['billingPostcode']));
-        $node->appendChild(new \DOMElement('ShippingName', $this['shippingName']));
+        $node->appendChild(new \DOMElement('BillingPhone', $this['BillingPhone']));
+        $node->appendChild(new \DOMElement('BillingAddress1', $this['BillingAddress1']));
+        $node->appendChild(new \DOMElement('BillingAddress2', $this['BillingAddress2']));
+        $node->appendChild(new \DOMElement('BillingCity', $this['BillingCity']));
+        $node->appendChild(new \DOMElement('BillingState', $this['BillingState']));
+        $node->appendChild(new \DOMElement('BillingZipcode', $this['BillingZipcode']));
+        $node->appendChild(new \DOMElement('ShippingName', $this['ShippingName']));
         $node->appendChild(new \DOMElement('ShippingEmail', $this['ShippingEmail']));
-        $node->appendChild(new \DOMElement('ShippingPhone', $this['shippingPhone']));
-        $node->appendChild(new \DOMElement('ShippingAddress1', $this['shippingAddress1']));
-        $node->appendChild(new \DOMElement('ShippingAddress2', $this['shippingAddress2']));
-        $node->appendChild(new \DOMElement('ShippingCity', $this['shippingCity']));
-        $node->appendChild(new \DOMElement('ShippingState', $this['shippingState']));
-        $node->appendChild(new \DOMElement('ShippingZipcode', $this['shippingPostcode']));
+        $node->appendChild(new \DOMElement('ShippingPhone', $this['ShippingPhone']));
+        $node->appendChild(new \DOMElement('ShippingAddress1', $this['ShippingAddress1']));
+        $node->appendChild(new \DOMElement('ShippingAddress2', $this['ShippingAddress2']));
+        $node->appendChild(new \DOMElement('ShippingCity', $this['ShippingCity']));
+        $node->appendChild(new \DOMElement('ShippingState', $this['ShippingState']));
+        $node->appendChild(new \DOMElement('ShippingZipcode', $this['ShippingZipcode']));
     }
 
     /**
@@ -81,79 +73,78 @@ class Address extends AbstractModel
      */
     public function validate()
     {
-        if (strlen($this['billingName']) && !preg_match('/^.{1,100}$/', $this['billingName'])) {
-            throw new InvalidRequestException('billingName should have 100 or fewer characters');
+        if (strlen($this['BillingName']) && !preg_match('/^.{1,100}$/', $this['BillingName'])) {
+            throw new InvalidRequestException('BillingName should have 100 or fewer characters');
         }
 
-        if (strlen($this['billingPhone']) && !preg_match('/^.{1,20}$/', $this['billingPhone'])) {
-            throw new InvalidRequestException('billingPhone should have 20 or fewer characters');
-        }
-
-        if (strlen($this['billingEmail'])) {
-            if (!preg_match('/^.{1,80}$/', $this['billingEmail'])) {
-                throw new InvalidRequestException('billingEmail should have 80 or fewer characters');
+        if (strlen($this['BillingEmail'])) {
+            if (!preg_match('/^.{1,80}$/', $this['BillingEmail'])) {
+                throw new InvalidRequestException('BillingEmail should have 80 or fewer characters');
             }
-            if (!filter_var($this['billingEmail'], FILTER_VALIDATE_EMAIL)) {
-                throw new InvalidRequestException('billingEmail is invalid');
+            if (!filter_var($this['BillingEmail'], FILTER_VALIDATE_EMAIL)) {
+                throw new InvalidRequestException('BillingEmail is invalid');
             }
         }
 
-        if (strlen($this['billingAddress1']) && !preg_match('/^.{1,50}$/', $this['billingAddress1'])) {
-            throw new InvalidRequestException('billingAddress1 should have 50 or fewer characters');
+        if (strlen($this['BillingPhone']) && !preg_match('/^.{1,20}$/', $this['BillingPhone'])) {
+            throw new InvalidRequestException('BillingPhone should have 20 or fewer characters');
         }
 
-        if (strlen($this['billingAddress2']) && !preg_match('/^.{1,50}$/', $this['billingAddress2'])) {
-            throw new InvalidRequestException('billingAddress2 should have 50 or fewer characters');
+        if (strlen($this['BillingAddress1']) && !preg_match('/^.{1,50}$/', $this['BillingAddress1'])) {
+            throw new InvalidRequestException('BillingAddress1 should have 50 or fewer characters');
         }
 
-        if (strlen($this['billingCity']) && !preg_match('/^.{1,40}$/', $this['billingCity'])) {
-            throw new InvalidRequestException('billingCity should have 40 or fewer characters');
+        if (strlen($this['BillingAddress2']) && !preg_match('/^.{1,50}$/', $this['BillingAddress2'])) {
+            throw new InvalidRequestException('BillingAddress2 should have 50 or fewer characters');
         }
 
-        if (strlen($this['billingState']) && !preg_match('/^.{1,30}$/', $this['billingState'])) {
-            throw new InvalidRequestException('billingState should have 30 or fewer characters');
+        if (strlen($this['BillingCity']) && !preg_match('/^.{1,40}$/', $this['BillingCity'])) {
+            throw new InvalidRequestException('BillingCity should have 40 or fewer characters');
         }
 
-        if (strlen($this['billingPostcode']) && !preg_match('/^.{1,20}$/', $this['billingPostcode'])) {
-            throw new InvalidRequestException('billingPostcode should have 20 or fewer characters');
+        if (strlen($this['BillingState']) && !preg_match('/^.{1,30}$/', $this['BillingState'])) {
+            throw new InvalidRequestException('BillingState should have 30 or fewer characters');
         }
 
-        if (strlen($this['shippingName']) && !preg_match('/^.{1,100}$/', $this['shippingName'])) {
-            throw new InvalidRequestException('shippingName should have 100 or fewer characters');
+        if (strlen($this['BillingZipcode']) && !preg_match('/^.{1,20}$/', $this['BillingZipcode'])) {
+            throw new InvalidRequestException('BillingZipcode should have 20 or fewer characters');
         }
 
-        if (strlen($this['shippingPhone']) && !preg_match('/^.{1,20}$/', $this['shippingPhone'])) {
-            throw new InvalidRequestException('shippingPhone should have 20 or fewer characters');
+        if (strlen($this['ShippingName']) && !preg_match('/^.{1,100}$/', $this['ShippingName'])) {
+            throw new InvalidRequestException('ShippingName should have 100 or fewer characters');
         }
 
-        if (strlen($this['shippingEmail'])) {
-            if (!preg_match('/^.{1,80}$/', $this['shippingEmail'])) {
-                throw new InvalidRequestException('shippingEmail should have 80 or fewer characters');
+        if (strlen($this['ShippingEmail'])) {
+            if (!preg_match('/^.{1,80}$/', $this['ShippingEmail'])) {
+                throw new InvalidRequestException('ShippingEmail should have 80 or fewer characters');
             }
-            if (!filter_var($this['shippingEmail'], FILTER_VALIDATE_EMAIL)) {
-                throw new InvalidRequestException('shippingEmail is invalid');
+            if (!filter_var($this['ShippingEmail'], FILTER_VALIDATE_EMAIL)) {
+                throw new InvalidRequestException('ShippingEmail is invalid');
             }
         }
 
-        if (strlen($this['shippingAddress1']) && !preg_match('/^.{1,50}$/', $this['shippingAddress1'])) {
-            throw new InvalidRequestException('shippingAddress1 should have 50 or fewer characters');
+        if (strlen($this['ShippingPhone']) && !preg_match('/^.{1,20}$/', $this['ShippingPhone'])) {
+            throw new InvalidRequestException('ShippingPhone should have 20 or fewer characters');
         }
 
-        if (strlen($this['shippingAddress2']) && !preg_match('/^.{1,50}$/', $this['shippingAddress2'])) {
-            throw new InvalidRequestException('shippingAddress2 should have 50 or fewer characters');
+        if (strlen($this['ShippingAddress1']) && !preg_match('/^.{1,50}$/', $this['ShippingAddress1'])) {
+            throw new InvalidRequestException('ShippingAddress1 should have 50 or fewer characters');
         }
 
-        if (strlen($this['shippingCity']) && !preg_match('/^.{1,40}$/', $this['shippingCity'])) {
-            throw new InvalidRequestException('shippingCity should have 40 or fewer characters');
+        if (strlen($this['ShippingAddress2']) && !preg_match('/^.{1,50}$/', $this['ShippingAddress2'])) {
+            throw new InvalidRequestException('ShippingAddress2 should have 50 or fewer characters');
         }
 
-        if (strlen($this['shippingState']) && !preg_match('/^.{1,30}$/', $this['shippingState'])) {
-            throw new InvalidRequestException('shippingState should have 30 or fewer characters');
+        if (strlen($this['ShippingCity']) && !preg_match('/^.{1,40}$/', $this['ShippingCity'])) {
+            throw new InvalidRequestException('ShippingCity should have 40 or fewer characters');
         }
 
-        if (strlen($this['shippingPostcode']) && !preg_match('/^.{1,20}$/', $this['shippingPostcode'])) {
-            throw new InvalidRequestException('shippingPostcode should have 20 or fewer characters');
+        if (strlen($this['ShippingState']) && !preg_match('/^.{1,30}$/', $this['ShippingState'])) {
+            throw new InvalidRequestException('ShippingState should have 30 or fewer characters');
         }
 
+        if (strlen($this['ShippingZipcode']) && !preg_match('/^.{1,20}$/', $this['ShippingZipcode'])) {
+            throw new InvalidRequestException('ShippingZipcode should have 20 or fewer characters');
+        }
     }
 }

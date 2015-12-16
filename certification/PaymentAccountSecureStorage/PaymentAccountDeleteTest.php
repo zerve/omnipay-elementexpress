@@ -31,21 +31,21 @@ class PaymentAccountDeleteTest extends CertificationTestCase
     public function testDeletePaymentAccountVisa()
     {
         // Create a card token
-        $response = $this->gw->createCard([
+        $response = $this->gw->paymentAccountCreate([
             'PaymentAccountType'            => PaymentAccountType::CREDIT_CARD(),
             'PaymentAccountReferenceNumber' => uniqid(),
             'CardDataKeySerialNumber'       => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'               => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
             'EncryptedTrack1Data'           => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
             'card' => [
-                'billingPostcode' => '90210'
+                'BillingZipcode' => '90210'
             ]
         ])->send();
         $this->assertSame("0", $response->getCode());
 
         // Delete PaymentAccount
         $response = $this->gw->paymentAccountDelete([
-            'cardReference' => $response->getCardReference(),
+            'PaymentAccountID' => $response->getPaymentAccountId(),
         ])->send();
         $this->assertSame("0", $response->getCode());
 

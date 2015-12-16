@@ -30,9 +30,9 @@ class CreditCardReturnTest extends CertificationTestCase
     public function testVisaFullCreditCardReturn()
     {
         // First create a sale.
-        $response = $this->gw->purchase($this->optsRetailSwiped([
-            'amount'                  => '3.20',
-            'transactionId'           => uniqid(),
+        $response = $this->gw->creditCardSale($this->optsRetailSwiped([
+            'TransactionAmount'       => '3.20',
+            'ReferenceNumber'         => uniqid(),
             'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
@@ -44,15 +44,15 @@ class CreditCardReturnTest extends CertificationTestCase
             'Visa (Sale)',
             '3.20',
             $response->getCode(),
-            $response->getTransactionReference()
+            $response->getTransactionId()
         ]);
 
         // Perform a full return on the previous sale.
-        $response = $this->gw->expressReturn($this->optsRetailSwiped([
-            'amount'                  => '3.20',
-            'transactionId'           => uniqid(),
-            'TicketNumber'            => uniqid(),
-            'transactionReference'    => $response->getTransactionReference(),
+        $response = $this->gw->creditCardReturn($this->optsRetailSwiped([
+            'TransactionAmount' => '3.20',
+            'ReferenceNumber'   => uniqid(),
+            'TicketNumber'      => uniqid(),
+            'TransactionID'     => $response->getTransactionId(),
         ]))->send();
         $this->assertSame("0", $response->getCode());
 
@@ -60,16 +60,16 @@ class CreditCardReturnTest extends CertificationTestCase
             'Visa (full CreditCardReturn)',
             '3.20',
             $response->getCode(),
-            $response->getTransactionReference()
+            $response->getTransactionId()
         ]);
     }
 
     public function testVisaPartialCreditCardReturn()
     {
         // First create a sale.
-        $response = $this->gw->purchase($this->optsRetailSwiped([
-            'amount'                  => '3.25',
-            'transactionId'           => uniqid(),
+        $response = $this->gw->creditCardSale($this->optsRetailSwiped([
+            'TransactionAmount'       => '3.25',
+            'ReferenceNumber'         => uniqid(),
             'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
@@ -81,15 +81,15 @@ class CreditCardReturnTest extends CertificationTestCase
             'Visa (Sale)',
             '3.25',
             $response->getCode(),
-            $response->getTransactionReference()
+            $response->getTransactionId()
         ]);
 
         // Perform a full return on the previous sale.
-        $response = $this->gw->expressReturn($this->optsRetailSwiped([
-            'amount'                  => '2.25',
-            'transactionId'           => uniqid(),
-            'TicketNumber'            => uniqid(),
-            'transactionReference'    => $response->getTransactionReference(),
+        $response = $this->gw->creditCardReturn($this->optsRetailSwiped([
+            'TransactionAmount' => '2.25',
+            'ReferenceNumber'   => uniqid(),
+            'TicketNumber'      => uniqid(),
+            'TransactionID'     => $response->getTransactionId(),
         ]))->send();
         $this->assertSame("0", $response->getCode());
 
@@ -97,7 +97,7 @@ class CreditCardReturnTest extends CertificationTestCase
             'Visa (partial CreditCardReturn)',
             '2.25',
             $response->getCode(),
-            $response->getTransactionReference()
+            $response->getTransactionId()
         ]);
     }
 }

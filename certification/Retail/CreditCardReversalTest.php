@@ -31,9 +31,9 @@ class CreditCardReversalTest extends CertificationTestCase
     public function testVisaPerformSystemReversalOfPriorSale()
     {
         // First create a sale to reverse.
-        $response = $this->gw->purchase($this->optsRetailSwiped([
-            'amount'                  => '200.00',
-            'transactionId'           => uniqid(),
+        $response = $this->gw->creditCardSale($this->optsRetailSwiped([
+            'TransactionAmount'       => '200.00',
+            'ReferenceNumber'         => uniqid(),
             'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
@@ -42,9 +42,9 @@ class CreditCardReversalTest extends CertificationTestCase
         $this->assertSame("0", $response->getCode());
 
         // Then reverse the sale
-        $response = $this->gw->expressReversal($this->optsRetailSwiped([
-            'amount'                  => '200.00',
-            'transactionId'           => uniqid(),
+        $response = $this->gw->creditCardReversal($this->optsRetailSwiped([
+            'TransactionAmount'       => '200.00',
+            'ReferenceNumber'         => uniqid(),
             'TicketNumber'            => uniqid(),
             'ReversalType'            => ReversalType::SYSTEM(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
@@ -57,16 +57,16 @@ class CreditCardReversalTest extends CertificationTestCase
             'Visa (perform System Reversal of prior Sale)',
             '200.00',
             $response->getCode(),
-            $response->getTransactionReference()
+            $response->getTransactionId()
         ]);
     }
 
     public function testVisaPerformFullReversalOfPriorSale()
     {
         // First create a sale to reverse.
-        $response = $this->gw->purchase($this->optsRetailSwiped([
-            'amount'                  => '200.01',
-            'transactionId'           => uniqid(),
+        $response = $this->gw->creditCardSale($this->optsRetailSwiped([
+            'TransactionAmount'       => '200.01',
+            'ReferenceNumber'         => uniqid(),
             'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
@@ -75,12 +75,12 @@ class CreditCardReversalTest extends CertificationTestCase
         $this->assertSame("0", $response->getCode());
 
         // Then reverse the sale
-        $response = $this->gw->expressReversal($this->optsRetailKeyed([
-            'amount'                  => '200.01',
-            'transactionId'           => uniqid(),
-            'TicketNumber'            => uniqid(),
-            'transactionReference'    => $response->getTransactionReference(),
-            'ReversalType'            => ReversalType::FULL(),
+        $response = $this->gw->creditCardReversal($this->optsRetailKeyed([
+            'TransactionAmount' => '200.01',
+            'ReferenceNumber'   => uniqid(),
+            'TicketNumber'      => uniqid(),
+            'TransactionID'     => $response->getTransactionId(),
+            'ReversalType'      => ReversalType::FULL(),
         ]))->send();
         $this->assertSame("0", $response->getCode());
 
@@ -88,7 +88,7 @@ class CreditCardReversalTest extends CertificationTestCase
             'Visa (perform Full Reversal of prior Sale)',
             '200.01',
             $response->getCode(),
-            $response->getTransactionReference()
+            $response->getTransactionId()
         ]);
     }
 }

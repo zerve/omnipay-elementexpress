@@ -31,8 +31,8 @@ class ResponseTest extends TestCase
         $this->gateway = new Gateway($this->getHttpClient(), $this->getHttpRequest());
 
         // Configure enough to pass validation.
-        $this->voidOptions = [
-            'transactionId' => '566f2ecb0780c'
+        $this->creditCardSaleOptions = [
+            'ReferenceNumber' => '566f2ecb0780c'
         ];
 
     }
@@ -48,11 +48,11 @@ class ResponseTest extends TestCase
 
     public function testResponseAccessors()
     {
-        $this->setMockHttpResponse('PurchaseSuccess.txt');
-        $response = $this->gateway->void($this->voidOptions)->send();
+        $this->setMockHttpResponse('CreditCardSaleSuccess.txt');
+        $response = $this->gateway->creditCardSale($this->creditCardSaleOptions)->send();
         $this->assertTrue($response->isSuccessful());
-        $this->assertSame('2005890590', $response->getTransactionReference());
-        $this->assertSame($this->voidOptions['transactionId'], $response->getTransactionId());
+        $this->assertSame('2005890590', $response->getTransactionId());
+        $this->assertSame($this->creditCardSaleOptions['ReferenceNumber'], $response->getReferenceNumber());
         $this->assertSame('Approved', $response->getMessage());
         $this->assertSame('0', $response->getCode());
         $this->assertSame('000004', $response->getApprovalNumber());

@@ -30,9 +30,9 @@ class CreditCardVoidTest extends CertificationTestCase
     public function testVisaPerformVoidOfPriorSale()
     {
         // First create a sale to void.
-        $response = $this->gw->purchase($this->optsRetailSwiped([
-            'amount'                  => '100.00',
-            'transactionId'           => uniqid(),
+        $response = $this->gw->creditCardSale($this->optsRetailSwiped([
+            'TransactionAmount'       => '100.00',
+            'ReferenceNumber'         => uniqid(),
             'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
@@ -41,10 +41,10 @@ class CreditCardVoidTest extends CertificationTestCase
         $this->assertSame("0", $response->getCode());
 
         // Then void the sale
-        $response = $this->gw->void($this->optsRetailSwiped([
-            'transactionId'        => uniqid(),
-            'TicketNumber'         => uniqid(),
-            'transactionReference' => $response->getTransactionReference()
+        $response = $this->gw->creditCardVoid($this->optsRetailSwiped([
+            'ReferenceNumber' => uniqid(),
+            'TicketNumber'    => uniqid(),
+            'TransactionID'   => $response->getTransactionId()
         ]))->send();
         $this->assertSame("0", $response->getCode());
 
@@ -52,16 +52,16 @@ class CreditCardVoidTest extends CertificationTestCase
             'Visa (perform Void of prior Sale)',
             '100.00',
             $response->getCode(),
-            $response->getTransactionReference()
+            $response->getTransactionId()
         ]);
     }
 
     public function testVisaPerformVoidOfPriorReturn()
     {
         // First create a sale.
-        $response = $this->gw->purchase($this->optsRetailSwiped([
-            'amount'                  => '100.01',
-            'transactionId'           => uniqid(),
+        $response = $this->gw->creditCardSale($this->optsRetailSwiped([
+            'TransactionAmount'       => '100.01',
+            'ReferenceNumber'         => uniqid(),
             'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
@@ -70,19 +70,19 @@ class CreditCardVoidTest extends CertificationTestCase
         $this->assertSame("0", $response->getCode());
 
         // Perform a full return on the previous sale.
-        $response = $this->gw->expressReturn($this->optsRetailSwiped([
-            'amount'                  => '100.01',
-            'transactionId'           => uniqid(),
-            'TicketNumber'            => uniqid(),
-            'transactionReference'    => $response->getTransactionReference(),
+        $response = $this->gw->creditCardReturn($this->optsRetailSwiped([
+            'TransactionAmount' => '100.01',
+            'ReferenceNumber'   => uniqid(),
+            'TicketNumber'      => uniqid(),
+            'TransactionID'     => $response->getTransactionId(),
         ]))->send();
         $this->assertSame("0", $response->getCode());
 
         // Then void the return
-        $response = $this->gw->void($this->optsRetailSwiped([
-            'transactionId'        => uniqid(),
-            'TicketNumber'         => uniqid(),
-            'transactionReference' => $response->getTransactionReference()
+        $response = $this->gw->creditCardVoid($this->optsRetailSwiped([
+            'ReferenceNumber' => uniqid(),
+            'TicketNumber'    => uniqid(),
+            'TransactionID'   => $response->getTransactionId()
         ]))->send();
         $this->assertSame("0", $response->getCode());
 
@@ -90,7 +90,7 @@ class CreditCardVoidTest extends CertificationTestCase
             'Visa (perform Void of prior Return)',
             '100.01',
             $response->getCode(),
-            $response->getTransactionReference()
+            $response->getTransactionId()
         ]);
 
     }
@@ -98,9 +98,9 @@ class CreditCardVoidTest extends CertificationTestCase
     public function testVisaPerformVoidOfPriorCredit()
     {
         // First create a credit to void
-        $response = $this->gw->expressCredit($this->optsRetailSwiped([
-            'amount'                  => '100.02',
-            'transactionId'           => uniqid(),
+        $response = $this->gw->creditCardCredit($this->optsRetailSwiped([
+            'TransactionAmount'       => '100.02',
+            'ReferenceNumber'         => uniqid(),
             'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
@@ -109,10 +109,10 @@ class CreditCardVoidTest extends CertificationTestCase
         $this->assertSame("0", $response->getCode());
 
         // Then void the credit
-        $response = $this->gw->void($this->optsRetailSwiped([
-            'transactionId'        => uniqid(),
-            'TicketNumber'         => uniqid(),
-            'transactionReference' => $response->getTransactionReference()
+        $response = $this->gw->creditCardVoid($this->optsRetailSwiped([
+            'ReferenceNumber' => uniqid(),
+            'TicketNumber'    => uniqid(),
+            'TransactionID'   => $response->getTransactionId()
         ]))->send();
         $this->assertSame("0", $response->getCode());
 
@@ -120,7 +120,7 @@ class CreditCardVoidTest extends CertificationTestCase
             'Visa (perform Void of prior Credit)',
             '100.02',
             $response->getCode(),
-            $response->getTransactionReference()
+            $response->getTransactionId()
         ]);
     }
 }

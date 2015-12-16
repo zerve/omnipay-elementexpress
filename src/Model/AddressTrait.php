@@ -44,146 +44,13 @@ trait AddressTrait
 
     public function getBillingName()
     {
-        return $this->getParameter('billingName');
+        return $this->getParameter('BillingName');
     }
 
     public function setBillingName($value)
     {
-        return $this->setParameter('billingName', $value);
+        return $this->setParameter('BillingName', $value);
     }
-
-    public function getBillingPhone()
-    {
-        return $this->getParameter('billingPhone');
-    }
-
-    public function setBillingPhone($value)
-    {
-        return $this->setParameter('billingPhone', $value);
-    }
-
-    public function getBillingAddress1()
-    {
-        return $this->getParameter('billingAddress1');
-    }
-
-    public function setBillingAddress1($value)
-    {
-        return $this->setParameter('billingAddress1', $value);
-    }
-
-    public function getBillingAddress2()
-    {
-        return $this->getParameter('billingAddress2');
-    }
-
-    public function setBillingAddress2($value)
-    {
-        return $this->setParameter('billingAddress2', $value);
-    }
-
-    public function getBillingCity()
-    {
-        return $this->getParameter('billingCity');
-    }
-
-    public function setBillingCity($value)
-    {
-        return $this->setParameter('billingCity', $value);
-    }
-
-    public function getBillingState()
-    {
-        return $this->getParameter('billingState');
-    }
-
-    public function setBillingState($value)
-    {
-        return $this->setParameter('billingState', $value);
-    }
-
-    public function getBillingPostcode()
-    {
-        return $this->getParameter('billingPostcode');
-    }
-
-    public function setBillingPostcode($value)
-    {
-        return $this->setParameter('billingPostcode', $value);
-    }
-
-    public function getShippingName()
-    {
-        return $this->getParameter('shippingName');
-    }
-
-    public function setShippingName($value)
-    {
-        return $this->setParameter('shippingName', $value);
-    }
-
-    public function getShippingPhone()
-    {
-        return $this->getParameter('shippingPhone');
-    }
-
-    public function setShippingPhone($value)
-    {
-        return $this->setParameter('shippingPhone', $value);
-    }
-
-    public function getShippingAddress1()
-    {
-        return $this->getParameter('shippingAddress1');
-    }
-
-    public function setShippingAddress1($value)
-    {
-        return $this->setParameter('shippingAddress1', $value);
-    }
-
-    public function getShippingAddress2()
-    {
-        return $this->getParameter('shippingAddress2');
-    }
-
-    public function setShippingAddress2($value)
-    {
-        return $this->setParameter('shippingAddress2', $value);
-    }
-
-    public function getShippingCity()
-    {
-        return $this->getParameter('shippingCity');
-    }
-
-    public function setShippingCity($value)
-    {
-        return $this->setParameter('shippingCity', $value);
-    }
-
-    public function getShippingState()
-    {
-        return $this->getParameter('shippingState');
-    }
-
-    public function setShippingState($value)
-    {
-        return $this->setParameter('shippingState', $value);
-    }
-
-    public function getShippingPostcode()
-    {
-        return $this->getParameter('shippingPostcode');
-    }
-
-    public function setShippingPostcode($value)
-    {
-        return $this->setParameter('shippingPostcode', $value);
-    }
-
-    // The following mutators/accessors correspond to parameters that are
-    // unique to the ElementExpress domain.
 
     public function getBillingEmail()
     {
@@ -195,6 +62,76 @@ trait AddressTrait
         return $this->setParameter('BillingEmail', $value);
     }
 
+    public function getBillingPhone()
+    {
+        return $this->getParameter('BillingPhone');
+    }
+
+    public function setBillingPhone($value)
+    {
+        return $this->setParameter('BillingPhone', $value);
+    }
+
+    public function getBillingAddress1()
+    {
+        return $this->getParameter('BillingAddress1');
+    }
+
+    public function setBillingAddress1($value)
+    {
+        return $this->setParameter('BillingAddress1', $value);
+    }
+
+    public function getBillingAddress2()
+    {
+        return $this->getParameter('BillingAddress2');
+    }
+
+    public function setBillingAddress2($value)
+    {
+        return $this->setParameter('BillingAddress2', $value);
+    }
+
+    public function getBillingCity()
+    {
+        return $this->getParameter('BillingCity');
+    }
+
+    public function setBillingCity($value)
+    {
+        return $this->setParameter('BillingCity', $value);
+    }
+
+    public function getBillingState()
+    {
+        return $this->getParameter('BillingState');
+    }
+
+    public function setBillingState($value)
+    {
+        return $this->setParameter('BillingState', $value);
+    }
+
+    public function getBillingZipcode()
+    {
+        return $this->getParameter('BillingZipcode');
+    }
+
+    public function setBillingZipcode($value)
+    {
+        return $this->setParameter('BillingZipcode', $value);
+    }
+
+    public function getShippingName()
+    {
+        return $this->getParameter('ShippingName');
+    }
+
+    public function setShippingName($value)
+    {
+        return $this->setParameter('ShippingName', $value);
+    }
+
     public function getShippingEmail()
     {
         return $this->getParameter('ShippingEmail');
@@ -203,5 +140,65 @@ trait AddressTrait
     public function setShippingEmail($value)
     {
         return $this->setParameter('ShippingEmail', $value);
+    }
+
+    public function getShippingPhone()
+    {
+        return $this->getParameter('ShippingPhone');
+    }
+
+    public function setShippingPhone($value)
+    {
+        return $this->setParameter('ShippingPhone', $value);
+    }
+
+    public function getShippingAddress1()
+    {
+        return $this->getParameter('ShippingAddress1');
+    }
+
+    public function setShippingAddress1($value)
+    {
+        return $this->setParameter('ShippingAddress1', $value);
+    }
+
+    public function getShippingAddress2()
+    {
+        return $this->getParameter('ShippingAddress2');
+    }
+
+    public function setShippingAddress2($value)
+    {
+        return $this->setParameter('ShippingAddress2', $value);
+    }
+
+    public function getShippingCity()
+    {
+        return $this->getParameter('ShippingCity');
+    }
+
+    public function setShippingCity($value)
+    {
+        return $this->setParameter('ShippingCity', $value);
+    }
+
+    public function getShippingState()
+    {
+        return $this->getParameter('ShippingState');
+    }
+
+    public function setShippingState($value)
+    {
+        return $this->setParameter('ShippingState', $value);
+    }
+
+    public function getShippingZipcode()
+    {
+        return $this->getParameter('ShippingZipcode');
+    }
+
+    public function setShippingZipcode($value)
+    {
+        return $this->setParameter('ShippingZipcode', $value);
     }
 }

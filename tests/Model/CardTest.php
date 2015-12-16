@@ -44,7 +44,7 @@ class CardTest extends TestCase
     public function testConditionalEncryptionParametersAbsent()
     {
         $data = [
-            'number'                  => uniqid(),
+            'CardNumber'              => uniqid(),
             'EncryptedFormat'         => EncryptedFormat::__DEFAULT(),
             'CardDataKeySerialNumber' => uniqid(),
         ];
@@ -69,9 +69,9 @@ class CardTest extends TestCase
             'EncryptedCardData'   => uniqid(),
             'Track2Data'          => uniqid(),
             'Track1Data'          => uniqid(),
-            'number'              => '4111111111111111',
-            'expiryMonth'         => '01',
-            'expiryYear'          => gmdate('Y') + 2,
+            'CardNumber'          => '4111111111111111',
+            'ExpirationMonth'     => '01',
+            'ExpirationYear'      => gmdate('Y') + 2,
         ];
 
         // Fields to look for in precedence order.
@@ -128,7 +128,7 @@ class CardTest extends TestCase
     }
 
     //
-    // expiryMonth and expiryYear Validation
+    // ExpirationMonth and ExpirationYear Validation
     //
 
     /**
@@ -137,16 +137,16 @@ class CardTest extends TestCase
     public function testCardExpirationDateValidationFails()
     {
         $card = new Card();
-        $card['expiryMonth'] = gmdate('m');
-        $card['expiryYear']  = gmdate('y') - 1;
+        $card['ExpirationMonth'] = gmdate('m');
+        $card['ExpirationYear']  = gmdate('y') - 1;
         $card->validate();
     }
 
     public function testCardExpirationDateValidationSucceeds()
     {
         $card = new Card();
-        $card['expiryMonth'] = gmdate('m');
-        $card['expiryYear']  = gmdate('y') + 1;
+        $card['ExpirationMonth'] = gmdate('m');
+        $card['ExpirationYear']  = gmdate('y') + 1;
         $card->validate();
     }
 
@@ -157,14 +157,14 @@ class CardTest extends TestCase
     public function invalidData()
     {
         return [
-            'number: too-short'                 => ['number', $this->generateValidCardNumber(11)],
-            'number: too-long'                  => ['number', $this->generateValidCardNumber(20)],
-            'number: bad-luhn'                  => ['number', $this->generateValidCardNumber(16) . "99"],
+            'CardNumber: too-short'             => ['CardNumber', $this->generateValidCardNumber(11)],
+            'CardNumber: too-long'              => ['CardNumber', $this->generateValidCardNumber(20)],
+            'CardNumber: bad-luhn'              => ['CardNumber', $this->generateValidCardNumber(16) . "99"],
             'Track1Data: too-long'              => ['Track1Data', str_repeat('x', 77)],
             'Track2Data: too-long'              => ['Track2Data', str_repeat('x', 38)],
             'MagneprintData: too-long'          => ['MagneprintData', str_repeat('x', 701)],
-            'cvv: too-long'                     => ['cvv', str_repeat('1', 5)],
-            'cvv: invalid-chars'                => ['cvv', str_repeat('x', 4)],
+            'CVV: too-long'                     => ['CVV', str_repeat('1', 5)],
+            'CVV: invalid-chars'                => ['CVV', str_repeat('x', 4)],
             'EncryptedTrack1Data: too-long'     => ['EncryptedTrack1Data', str_repeat('x', 301)],
             'EncryptedTrack2Data: too-long'     => ['EncryptedTrack2Data', str_repeat('x', 201)],
             'EncryptedCardData: too-long'       => ['EncryptedCardData', str_repeat('x', 201)],
@@ -176,13 +176,13 @@ class CardTest extends TestCase
     public function validData()
     {
         return [
-            'number: lower-bounds'                => ['number', $this->generateValidCardNumber(12)],
-            'number: upper-bounds'                => ['number', $this->generateValidCardNumber(19)],
+            'CardNumber: lower-bounds'            => ['CardNumber', $this->generateValidCardNumber(12)],
+            'CardNumber: upper-bounds'            => ['CardNumber', $this->generateValidCardNumber(19)],
             'Track1Data: max-length'              => ['Track1Data', str_repeat('x', 76)],
             'Track2Data: max-length'              => ['Track2Data', str_repeat('x', 37)],
             'MagneprintData: max-length'          => ['MagneprintData', str_repeat('x', 700)],
-            'cvv: 3-digit'                        => ['cvv', str_repeat('1', 3)],
-            'cvv: 3-digit'                        => ['cvv', str_repeat('1', 4)],
+            'CVV: 3-digit'                        => ['CVV', str_repeat('1', 3)],
+            'CVV: 3-digit'                        => ['CVV', str_repeat('1', 4)],
             'EncryptedTrack1Data: max-length'     => ['EncryptedTrack1Data', str_repeat('x', 300)],
             'EncryptedTrack2Data: max-length'     => ['EncryptedTrack2Data', str_repeat('x', 200)],
             'EncryptedCardData: max-length'       => ['EncryptedCardData', str_repeat('x', 200)],

@@ -40,52 +40,45 @@ trait CardTrait
         return $model->initialize($parameters);
     }
 
-    // The following mutators/accessors correspond to parameters that have
-    // Omnipay equivalents. These are named with the Omnipay convention and
-    // mapped to the ElementExpress domain in the model.
-
-    public function getNumber()
+    public function getCardNumber()
     {
-        return $this->getParameter('number');
+        return $this->getParameter('CardNumber');
     }
 
-    public function setNumber($value)
+    public function setCardNumber($value)
     {
-        return $this->setParameter('number', $value);
+        return $this->setParameter('CardNumber', $value);
     }
 
-    public function getExpiryMonth()
+    public function getExpirationMonth()
     {
-        return $this->getParameter('expiryMonth');
+        return $this->getParameter('ExpirationMonth');
     }
 
-    public function setExpiryMonth($value)
+    public function setExpirationMonth($value)
     {
-        return $this->setParameter('expiryMonth', $value);
+        return $this->setParameter('ExpirationMonth', $value);
     }
 
-    public function getExpiryYear()
+    public function getExpirationYear()
     {
-        return $this->getParameter('expiryYear');
+        return $this->getParameter('ExpirationYear');
     }
 
-    public function setExpiryYear($value)
+    public function setExpirationYear($value)
     {
-        return $this->setParameter('expiryYear', $value);
+        return $this->setParameter('ExpirationYear', $value);
     }
 
-    public function getCvv()
+    public function getCVV()
     {
-        return $this->getParameter('cvv');
+        return $this->getParameter('CVV');
     }
 
-    public function setCvv($value)
+    public function setCVV($value)
     {
-        return $this->setParameter('cvv', $value);
+        return $this->setParameter('CVV', $value);
     }
-
-    // The following mutators/accessors correspond to parameters that are
-    // unique to the ElementExpress domain.
 
     public function getTrack1Data()
     {

@@ -34,12 +34,12 @@ class Terminal extends AbstractModel
         return [
             'TerminalID'              => '',
             'TerminalType'            => TerminalType::UNKNOWN(),
-            'CardPresentCode'         => CardPresentCode::__DEFAULT(),
-            'CardholderPresentCode'   => CardholderPresentCode::__DEFAULT(),
-            'CardInputCode'           => CardInputCode::__DEFAULT(),
-            'CVVPresenceCode'         => CVVPresenceCode::__DEFAULT(),
             'TerminalCapabilityCode'  => TerminalCapabilityCode::__DEFAULT(),
             'TerminalEnvironmentCode' => TerminalEnvironmentCode::__DEFAULT(),
+            'CardPresentCode'         => CardPresentCode::__DEFAULT(),
+            'CVVPresenceCode'         => CVVPresenceCode::__DEFAULT(),
+            'CardInputCode'           => CardInputCode::__DEFAULT(),
+            'CardholderPresentCode'   => CardholderPresentCode::__DEFAULT(),
             'MotoECICode'             => MotoECICode::__DEFAULT(),
             'TerminalSerialNumber'    => '',
         ];
@@ -50,12 +50,12 @@ class Terminal extends AbstractModel
         $node = $parent->appendChild(new \DOMElement('Terminal'));
         $node->appendChild(new \DOMElement('TerminalID', $this['TerminalID']));
         $node->appendChild(new \DOMElement('TerminalType', $this['TerminalType']->value()));
-        $node->appendChild(new \DOMElement('CardPresentCode', $this['CardPresentCode']->value()));
-        $node->appendChild(new \DOMElement('CardholderPresentCode', $this['CardholderPresentCode']->value()));
-        $node->appendChild(new \DOMElement('CardInputCode', $this['CardInputCode']->value()));
-        $node->appendChild(new \DOMElement('CVVPresenceCode', $this['CVVPresenceCode']->value()));
         $node->appendChild(new \DOMElement('TerminalCapabilityCode', $this['TerminalCapabilityCode']->value()));
         $node->appendChild(new \DOMElement('TerminalEnvironmentCode', $this['TerminalEnvironmentCode']->value()));
+        $node->appendChild(new \DOMElement('CardPresentCode', $this['CardPresentCode']->value()));
+        $node->appendChild(new \DOMElement('CVVPresenceCode', $this['CVVPresenceCode']->value()));
+        $node->appendChild(new \DOMElement('CardInputCode', $this['CardInputCode']->value()));
+        $node->appendChild(new \DOMElement('CardholderPresentCode', $this['CardholderPresentCode']->value()));
         $node->appendChild(new \DOMElement('MotoECICode', $this['MotoECICode']->value()));
         $node->appendChild(new \DOMElement('TerminalSerialNumber', $this['TerminalSerialNumber']));
     }
@@ -77,24 +77,6 @@ class Terminal extends AbstractModel
             throw new InvalidRequestException('Invalid value for TerminalType');
         }
 
-        if (isset($this['CardPresentCode']) && !$this['CardPresentCode'] instanceof CardPresentCode) {
-            throw new InvalidRequestException('Invalid value for CardPresentCode');
-        }
-
-        if (isset($this['CardholderPresentCode'])) {
-            if (!$this['CardholderPresentCode'] instanceof CardholderPresentCode) {
-                throw new InvalidRequestException('Invalid value for CardholderPresentCode');
-            }
-        }
-
-        if (isset($this['CardInputCode']) && !$this['CardInputCode'] instanceof CardInputCode) {
-            throw new InvalidRequestException('Invalid value for CardInputCode');
-        }
-
-        if (isset($this['CVVPresenceCode']) && !$this['CVVPresenceCode'] instanceof CVVPresenceCode) {
-            throw new InvalidRequestException('Invalid value for CVVPresenceCode');
-        }
-
         if (isset($this['TerminalCapabilityCode'])) {
             if (!$this['TerminalCapabilityCode'] instanceof TerminalCapabilityCode) {
                 throw new InvalidRequestException('Invalid value for TerminalCapabilityCode');
@@ -104,6 +86,24 @@ class Terminal extends AbstractModel
         if (isset($this['TerminalEnvironmentCode'])) {
             if (!$this['TerminalEnvironmentCode'] instanceof TerminalEnvironmentCode) {
                 throw new InvalidRequestException('Invalid value for TerminalEnvironmentCode');
+            }
+        }
+
+        if (isset($this['CardPresentCode']) && !$this['CardPresentCode'] instanceof CardPresentCode) {
+            throw new InvalidRequestException('Invalid value for CardPresentCode');
+        }
+
+        if (isset($this['CVVPresenceCode']) && !$this['CVVPresenceCode'] instanceof CVVPresenceCode) {
+            throw new InvalidRequestException('Invalid value for CVVPresenceCode');
+        }
+
+        if (isset($this['CardInputCode']) && !$this['CardInputCode'] instanceof CardInputCode) {
+            throw new InvalidRequestException('Invalid value for CardInputCode');
+        }
+
+        if (isset($this['CardholderPresentCode'])) {
+            if (!$this['CardholderPresentCode'] instanceof CardholderPresentCode) {
+                throw new InvalidRequestException('Invalid value for CardholderPresentCode');
             }
         }
 

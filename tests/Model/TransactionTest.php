@@ -31,39 +31,39 @@ class TransactionTest extends TestCase
     public function invalidData()
     {
         return [
-            'amount: too-long'                    => ['amount', str_repeat('9', 11)],
-            'amount: bad-format (decimals)'       => ['amount', '1.11.1'],
-            'amount: bad-format (alpha)'          => ['amount', '1.11.1'],
-            'amount: bad-format (negative)'       => ['amount', '-1.00'],
-            'ReversalType: invalid-value'         => ['ReversalType', 0],
-            'MarketCode: invalid-value'           => ['MarketCode', 0],
-            'transactionReference: too-long'      => ['transactionReference', str_repeat('x', 11)],
-            'transactionId: too-long'             => ['transactionId', str_repeat('x', 51)],
-            'PartialApprovedFlag: non-bool'       => ['PartialApprovedFlag', '5'],
-            'DuplicateOverrideFlag: non-bool'     => ['DuplicateOverrideFlag', '5'],
-            'DuplicateCheckDisableFlag: non-bool' => ['DuplicateCheckDisableFlag', '5'],
-            'TicketNumber: too-long'              => ['TicketNumber', str_repeat('x', 51)],
+            'TransactionID: too-long'                  => ['TransactionID', str_repeat('x', 11)],
+            'TransactionAmount: too-long'              => ['TransactionAmount', str_repeat('9', 11)],
+            'TransactionAmount: bad-format (decimals)' => ['TransactionAmount', '1.11.1'],
+            'TransactionAmount: bad-format (alpha)'    => ['TransactionAmount', '1.11.1'],
+            'TransactionAmount: bad-format (negative)' => ['TransactionAmount', '-1.00'],
+            'ReferenceNumber: too-long'                => ['ReferenceNumber', str_repeat('x', 51)],
+            'ReversalType: invalid-value'              => ['ReversalType', 0],
+            'MarketCode: invalid-value'                => ['MarketCode', 0],
+            'DuplicateCheckDisableFlag: non-bool'      => ['DuplicateCheckDisableFlag', '5'],
+            'DuplicateOverrideFlag: non-bool'          => ['DuplicateOverrideFlag', '5'],
+            'TicketNumber: too-long'                   => ['TicketNumber', str_repeat('x', 51)],
+            'PartialApprovedFlag: non-bool'            => ['PartialApprovedFlag', '5'],
         ];
     }
 
     public function validData()
     {
         return [
-            'amount: max-length'               => ['amount', str_repeat('9', 10)],
-            'amount: valid (1 decimal)'        => ['amount', '1.2'],
-            'amount: valid (2 decimal)'        => ['amount', '1.25'],
-            'amount: valid (3 decimal)'        => ['amount', '1.253'],
-            'ReversalType: valid-enum'         => ['ReversalType', ReversalType::PARTIAL()],
-            'MarketCode: valid-enum'           => ['MarketCode', MarketCode::__DEFAULT()],
-            'transactionReference: max-length' => ['transactionReference', str_repeat('x', 10)],
-            'transactionId: max-length'        => ['transactionId', str_repeat('x', 50)],
-            'PartialApprovedFlag: true'        => ['PartialApprovedFlag', "1"],
-            'PartialApprovedFlag: false'       => ['PartialApprovedFlag', "0"],
-            'DuplicateOverrideFlag: true'      => ['DuplicateOverrideFlag', "1"],
-            'DuplicateOverrideFlag: false'     => ['DuplicateOverrideFlag', "0"],
-            'DuplicateCheckDisableFlag: true'  => ['DuplicateCheckDisableFlag', "1"],
-            'DuplicateCheckDisableFlag: false' => ['DuplicateCheckDisableFlag', "0"],
-            'TicketNumber: max-length'         => ['TicketNumber', str_repeat('x', 50)],
+            'TransactionID: max-length'            => ['TransactionID', str_repeat('x', 10)],
+            'TransactionAmount: max-length'        => ['TransactionAmount', str_repeat('9', 10)],
+            'TransactionAmount: valid (1 decimal)' => ['TransactionAmount', '1.2'],
+            'TransactionAmount: valid (2 decimal)' => ['TransactionAmount', '1.25'],
+            'TransactionAmount: valid (3 decimal)' => ['TransactionAmount', '1.253'],
+            'ReferenceNumber: max-length'          => ['ReferenceNumber', str_repeat('x', 50)],
+            'ReversalType: valid-enum'             => ['ReversalType', ReversalType::PARTIAL()],
+            'MarketCode: valid-enum'               => ['MarketCode', MarketCode::__DEFAULT()],
+            'DuplicateCheckDisableFlag: true'      => ['DuplicateCheckDisableFlag', "1"],
+            'DuplicateCheckDisableFlag: false'     => ['DuplicateCheckDisableFlag', "0"],
+            'DuplicateOverrideFlag: true'          => ['DuplicateOverrideFlag', "1"],
+            'DuplicateOverrideFlag: false'         => ['DuplicateOverrideFlag', "0"],
+            'TicketNumber: max-length'             => ['TicketNumber', str_repeat('x', 50)],
+            'PartialApprovedFlag: true'            => ['PartialApprovedFlag', "1"],
+            'PartialApprovedFlag: false'           => ['PartialApprovedFlag', "0"],
         ];
     }
 

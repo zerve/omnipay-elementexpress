@@ -25,14 +25,7 @@ class PaymentAccount extends AbstractModel
     public function getDefaultParameters()
     {
         return [
-
-            // Elements corresponding directly with standard Omnipay parameter
-            // names use those same names here instead of ElementExpress names.
-
-            'cardReference'                 => '', // ElementExpress "PaymentAccountID"
-
-            // Remaining elements correspond to ElementExpress parameters.
-
+            'PaymentAccountID'              => '',
             'PaymentAccountType'            => '',
             'PaymentAccountReferenceNumber' => '',
         ];
@@ -41,7 +34,7 @@ class PaymentAccount extends AbstractModel
     public function appendToDom(\DOMNode $parent)
     {
         $node = $parent->appendChild(new \DOMElement('PaymentAccount'));
-        $node->appendChild(new \DOMElement('PaymentAccountID', $this['cardReference']));
+        $node->appendChild(new \DOMElement('PaymentAccountID', $this['PaymentAccountID']));
         if (!empty($this['PaymentAccountType'])) {
             $node->appendChild(new \DOMElement('PaymentAccountType', $this['PaymentAccountType']->value()));
         }
@@ -58,8 +51,8 @@ class PaymentAccount extends AbstractModel
      */
     public function validate()
     {
-        if (strlen($this['cardReference']) && !preg_match('/^.{1,50}$/', $this['cardReference'])) {
-            throw new InvalidRequestException('cardReference should have 50 or fewer characters');
+        if (strlen($this['PaymentAccountID']) && !preg_match('/^.{1,50}$/', $this['PaymentAccountID'])) {
+            throw new InvalidRequestException('PaymentAccountID should have 50 or fewer characters');
         }
 
         if (isset($this['PaymentAccountType']) && !$this['PaymentAccountType'] instanceof PaymentAccountType) {

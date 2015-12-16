@@ -26,27 +26,18 @@ class Card extends AbstractModel
     public function getDefaultParameters()
     {
         return [
-
-            // Elements corresponding directly with standard Omnipay parameter
-            // names use those same names here instead of ElementExpress names.
-
-            'number'                  => '', // ElementExpress "CardNumber"
-            'expiryMonth'             => '', // ElementExpress "ExpirationMonth"
-            'expiryYear'              => '', // ElementExpress "ExpirationYear"
-            'cvv'                     => '', // ElementExpress "CVV"
-
-            // Remaining elements correspond to ElementExpress parameters.
-
+            'CardNumber'              => '',
+            'ExpirationMonth'         => '',
+            'ExpirationYear'          => '',
             'Track1Data'              => '',
             'Track2Data'              => '',
             'MagneprintData'          => '',
+            'CVV'                     => '',
             'EncryptedTrack1Data'     => '',
             'EncryptedTrack2Data'     => '',
             'EncryptedCardData'       => '',
-
             'CardDataKeySerialNumber' => '',
             'EncryptedFormat'         => EncryptedFormat::__DEFAULT(),
-
         ];
     }
 
@@ -56,7 +47,7 @@ class Card extends AbstractModel
 
         // Append parameters.
 
-        $node->appendChild(new \DOMElement('CVV', $this['cvv']));
+        $node->appendChild(new \DOMElement('CVV', $this['CVV']));
 
         // Only one of the following field groups needs to be included; If more
         // than one is present, they will be given the following order of
@@ -88,12 +79,12 @@ class Card extends AbstractModel
                 }
             }
 
-            if (!empty($this['number'])) {
-                $node->appendChild(new \DOMElement('CardNumber', $this['number']));
+            if (!empty($this['CardNumber'])) {
+                $node->appendChild(new \DOMElement('CardNumber', $this['CardNumber']));
             }
 
-            if (!empty($this['expiryMonth']) && !empty($this['expiryYear'])) {
-                $time = gmmktime(0, 0, 0, $this['expiryMonth'], 1, $this['expiryYear']);
+            if (!empty($this['ExpirationMonth']) && !empty($this['ExpirationYear'])) {
+                $time = gmmktime(0, 0, 0, $this['ExpirationMonth'], 1, $this['ExpirationYear']);
                 $node->appendChild(new \DOMElement('ExpirationMonth', gmdate('m', $time)));
                 $node->appendChild(new \DOMElement('ExpirationYear', gmdate('y', $time)));
             }
@@ -111,24 +102,20 @@ class Card extends AbstractModel
      */
     public function validate()
     {
-        if (strlen($this['number'])) {
-            if (!preg_match('/^\d{12,19}$/', $this['number'])) {
-                throw new InvalidRequestException('Card number should have 12 to 19 digits');
+        if (strlen($this['CardNumber'])) {
+            if (!preg_match('/^\d{12,19}$/', $this['CardNumber'])) {
+                throw new InvalidRequestException('CardNumber should have 12 to 19 digits');
             }
-            if (!Helper::validateLuhn($this['number'])) {
-                throw new InvalidRequestException('Card number is invalid');
+            if (!Helper::validateLuhn($this['CardNumber'])) {
+                throw new InvalidRequestException('CardNumber is invalid');
             }
         }
 
-        if (strlen($this['expiryMonth'] && strlen($this['expiryYear']))) {
-            $time = gmmktime(0, 0, 0, $this['expiryMonth'], 1, $this['expiryYear']);
+        if (strlen($this['ExpirationMonth'] && strlen($this['ExpirationYear']))) {
+            $time = gmmktime(0, 0, 0, $this['ExpirationMonth'], 1, $this['ExpirationYear']);
             if (gmdate('Ym', $time) < gmdate('Ym')) {
                 throw new InvalidRequestException('Card has expired');
             }
-        }
-
-        if (strlen($this['cvv']) && !preg_match('/^\d{1,4}$/', $this['cvv'])) {
-            throw new InvalidRequestException('cvv should have 4 or fewer digits');
         }
 
         if (strlen($this['Track1Data']) && !preg_match('/^.{1,76}$/', $this['Track1Data'])) {
@@ -141,6 +128,10 @@ class Card extends AbstractModel
 
         if (strlen($this['MagneprintData']) && !preg_match('/^.{1,700}$/', $this['MagneprintData'])) {
             throw new InvalidRequestException('MagneprintData should have 700 or fewer characters');
+        }
+
+        if (strlen($this['CVV']) && !preg_match('/^\d{1,4}$/', $this['CVV'])) {
+            throw new InvalidRequestException('CVV should have 4 or fewer digits');
         }
 
         if (strlen($this['EncryptedTrack1Data']) && !preg_match('/^.{1,300}$/', $this['EncryptedTrack1Data'])) {

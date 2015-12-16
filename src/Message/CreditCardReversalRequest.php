@@ -39,7 +39,6 @@ class CreditCardReversalRequest extends AbstractTransactionRequest
      */
     public function getData()
     {
-        // $this->validate('amount');
         return $this->domDocumentFactory('CreditCardReversal');
     }
 }

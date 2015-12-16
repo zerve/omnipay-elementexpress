@@ -26,23 +26,15 @@ class Transaction extends AbstractModel
     public function getDefaultParameters()
     {
         return [
-
-            // Elements corresponding directly with standard Omnipay parameter
-            // names use those same names here instead of ElementExpress names.
-
-            'amount'                    => '', // ElementExpress "TransactionAmount"
-            'transactionReference'      => '', // ElementExpress "TransactionID"
-            'transactionId'             => '', // ElementExpress "ReferenceNumber"
-
-            // Remaining elements correspond to ElementExpress parameters.
-
+            'TransactionID'             => '',
+            'TransactionAmount'         => '',
+            'ReferenceNumber'           => '',
             'ReversalType'              => '',
             'MarketCode'                => MarketCode::__DEFAULT(),
-            'PartialApprovedFlag'       => '',
-            'DuplicateOverrideFlag'     => '',
             'DuplicateCheckDisableFlag' => '',
+            'DuplicateOverrideFlag'     => '',
             'TicketNumber'              => '',
-
+            'PartialApprovedFlag'       => '',
         ];
     }
 
@@ -52,17 +44,17 @@ class Transaction extends AbstractModel
 
         // Append parameters.
 
-        $node->appendChild(new \DOMElement('TransactionAmount', $this['amount']));
-        $node->appendChild(new \DOMElement('TransactionID', $this['transactionReference']));
-        $node->appendChild(new \DOMElement('ReferenceNumber', $this['transactionId']));
+        $node->appendChild(new \DOMElement('TransactionID', $this['TransactionID']));
+        $node->appendChild(new \DOMElement('TransactionAmount', $this['TransactionAmount']));
+        $node->appendChild(new \DOMElement('ReferenceNumber', $this['ReferenceNumber']));
         if (!empty($this['ReversalType'])) {
             $node->appendChild(new \DOMElement('ReversalType', $this['ReversalType']->value()));
         }
         $node->appendChild(new \DOMElement('MarketCode', $this['MarketCode']->value()));
-        $node->appendChild(new \DOMElement('PartialApprovedFlag', $this['PartialApprovedFlag']));
-        $node->appendChild(new \DOMElement('DuplicateOverrideFlag', $this['DuplicateOverrideFlag']));
         $node->appendChild(new \DOMElement('DuplicateCheckDisableFlag', $this['DuplicateCheckDisableFlag']));
+        $node->appendChild(new \DOMElement('DuplicateOverrideFlag', $this['DuplicateOverrideFlag']));
         $node->appendChild(new \DOMElement('TicketNumber', $this['TicketNumber']));
+        $node->appendChild(new \DOMElement('PartialApprovedFlag', $this['PartialApprovedFlag']));
     }
 
     /**
@@ -74,24 +66,24 @@ class Transaction extends AbstractModel
      */
     public function validate()
     {
-        if (strlen($this['amount'])) {
-            if (!is_numeric($this['amount'])) {
-                throw new InvalidRequestException('amount should be numeric');
+        if (strlen($this['TransactionID']) && !preg_match('/^.{1,10}$/', $this['TransactionID'])) {
+            throw new InvalidRequestException('TransactionID should have 10 or fewer characters');
+        }
+
+        if (strlen($this['TransactionAmount'])) {
+            if (!is_numeric($this['TransactionAmount'])) {
+                throw new InvalidRequestException('TransactionAmount should be numeric');
             }
-            if (0 >= $this['amount']) {
-                throw new InvalidRequestException('amount should be non-zero and positive');
+            if (0 >= $this['TransactionAmount']) {
+                throw new InvalidRequestException('TransactionAmount should be non-zero and positive');
             }
-            if (!preg_match('/^.{1,10}$/', $this['amount'])) {
-                throw new InvalidRequestException('amount should have 10 or fewer characters');
+            if (!preg_match('/^.{1,10}$/', $this['TransactionAmount'])) {
+                throw new InvalidRequestException('TransactionAmount should have 10 or fewer characters');
             }
         }
 
-        if (strlen($this['transactionReference']) && !preg_match('/^.{1,10}$/', $this['transactionReference'])) {
-            throw new InvalidRequestException('transactionReference should have 10 or fewer characters');
-        }
-
-        if (strlen($this['transactionId']) && !preg_match('/^.{1,50}$/', $this['transactionId'])) {
-            throw new InvalidRequestException('transactionId should have 50 or fewer characters');
+        if (strlen($this['ReferenceNumber']) && !preg_match('/^.{1,50}$/', $this['ReferenceNumber'])) {
+            throw new InvalidRequestException('ReferenceNumber should have 50 or fewer characters');
         }
 
         if (isset($this['ReversalType']) && !$this['ReversalType'] instanceof ReversalType) {
@@ -102,22 +94,22 @@ class Transaction extends AbstractModel
             throw new InvalidRequestException('Invalid value for MarketCode');
         }
 
-        if (strlen($this['PartialApprovedFlag']) && !preg_match('/^(0|1)$/', $this['PartialApprovedFlag'])) {
-            throw new InvalidRequestException('PartialApprovedFlag should be "0" or "1"');
-        }
-
-        if (strlen($this['DuplicateOverrideFlag']) && !preg_match('/^(0|1)$/', $this['DuplicateOverrideFlag'])) {
-            throw new InvalidRequestException('DuplicateOverrideFlag should be "0" or "1"');
-        }
-
         if (strlen($this['DuplicateCheckDisableFlag'])) {
             if (!preg_match('/^(0|1)$/', $this['DuplicateCheckDisableFlag'])) {
                 throw new InvalidRequestException('DuplicateCheckDisableFlag should be "0" or "1"');
             }
         }
 
+        if (strlen($this['DuplicateOverrideFlag']) && !preg_match('/^(0|1)$/', $this['DuplicateOverrideFlag'])) {
+            throw new InvalidRequestException('DuplicateOverrideFlag should be "0" or "1"');
+        }
+
         if (strlen($this['TicketNumber']) && !preg_match('/^.{1,50}$/', $this['TicketNumber'])) {
             throw new InvalidRequestException('TicketNumber should have 50 or fewer characters');
+        }
+
+        if (strlen($this['PartialApprovedFlag']) && !preg_match('/^(0|1)$/', $this['PartialApprovedFlag'])) {
+            throw new InvalidRequestException('PartialApprovedFlag should be "0" or "1"');
         }
     }
 }

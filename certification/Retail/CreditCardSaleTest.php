@@ -30,9 +30,9 @@ class CreditCardSaleTest extends CertificationTestCase
 
     public function testVisaSwipedEncryptedTrack1Data()
     {
-        $response = $this->gw->purchase($this->optsRetailSwiped([
-            'amount'                  => '2.04',
-            'transactionId'           => uniqid(),
+        $response = $this->gw->creditCardSale($this->optsRetailSwiped([
+            'TransactionAmount'       => '2.04',
+            'ReferenceNumber'         => uniqid(),
             'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
@@ -44,15 +44,15 @@ class CreditCardSaleTest extends CertificationTestCase
             'Visa Swiped (EncryptedTrack1Data)',
             '2.04',
             $response->getCode(),
-            $response->getTransactionReference()
+            $response->getTransactionId()
         ]);
     }
 
     public function testVisaSwipedEncryptedTrack2Data()
     {
-        $response = $this->gw->purchase($this->optsRetailSwiped([
-            'amount'                  => '2.05',
-            'transactionId'           => uniqid(),
+        $response = $this->gw->creditCardSale($this->optsRetailSwiped([
+            'TransactionAmount'       => '2.05',
+            'ReferenceNumber'         => uniqid(),
             'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
@@ -64,23 +64,23 @@ class CreditCardSaleTest extends CertificationTestCase
             'Visa Swiped (EncryptedTrack2Data)',
             '2.05',
             $response->getCode(),
-            $response->getTransactionReference()
+            $response->getTransactionId()
         ]);
     }
 
     public function testVisaKeyedMagstripeFailureCardNumber()
     {
-        $response = $this->gw->purchase($this->optsRetailKeyed([
-            'amount'          => '2.10',
-            'transactionId'   => uniqid(),
-            'TicketNumber'    => uniqid(),
-            'CVVPresenceCode' => CVVPresenceCode::PROVIDED(),
-            'card'            => [
-                'number'          => getenv('VISA_CARD_NUMBER'),
-                'billingPostcode' => '90210',
-                'expiryMonth'     => getenv('VISA_EXPIRATION_MONTH'),
-                'expiryYear'      => getenv('VISA_EXPIRATION_YEAR'),
-                'cvv'             => rand(100, 999),
+        $response = $this->gw->creditCardSale($this->optsRetailKeyed([
+            'TransactionAmount' => '2.10',
+            'ReferenceNumber'   => uniqid(),
+            'TicketNumber'      => uniqid(),
+            'CVVPresenceCode'   => CVVPresenceCode::PROVIDED(),
+            'card'              => [
+                'CardNumber'      => getenv('VISA_CARD_NUMBER'),
+                'BillingZipZode'  => '90210',
+                'ExpirationMonth' => getenv('VISA_EXPIRATION_MONTH'),
+                'ExpirationYear'  => getenv('VISA_EXPIRATION_YEAR'),
+                'CVV'             => rand(100, 999),
             ]
         ]))->send();
         $this->assertSame("0", $response->getCode());
@@ -89,15 +89,15 @@ class CreditCardSaleTest extends CertificationTestCase
             'Visa Keyed Magstripe Failure (CardNumber)',
             '2.10',
             $response->getCode(),
-            $response->getTransactionReference()
+            $response->getTransactionId()
         ]);
     }
 
     public function testVisaPartialApproved()
     {
-        $response = $this->gw->purchase($this->optsRetailSwiped([
-            'amount'                  => '23.05',
-            'transactionId'           => uniqid(),
+        $response = $this->gw->creditCardSale($this->optsRetailSwiped([
+            'TransactionAmount'       => '23.05',
+            'ReferenceNumber'         => uniqid(),
             'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
@@ -109,15 +109,15 @@ class CreditCardSaleTest extends CertificationTestCase
             'Visa (Partial Approved)',
             '23.05',
             $response->getCode(),
-            $response->getTransactionReference()
+            $response->getTransactionId()
         ]);
     }
 
     public function testVisaBalanceAndCurrencyCode()
     {
-        $response = $this->gw->purchase($this->optsRetailSwiped([
-            'amount'                  => '23.06',
-            'transactionId'           => uniqid(),
+        $response = $this->gw->creditCardSale($this->optsRetailSwiped([
+            'TransactionAmount'       => '23.06',
+            'ReferenceNumber'         => uniqid(),
             'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
@@ -129,7 +129,7 @@ class CreditCardSaleTest extends CertificationTestCase
             'Visa (Balance and Currency Code)',
             '23.06',
             $response->getCode(),
-            $response->getTransactionReference()
+            $response->getTransactionId()
         ]);
     }
 

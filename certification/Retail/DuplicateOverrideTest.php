@@ -31,9 +31,9 @@ class DuplicateOverrideTest extends CertificationTestCase
     public function testVisaOverrideDuplicateSale()
     {
         // First create a sale.
-        $response = $this->gw->purchase($this->optsRetailSwiped([
-            'amount'                  => '0.23',
-            'transactionId'           => uniqid(),
+        $response = $this->gw->creditCardPurchase($this->optsRetailSwiped([
+            'TransactionAmount'       => '0.23',
+            'ReferenceNumber'         => uniqid(),
             'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
@@ -45,13 +45,13 @@ class DuplicateOverrideTest extends CertificationTestCase
             'Visa (Sale)',
             '0.23',
             $response->getCode(),
-            $response->getTransactionReference()
+            $response->getTransactionId()
         ]);
 
         // Run it again with duplicate override set to true.
-        $response = $this->gw->purchase($this->optsRetailSwiped([
-            'amount'                  => '0.23',
-            'transactionId'           => uniqid(),
+        $response = $this->gw->creditCardPurchase($this->optsRetailSwiped([
+            'TransactionAmount'       => '0.23',
+            'ReferenceNumber'         => uniqid(),
             'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
@@ -64,16 +64,16 @@ class DuplicateOverrideTest extends CertificationTestCase
             'Visa (Sale, DuplicateOverride=true)',
             '0.23',
             $response->getCode(),
-            $response->getTransactionReference()
+            $response->getTransactionId()
         ]);
     }
 
     public function testVisaDuplicateCheckDisabled()
     {
         // First create a sale.
-        $response = $this->gw->purchase($this->optsRetailSwiped([
-            'amount'                  => '0.23',
-            'transactionId'           => uniqid(),
+        $response = $this->gw->creditCardPurchase($this->optsRetailSwiped([
+            'TransactionAmount'       => '0.23',
+            'ReferenceNumber'         => uniqid(),
             'TicketNumber'            => uniqid(),
             'CardDataKeySerialNumber' => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'         => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
@@ -85,14 +85,14 @@ class DuplicateOverrideTest extends CertificationTestCase
             'Visa (Sale)',
             '0.23',
             $response->getCode(),
-            $response->getTransactionReference()
+            $response->getTransactionId()
         ]);
 
         // Run it again with duplicate checks disabled set to true.
-        $response = $this->gw->purchase($this->optsRetailSwiped([
-            'amount'                    => '0.23',
-            'transactionId'             => uniqid(),
-            'TicketNumber'            => uniqid(),
+        $response = $this->gw->creditCardPurchase($this->optsRetailSwiped([
+            'TransactionAmount'         => '0.23',
+            'ReferenceNumber'           => uniqid(),
+            'TicketNumber'              => uniqid(),
             'CardDataKeySerialNumber'   => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'           => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
             'EncryptedTrack1Data'       => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
@@ -104,7 +104,7 @@ class DuplicateOverrideTest extends CertificationTestCase
             'Visa (Sale, DuplicateCheckDisableFlag=true)',
             '0.23',
             $response->getCode(),
-            $response->getTransactionReference()
+            $response->getTransactionId()
         ]);
     }
 }

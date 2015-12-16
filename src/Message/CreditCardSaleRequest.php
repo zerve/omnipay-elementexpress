@@ -41,8 +41,6 @@ class CreditCardSaleRequest extends AbstractTransactionRequest
      */
     public function getData()
     {
-        // $this->validate('amount', 'card');
-        // $this->getCard()->validate();
         return $this->domDocumentFactory('CreditCardSale');
     }
 }

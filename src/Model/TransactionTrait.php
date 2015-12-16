@@ -32,42 +32,35 @@ trait TransactionTrait
         return $model->initialize($this->getParameters());
     }
 
-    // The following mutators/accessors correspond to parameters that have
-    // Omnipay equivalents. These are named with the Omnipay convention and
-    // mapped to the ElementExpress domain in the model.
-
-    public function getAmount()
+    public function getTransactionAmount()
     {
-        return $this->getParameter('amount');
+        return $this->getParameter('TransactionAmount');
     }
 
-    public function setAmount($value)
+    public function setTransactionAmount($value)
     {
-        return $this->setParameter('amount', $value);
+        return $this->setParameter('TransactionAmount', $value);
     }
 
-    public function getTransactionId()
+    public function getReferenceNumber()
     {
-        return $this->getParameter('transactionId');
+        return $this->getParameter('ReferenceNumber');
     }
 
-    public function setTransactionId($value)
+    public function setReferenceNumber($value)
     {
-        return $this->setParameter('transactionId', $value);
+        return $this->setParameter('ReferenceNumber', $value);
     }
 
-    public function getTransactionReference()
+    public function getTransactionID()
     {
-        return $this->getParameter('transactionReference');
+        return $this->getParameter('transactionID');
     }
 
-    public function setTransactionReference($value)
+    public function setTransactionID($value)
     {
-        return $this->setParameter('transactionReference', $value);
+        return $this->setParameter('transactionID', $value);
     }
-
-    // The following mutators/accessors correspond to parameters that are
-    // unique to the ElementExpress domain.
 
     public function getMarketCode()
     {

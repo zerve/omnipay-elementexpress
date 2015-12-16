@@ -30,7 +30,7 @@ class PaymentAccountTest extends TestCase
     public function invalidData()
     {
         return [
-            'cardReference: too-long'                 => ['cardReference', str_repeat('x', 51)],
+            'PaymentAccountID: too-long'              => ['PaymentAccountID', str_repeat('x', 51)],
             'PaymentAccountType: invalid-value'       => ['PaymentAccountType', 0],
             'PaymentAccountReferenceNumber: too-long' => ['PaymentAccountReferenceNumber', str_repeat('x', 51)],
         ];
@@ -39,7 +39,7 @@ class PaymentAccountTest extends TestCase
     public function validData()
     {
         return [
-            'cardReference: max-length'                 => ['cardReference', str_repeat('x', 50)],
+            'PaymentAccountID: max-length'              => ['PaymentAccountID', str_repeat('x', 50)],
             'PaymentAccountType: valid-enum'            => ['PaymentAccountType', PaymentAccountType::CREDIT_CARD()],
             'PaymentAccountReferenceNumber: max-length' => ['PaymentAccountReferenceNumber', str_repeat('x', 50)],
         ];

@@ -31,21 +31,21 @@ class PaymentAccountQueryTest extends CertificationTestCase
     public function testQueryByPaymentAccountId()
     {
         // Create a card token
-        $response = $this->gw->createCard([
+        $response = $this->gw->paymentAccountCreate([
             'PaymentAccountType'            => PaymentAccountType::CREDIT_CARD(),
             'PaymentAccountReferenceNumber' => uniqid(),
             'CardDataKeySerialNumber'       => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'               => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
             'EncryptedTrack1Data'           => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
             'card' => [
-                'billingPostcode' => '90210'
+                'BillingZipcode' => '90210'
             ]
         ])->send();
         $this->assertSame("0", $response->getCode());
 
         // Query based on PaymentAccountID
         $response = $this->gw->paymentAccountQuery([
-            'cardReference' => $response->getCardReference(),
+            'PaymentAccountID' => $response->getPaymentAccountId(),
         ])->send();
         $this->assertSame("0", $response->getCode());
 
@@ -62,14 +62,14 @@ class PaymentAccountQueryTest extends CertificationTestCase
         $ref = uniqid();
 
         // Create a card token
-        $response = $this->gw->createCard([
+        $response = $this->gw->paymentAccountCreate([
             'PaymentAccountType'            => PaymentAccountType::CREDIT_CARD(),
             'PaymentAccountReferenceNumber' => $ref,
             'CardDataKeySerialNumber'       => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'               => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
             'EncryptedTrack1Data'           => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
             'card' => [
-                'billingPostcode' => '90210'
+                'BillingZipcode' => '90210'
             ]
         ])->send();
         $this->assertSame("0", $response->getCode());
@@ -91,14 +91,14 @@ class PaymentAccountQueryTest extends CertificationTestCase
     public function testQueryByPaymentBrand()
     {
         // Create a card token
-        $response = $this->gw->createCard([
+        $response = $this->gw->paymentAccountCreate([
             'PaymentAccountType'            => PaymentAccountType::CREDIT_CARD(),
             'PaymentAccountReferenceNumber' => uniqid(),
             'CardDataKeySerialNumber'       => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'               => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
             'EncryptedTrack1Data'           => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
             'card' => [
-                'billingPostcode' => '90210'
+                'BillingZipcode' => '90210'
             ]
         ])->send();
         $this->assertSame("0", $response->getCode());
@@ -120,14 +120,14 @@ class PaymentAccountQueryTest extends CertificationTestCase
     public function testQueryByExpirationMonthAndYear()
     {
         // Create a card token
-        $response = $this->gw->createCard([
+        $response = $this->gw->paymentAccountCreate([
             'PaymentAccountType'            => PaymentAccountType::CREDIT_CARD(),
             'PaymentAccountReferenceNumber' => uniqid(),
             'CardDataKeySerialNumber'       => getenv('VISA_CARD_DATA_KEY_SERIAL_NUMBER'),
             'EncryptedFormat'               => EncryptedFormat::memberByKey(getenv('ENCRYPTED_FORMAT')),
             'EncryptedTrack1Data'           => getenv('VISA_ENCRYPTED_TRACK1_DATA'),
             'card' => [
-                'billingPostcode' => '90210'
+                'BillingZipcode' => '90210'
             ]
         ])->send();
         $this->assertSame("0", $response->getCode());

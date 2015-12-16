@@ -69,38 +69,29 @@ class Gateway extends AbstractGateway
         ];
     }
 
-    public function purchase(array $parameters = array())
-    {
-        return $this->createRequest('\Omnipay\ElementExpress\Message\CreditCardSaleRequest', $parameters);
-    }
-
-    public function void(array $parameters = array())
-    {
-        return $this->createRequest('\Omnipay\ElementExpress\Message\CreditCardVoidRequest', $parameters);
-    }
-
-    public function createCard(array $parameters = array())
-    {
-        return $this->createRequest('\Omnipay\ElementExpress\Message\PaymentAccountCreateRequest', $parameters);
-    }
-
-    //
-    // These are methods specific to the ElementExpress interface.
-    //
-
-    public function expressReturn(array $parameters = array())
-    {
-        return $this->createRequest('\Omnipay\ElementExpress\Message\CreditCardReturnRequest', $parameters);
-    }
-
-    public function expressCredit(array $parameters = array())
+    public function creditCardCredit(array $parameters = array())
     {
         return $this->createRequest('\Omnipay\ElementExpress\Message\CreditCardCreditRequest', $parameters);
     }
 
-    public function expressReversal(array $parameters = array())
+    public function creditCardReturn(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\ElementExpress\Message\CreditCardReturnRequest', $parameters);
+    }
+
+    public function creditCardReversal(array $parameters = array())
     {
         return $this->createRequest('\Omnipay\ElementExpress\Message\CreditCardReversalRequest', $parameters);
+    }
+
+    public function creditCardSale(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\ElementExpress\Message\CreditCardSaleRequest', $parameters);
+    }
+
+    public function creditCardVoid(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\ElementExpress\Message\CreditCardVoidRequest', $parameters);
     }
 
     public function healthCheck(array $parameters = array())
@@ -108,13 +99,18 @@ class Gateway extends AbstractGateway
         return $this->createRequest('\Omnipay\ElementExpress\Message\HealthCheckRequest', $parameters);
     }
 
-    public function paymentAccountQuery(array $parameters = array())
+    public function paymentAccountCreate(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\ElementExpress\Message\PaymentAccountQueryRequest', $parameters);
+        return $this->createRequest('\Omnipay\ElementExpress\Message\PaymentAccountCreateRequest', $parameters);
     }
 
     public function paymentAccountDelete(array $parameters = array())
     {
         return $this->createRequest('\Omnipay\ElementExpress\Message\PaymentAccountDeleteRequest', $parameters);
+    }
+
+    public function paymentAccountQuery(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\ElementExpress\Message\PaymentAccountQueryRequest', $parameters);
     }
 }
